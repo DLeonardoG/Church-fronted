@@ -9,7 +9,7 @@ function App() {
     <>
       <header>
         <h1 className='text-orange-500 text-5xl text-center'>Home page
-          
+          style
         </h1>
       </header>
     </>
