@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <header>
-        <h1 className='text-orange-500 text-5xl text-center'>Iglesia Adventista del septimo Dia</h1>
+        <h1 className='text-orange-500 text-5xl text-center'>Home page
+          
+        </h1>
       </header>
     </>
   )
