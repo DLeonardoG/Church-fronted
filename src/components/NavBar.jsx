@@ -50,7 +50,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-500 p-4 shadow-lg">
+<nav className=" bg-opacity-10 backdrop-blur-md p-4 shadow-lg absolute w-full top-0 right-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <img

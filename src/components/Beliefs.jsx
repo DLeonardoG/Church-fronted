@@ -3,6 +3,7 @@ import NavBar from './NavBar'
 
 const Beliefs = () => {
 
+
   return (
     <>
    <NavBar/>
