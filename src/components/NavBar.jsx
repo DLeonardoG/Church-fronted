@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 const NavButton = ({
@@ -50,25 +50,15 @@ const Navbar = () => {
   };
 
   return (
-<nav className=" bg-opacity-10 backdrop-blur-md p-4 shadow-lg absolute w-full top-0 right-0 z-10">
+    <nav className=" bg-opacity-10 backdrop-blur-md p-4 shadow-lg absolute w-full top-0 right-0 z-10">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <img
-            src="/logo.svg" 
-            alt="Logo"
-            className="h-8 w-auto md:h-10" 
-          />
+          <img src="/logo.svg" alt="Logo" className="h-8 w-auto md:h-10" />
         </div>
 
         <div className="hidden md:flex h-full space-x-4">
-          <NavButton
-            text="Inicio"
-            navigateTo="/home"
-          />
-          <NavButton
-            text="Creencias"
-            navigateTo="/creencias"
-          />
+          <NavButton text="Inicio" navigateTo="/inicio" />
+          <NavButton text="Creencias" navigateTo="/creencias" />
         </div>
 
         <div className="md:hidden">
@@ -98,7 +88,7 @@ const Navbar = () => {
         <div className="md:hidden mt-4 bg-blue-600 rounded-lg shadow-lg">
           <NavButton
             text="Inicio"
-            navigateTo="/home"
+            navigateTo="/inicio"
             className="block w-full text-left py-3 px-4 hover:bg-blue-500 rounded-lg"
           />
           <NavButton
