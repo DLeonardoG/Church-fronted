@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router";
 
-
 const NavButton = ({
   imagePath,
   altText,
@@ -25,17 +24,19 @@ const NavButton = ({
   return (
     <button
       onClick={handleClick}
-      className={`w-full h-full bg-white border-none cursor-pointer text-black transition duration-300 flex items-center hover:bg-[#ffffff18] ${
+      className={`px-4 py-2 bg-transparent border-none cursor-pointer text-white text-sm font-semibold transition duration-300 flex items-center hover:bg-white hover:text-blue-500 rounded-lg ${
         isProfilePhoto ? "justify-center" : ""
       }`}
     >
-      {/* <img
-        src={imagePath}
-        alt={altText}
-        width={width}
-        height={height}
-        className={isProfilePhoto ? "rounded-full" : ""}
-      /> */}
+      {imagePath && (
+        <img
+          src={imagePath}
+          alt={altText}
+          width={width}
+          height={height}
+          className={isProfilePhoto ? "rounded-full" : "mr-2"}
+        />
+      )}
       {!isProfilePhoto && text}
     </button>
   );
@@ -49,7 +50,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-500 p-4">
+    <nav className="bg-blue-500 p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <img
@@ -59,23 +60,15 @@ const Navbar = () => {
           />
         </div>
 
-        <div className="hidden md:flex h-full">
-        <NavButton
-          text="Home"
-          navigateTo="/home"
-        />
-        <NavButton
-          text="Home"
-          navigateTo="/home"
-        />
-        <NavButton
-          text="Home"
-          navigateTo="/home"
-        />
-        <NavButton
-          text="Home"
-          navigateTo="/home"
-        />
+        <div className="hidden md:flex h-full space-x-4">
+          <NavButton
+            text="Inicio"
+            navigateTo="/home"
+          />
+          <NavButton
+            text="Creencias"
+            navigateTo="/creencias"
+          />
         </div>
 
         <div className="md:hidden">
@@ -102,11 +95,17 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden mt-4">
-          <a href="#" className="block text-white py-2 hover:bg-blue-400">Inicio</a>
-          <a href="#" className="block text-white py-2 hover:bg-blue-400">Acerca de</a>
-          <a href="#" className="block text-white py-2 hover:bg-blue-400">Servicios</a>
-          <a href="#" className="block text-white py-2 hover:bg-blue-400">Contacto</a>
+        <div className="md:hidden mt-4 bg-blue-600 rounded-lg shadow-lg">
+          <NavButton
+            text="Inicio"
+            navigateTo="/home"
+            className="block w-full text-left py-3 px-4 hover:bg-blue-500 rounded-lg"
+          />
+          <NavButton
+            text="Creencias"
+            navigateTo="/creencias"
+            className="block w-full text-left py-3 px-4 hover:bg-blue-500 rounded-lg"
+          />
         </div>
       )}
     </nav>
