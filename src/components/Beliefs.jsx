@@ -11,7 +11,7 @@ const Beliefs = () => {
     <>
       <NavBar />
       <Carousel slides={slides} />
-      <h2>Creencias</h2>
+      <h2>Aqui ira una pagina con las creencias y demas tenemos que estar atentos  a sugerencias y demas</h2>
     </>
   );
 };
