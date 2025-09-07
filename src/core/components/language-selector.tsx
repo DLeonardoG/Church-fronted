@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from "@/core/components/ui/dropdown-menu"
 import i18next from "i18next"
-import { useEffect } from "react"
 
 const languages = [
   { code: "en", lang: "English" },
