@@ -18,7 +18,7 @@ function NavigationMenu({
       data-slot="navigation-menu"
       data-viewport={viewport}
       className={cn(
-        "group/navigation-menu fixed flex w-full flex-1 items-center justify-center p-6 bg-[oklch(0.98_0_0/_0.5)]",
+        "group/navigation-menu fixed flex w-full z-50 flex-1 items-center justify-center p-6 bg-[oklch(0.98_0_0/_0.5)] backdrop-blur-md",
         className
       )}
       {...props}
