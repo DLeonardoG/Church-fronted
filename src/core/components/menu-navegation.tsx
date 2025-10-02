@@ -1,5 +1,8 @@
 import * as React from "react"
 import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react"
+import { ModeToggle } from "@/core/components/mode-toggle"
+import { LanguageToggle } from "@/core/components/language-selector"
+import { ProfileLogin } from "@/core/components/profile-login"
 
 import {
   NavigationMenu,
@@ -54,9 +57,16 @@ const components: { title: string; to: string; description: string }[] = [
 export function NavigationMenuDemo() {
   return (
     <NavigationMenu viewport={false}>
+      <div className="absolute left-4 top-1/2 -translate-y-1/2">
+        <img
+          src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/dsa.svg"
+          alt="Logo"
+          className="h-12 w-auto"
+        />
+      </div>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Home</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Inicio</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -87,7 +97,7 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Nosotros</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
@@ -104,11 +114,11 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/docs">Docs</Link>
+            <Link to="/docs">Anuncios</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>List</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Departamentos</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[300px] gap-4">
               <li>
@@ -141,7 +151,7 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Simple</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Recursos</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[200px] gap-4">
               <li>
@@ -159,7 +169,7 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Eventos</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[200px] gap-4">
               <li>
@@ -186,6 +196,11 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
+        <ModeToggle/>
+        <LanguageToggle/>
+        <ProfileLogin/>
+      </div>
     </NavigationMenu>
   )
 }

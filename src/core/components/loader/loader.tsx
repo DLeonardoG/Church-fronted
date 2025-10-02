@@ -6,11 +6,11 @@ import "@/core/style/global.css"
 export default function Loader() {
   const [fadeOut, setFadeOut] = useState(false)
 
-//   useEffect(() => {
-//     // Simulación: después de montar, empieza el fade-out
-//     const timer = setTimeout(() => setFadeOut(true), 1000000) // espera 0.5s para empezar
-//     return () => clearTimeout(timer)
-//   }, [])
+  useEffect(() => {
+    // Simulación: después de montar, empieza el fade-out
+    const timer = setTimeout(() => setFadeOut(true), 4000000) // espera 0.5s para empezar
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div
