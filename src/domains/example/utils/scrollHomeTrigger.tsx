@@ -31,6 +31,7 @@ export function useScrollHomeTrigger({
         if (!p.style.minHeight) p.style.minHeight = "100vh"
       })
 
+      
       // Creamos ScrollTriggers para calcular los "starts" dinámicamente
       const tops = panels.map((panel) =>
         ScrollTrigger.create({ trigger: panel, start: "top top", markers: false })

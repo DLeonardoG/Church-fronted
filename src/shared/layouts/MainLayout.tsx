@@ -4,7 +4,7 @@ import Footer from "@/core/components/footer"
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth">
       <NavigationMenuDemo />
       <main className="pt-20">
         <Outlet />

@@ -14,7 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/core/components/ui/navigation-menu"
 import { Link } from "react-router-dom"
-
+import scrollToSection from "@/shared/hooks/gsapScroll"
 
 const components: { title: string; to: string; description: string }[] = [
   {
@@ -114,7 +114,12 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/docs">Anuncios</Link>
+            <button
+              onClick={() => scrollToSection("Anuncios")}
+              className="px-3 py-2"
+            >
+              Anuncios
+            </button>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
