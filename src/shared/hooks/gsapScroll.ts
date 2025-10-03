@@ -10,12 +10,10 @@ export default function scrollToSection(id: string, opts: { duration?: number } 
   const goingDown = window.scrollY >= lastScroll
   lastScroll = window.scrollY
 
-  const offsetPercent = goingDown ? 1 : 0.15
+  const offsetDown = 350 
+  const offsetUp = 200  
 
-  const y =
-    target.getBoundingClientRect().top +
-    window.scrollY -
-    window.innerHeight * offsetPercent
+  const y = target.getBoundingClientRect().top + window.scrollY - (goingDown ? offsetDown : offsetUp)
 
   gsap.to(window, {
     duration,

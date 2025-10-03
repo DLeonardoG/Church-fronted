@@ -66,49 +66,51 @@ export function NavigationMenuDemo() {
       </div>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Inicio</NavigationMenuTrigger>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to="/home">
+              Inicio
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+  
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="cursor-pointer">Nosotros</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                    className="relative flex h-full w-full flex-col justify-end rounded-md overflow-hidden p-6 no-underline outline-hidden select-none focus:shadow-md"
                     to="/"
                   >
-                    <div className="mt-4 mb-2 text-lg font-medium">
-                      shadcn/ui
+                    <img
+                      src="https://scontent.fbga1-3.fna.fbcdn.net/v/t1.6435-9/79649146_2211901442445196_8153083340790956032_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=-gu1bcLvCUwQ7kNvwHBdpIk&_nc_oc=AdlhjsIPMBKj4Xmk6MYPUZ61NdrBMx751qHW5PJYMrcwXqX8JfT3yxkbk5-lBSytbpU&_nc_zt=23&_nc_ht=scontent.fbga1-3.fna&_nc_gid=aakpHa2kkhTA7hs9nNwHmA&oh=00_Affl2cSVr394w9IEUD1zN3K2LI4xzcSXMHGTXFz3EGLBhg&oe=6906B48C"
+                      alt="Fondo"
+                      className="absolute inset-0 w-full h-full object-cover z-0"
+                    />
+
+                    <div className="absolute inset-0 bg-white/40 z-5"></div>
+
+                    <div className="relative z-10 mt-4 mb-2 text-lg font-medium text-center text-black">
+                      Comunicaciones Norte
                     </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Beautifully designed components built with Tailwind CSS.
+                    <p className="relative z-10 text-sm leading-tight text-center text-black">
+                      Somos la Iglesia Adventista del Séptimo Dia Norte Bucaramanga
                     </p>
                   </Link>
+
                 </NavigationMenuLink>
+
               </li>
-              <ListItem to="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem to="/docs" title="Quienes Somos?">
+                Los Adventistas del Séptimo Día son una familia global de cristianos...
               </ListItem>
-              <ListItem to="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem to="/docs/installation" title="Creencias">
+                Desde las neuronas a las nebulosas, desde el ADN hasta las distantes galaxias...
               </ListItem>
-              <ListItem to="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem to="/docs/primitives/typography" title="Equipo">
+                Guiados por la fe y los principios adventistas, para servir y fortalecer a nuestra comunidad.
               </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Nosotros</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  to={component.to}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -116,89 +118,117 @@ export function NavigationMenuDemo() {
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <button
               onClick={() => scrollToSection("Anuncios")}
-              className="px-3 py-2"
+              className="px-3 py-2 cursor-pointer"
             >
               Anuncios
             </button>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Departamentos</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link to="#">
-                    <div className="font-medium">Components</div>
-                    <div className="text-muted-foreground">
-                      Browse all components in the library.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#">
-                    <div className="font-medium">Documentation</div>
-                    <div className="text-muted-foreground">
-                      Learn how to use the library.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#">
-                    <div className="font-medium">Blog</div>
-                    <div className="text-muted-foreground">
-                      Read our latest blog posts.
-                    </div>
-                  </Link>
-                </NavigationMenuLink>
+          <NavigationMenuTrigger className="cursor-pointer">Departamentos</NavigationMenuTrigger>
+            <NavigationMenuContent>
+            <ul className="grid w-[250px] gap-4">
+              <li className="flex gap-2">
+                <div>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Mayordomia</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Ministerios Personales</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Comunicaciones</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Escuela Sabatica</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Jovenes</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Universitarios</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Educacion</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Capellania</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Familia</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Salud</Link>
+                  </NavigationMenuLink>
+                </div>
+                <div>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Dorcas</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Diaconos</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Evangelismo</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Tesoreria</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">Secretaria</Link>
+                  </NavigationMenuLink>
+                </div>
               </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Recursos</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link to="#">Components</Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#">Documentation</Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#">Blocks</Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuTrigger className="cursor-pointer">Recursos</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[300px] gap-4">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      <div className="font-medium">"Las 28 Creencias Adventistas"</div>
+                      <div className="text-muted-foreground">
+                        No hay "289 creencias" adventistas, sino las 28 Creencias Fundamentales de la Iglesia Adventist...
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      <div className="font-medium">Leccion Escuela Sabatica</div>
+                      <div className="text-muted-foreground">
+                        La leccion tiene como propósito en fortalecer la fe, profundizar el conocimiento de las Escrituras y fomen...
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      <div className="font-medium">"Mente caracter y personalidad"</div>
+                      <div className="text-muted-foreground">
+                        Ser semejantes a Jesús en carácter es el ideal de Dios para su pueblo. Desde el principio fue el plan de...
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      <div className="font-medium">Revista Adventista</div>
+                      <div className="text-muted-foreground">
+                        Se publica mensualmente en varios idiomas y se distribuye gratuitamente a más de 140 países, ofreciendo un panorama internacional de la iglesia. 
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Eventos</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
-                    <CircleHelpIcon />
-                    Backlog
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
-                    <CircleIcon />
-                    To Do
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <Link to="#" className="flex-row items-center gap-2">
-                    <CircleCheckIcon />
-                    Done
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to="#">
+              Eventos
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
       <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">

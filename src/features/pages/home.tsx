@@ -1,5 +1,6 @@
 import { CarouselPlugin } from "@/core/components/carouselHome";
-import { useScrollHomeTrigger } from "@/domains/example/utils/scrollHomeTrigger";
+import { useScrollHomeTrigger } from "@/shared/hooks/scrollHomeTrigger";
+import Anuncios from "@/core/components/anuncios";
 
 function Home() {
 
@@ -15,8 +16,9 @@ function Home() {
             <section id="sectionD" className="panel flex w-full h-screen justify-center">
                 <CarouselPlugin></CarouselPlugin>
             </section>
-            <section id="Anuncios" className="panel bg-red-500 w-full flex h-screen items-center justify-center">
-                <h1 className="text-white text-4xl">Sección 1</h1>
+            <section id="Anuncios" className="panel flex flex-col gap-3 bg-gray-200 w-full h-screen pt-25 p-4 justify-center">
+                <h1 className="text-black text-3xl">Anuncios</h1>
+                <Anuncios></Anuncios>
             </section>
             <section id="section" className="panel h-screen bg-blue-500 flex items-center justify-center">
               <h1 className="text-white text-4xl">Sección 2</h1>
@@ -30,3 +32,4 @@ function Home() {
 }
 
 export default Home
+

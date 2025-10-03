@@ -53,6 +53,7 @@ export function useScrollHomeTrigger({
         snap: {
           snapTo: (progress, self) => {
             // recalculamos starts dinámicamente
+            if (!self) return progress
             const panelStarts = tops.map((st) => st.start)
             const snapScroll = gsap.utils.snap(panelStarts, self.scroll())
             return gsap.utils.normalize(0, ScrollTrigger.maxScroll(window), snapScroll)
