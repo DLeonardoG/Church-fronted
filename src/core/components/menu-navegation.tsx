@@ -59,9 +59,9 @@ export function NavigationMenuDemo() {
     <NavigationMenu viewport={false}>
       <div className="absolute left-4 top-1/2 -translate-y-1/2">
         <img
-          src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/dsa.svg"
+          src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
           alt="Logo"
-          className="h-12 w-auto"
+          className="h-15 w-40"
         />
       </div>
       <NavigationMenuList>

@@ -4,11 +4,6 @@ import './index.css'
 import './shared/hooks/i18n.js'
 import App from './App.tsx'
 import Loader from "@/core/components/loader/loader"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
-
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
