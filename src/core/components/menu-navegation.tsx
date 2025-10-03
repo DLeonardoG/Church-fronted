@@ -1,5 +1,4 @@
 import * as React from "react"
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react"
 import { ModeToggle } from "@/core/components/mode-toggle"
 import { LanguageToggle } from "@/core/components/language-selector"
 import { ProfileLogin } from "@/core/components/profile-login"
