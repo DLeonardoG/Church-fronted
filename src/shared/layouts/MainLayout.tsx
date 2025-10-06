@@ -6,7 +6,7 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen scroll-smooth">
       <NavigationMenuDemo />
-      <main className="pt-20">
+      <main className="">
         <Outlet />
       </main>
       <Footer></Footer>

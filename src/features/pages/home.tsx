@@ -4,30 +4,14 @@ import Anuncios from "@/core/components/anuncios";
 import HeroSection from "@/core/components/HeroSection";
 
 function Home() {
-    // useScrollHomeTrigger({
-      // panelSelector: ".panel",
-      // snapDuration: 0.55,
-      // markers: false,
-      // disableOnMobile: true,
-    // });
-   
-    const heroSections = [
-      {
-        titulo: "Wanna see something neat?",
-        imagen:
-          undefined,
-      },
-      {
-        titulo: "How Neat is That?",
-        imagen:
-          "https://images.unsplash.com/photo-1508781197106-d8c535dcf276?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200&fit=max",
-      },
-      {
-        titulo: "Pretty Amazing Stuff",
-        imagen:
-          undefined,
-      },
-    ];
+    useScrollHomeTrigger({
+      panelSelector: "#sectionD, #Anuncios, #section2, #section3, #section4", 
+      snapDuration: 0.55,
+      markers: false,
+      disableOnMobile: true,
+      endTrigger: "#section4",
+    });
+
 
     return(
         <main className="w-full min-h-screen">
@@ -42,19 +26,20 @@ function Home() {
             <section id="section2" className="panel h-screen bg-blue-500 flex items-center justify-center">
               <h1 className="text-white text-4xl">Sección 2</h1>
             </section>
-            <section id="section3" className="panel h-screen bg-green-500 flex items-center justify-center">
+            <section id="section3" className="panel h-screen bg-green-500 flex items-center justify-center mb-[100vh]">
               <h1 className="text-white text-4xl">Sección 3</h1>
             </section>
-            <section className="h-screen bg-pink-500 flex items-center justify-center">
-              <h1 className="text-white text-4xl">Sección 4</h1>
+            <section id="section4" className="panel flex items-center justify-center w-full h-[130vh] text-white font-bold text-center bg-black">
+              <h2 className="text-[8vmin]">Queremos Ayudarte, Queremos Servirte.</h2>
             </section>
-            {heroSections.map((section, index) => (
-              <HeroSection
-                key={index}
-                titulo={section.titulo}
-                imagen={section.imagen}
-              />
-            ))}
+            <HeroSection
+              titulo1="Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre, y el que en mí cree, nunca tendrá sed. Juan 3:16"
+              titulo2="Contactanos, para mas informacion"
+              video="/prube.mp4"
+            />
+            <section className="h-screen bg-gray-500 flex items-center justify-center">
+              <h1 className="text-white text-4xl">Sección 6</h1>
+            </section>
         </main>
     )
     
