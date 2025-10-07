@@ -1,12 +1,12 @@
+import React from "react";
 import { CarouselPlugin } from "@/core/components/carouselHome";
 import { useScrollHomeTrigger } from "@/shared/hooks/scrollHomeTrigger";
 import Anuncios from "@/core/components/anuncios";
 import Contact from "@/core/components/contact";
 import GraphHome from "@/core/components/graphsHome";
-import HeroSection from "@/core/components/HeroSection";
+const HeroSection = React.lazy(() => import("@/core/components/HeroSection"));
 import { Map } from "@/core/components/geoChurch";
 import { ChurchTable } from "@/core/components/tableChurch";
-import { ProfileLogin } from "@/core/components/profile-login";
 
 
 function Home() {
@@ -22,7 +22,7 @@ function Home() {
             <section id="sectionD" className="panel flex w-full h-screen justify-center">
                 <CarouselPlugin></CarouselPlugin>
             </section>
-            <section id="Anuncios" className="panel flex flex-col bg-gray-100 w-full h-screen pt-20 p-8 items-center gap-[10%]">
+            <section id="Anuncios" className="panel flex flex-col bg-gray-100 w-full h-screen pt-20 p-8 items-center justify-center gap-[10%]">
                 <h1 className="text-black font-bold text-4xl">Anuncios</h1>
                 <Anuncios></Anuncios>
             </section>
@@ -39,7 +39,6 @@ function Home() {
                 <h2 className="text-3xl md:text-4xl font-bold text-center">
                   Iglesias en Bucaramanga
                 </h2>
-                <ProfileLogin></ProfileLogin>
                 <ChurchTable></ChurchTable>
               </div>
             </section>

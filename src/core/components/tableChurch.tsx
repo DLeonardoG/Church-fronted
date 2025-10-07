@@ -1,16 +1,14 @@
 import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  VisibilityState,
 } from "@tanstack/react-table";
+
+import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, } from "@tanstack/react-table";
 
 import { Button } from "@/core/components/ui/button";
 import { Checkbox } from "@/core/components/ui/checkbox";
@@ -94,7 +92,6 @@ export function ChurchTable() {
 
   return (
     <div className="w-[400px] md:w-[380px] lg:w-[500px] md:h-[50%] border border-gray-200 border-lg text-black px-4 rounded-md">
-      {/* Filtro */}
       <div className="flex items-center py-4">
         <Input
           placeholder="Buscar Iglesia.."
@@ -106,7 +103,6 @@ export function ChurchTable() {
         />
       </div>
 
-      {/* Tabla */}
       <div className="overflow-hidden rounded-md border">
         <Table className="text-black w-full">
           <TableHeader className="w-full">
