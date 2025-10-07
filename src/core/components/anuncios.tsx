@@ -32,7 +32,7 @@ const eventosSecundarios = [
 
 function Anuncios() {
   return (
-    <div className="h-110 w-full rounded-lg justify-start">
+    <div className="h-80 md:h-100 lg:h-150 w-full rounded-lg justify-start">
       <ResizablePanelGroup direction="horizontal" className="gap-0">
         <ResizablePanel defaultSize={30}>
           <EventoCard {...eventosPrincipales[0]} />

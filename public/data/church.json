@@ -1,0 +1,304 @@
+{
+  "bga": [
+    {
+      "name": "Iglesia Adventista del Séptimo Día Central de Bucaramanga",
+      "lat": 7.12552,
+      "lng": -73.125783,
+      "direccion": "Cra. 19 #23-18"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día - Norte",
+      "lat": 7.139538,
+      "lng": -73.127435,
+      "direccion": "Cra. 20 #6-47"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Redención",
+      "lat":  7.123119,
+      "lng": -73.115445,
+      "direccion": "Cl 35 #28-45"
+    },
+    {
+      "name": "Asociación del Oriente Colombiano de los Adventistas del Séptimo Día",
+      "lat":  7.110747,
+      "lng": -73.113925,
+      "direccion": "Cl. 55 #28-05"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo Día Sion",
+      "lat": 7.132817,
+      "lng": -73.126537,
+      "direccion": "Cl. 15 #19-61"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Sotomayor",
+      "lat": 7.110012,
+      "lng": -73.11224,
+      "direccion": "Cl. 55b #29-17"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Dia Canaán",
+      "lat": 7.107323,
+      "lng": -73.120741,
+      "direccion": "Cl 56 #15-40"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día - La Victoria",
+      "lat": 7.096776,
+      "lng": -73.117409,
+      "direccion": "Cl. 69 # 12 -11"
+    },
+    {
+      "name": "Iglesia Adventista La Joya",
+      "lat": 7.115632,
+      "lng": -73.131861,
+      "direccion": "Cra. 8 #37-1"
+    },
+    {
+      "name": "Iglesia Adventista Del Septimo Día Filadelfia - IASD",
+      "lat": 7.081401,
+      "lng": -73.123379,
+      "direccion": "Cra. 15 #103c-62"
+    },
+    {
+      "name": "Iglesia Adventista 7o Día El Jardín",
+      "lat": 7.114508,
+      "lng": -73.105359,
+      "direccion": "Av. El Jardín #60"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Dia Kennedy",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 26 Nte. ##107"
+    },
+    {
+      "name": "Iglesia Adventista Shalom",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "a 33a-114, Cra. 43 #33a-2"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo Día - Renuevame - IASD",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 110 # 21-14"
+    },
+    {
+      "name": "Iglesia Adventista del séptimo día Nuevo Amanecer",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 47 #22-85"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Libertad",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra. 15d #10486 104a- a"
+    },
+    {
+      "name": "Iglesia Adventista Del Dia El Edén",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra. 12 #1537"
+    },
+    {
+      "name": "Iglesia adventista Cristo vive",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Tv. 22 #87-11"
+    },
+    {
+      "name": "Iglesia Adventista del séptimo día Maranatha",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 1 #14-46"
+    },
+    {
+      "name": "Redimir Iglesia Adventista del Septimo Dia",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 19 #31-29"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Getsemani",
+      "lat": 7.119,
+      "lng": -73.129,
+      "direccion": "Cl. 16 #59-47"
+    },
+    {
+      "name": "Iglesia adventista del séptimo día Bethel",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Casa Sobre La Roca",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 58 #27-32"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Colorados",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Av 51 #21-72"
+    },
+    {
+      "name": "Iglesia Adventista La Cumbre",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Canaan Norte",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra 23 #19-49"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Central Emmanuel Giron",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día (MONTEVERDE)",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Seventh-Day Adventist Church Cañaveral",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista del séptimo día Renacer",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Horeb",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "PRADOS CELESTIALES IGLESIA ADVENTISTA DEL SÉPTIMO DÍA",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista del séptimo día Orión",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 70 #8b"
+    },
+    {
+      "name": "Iglesia adventista del 7 día MARANATHA",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista Shaday",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "a 101-47, Cra. 32 #101-1"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día - Mutis - IASD",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 61 #1W-89"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día - Efeso",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "a 74a-106, Cra. 32 #74a-2"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo Dia Nueva Jerusalén",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "a 64-120 Carrera 25 Oeste #642"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Nueva Jerusalén Kennedy",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra 14 #15 04"
+    },
+    {
+      "name": "Iglesia Adventista del Séptimo Día Bethel",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "4VWM+F2"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo día - Verdad Presente",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra. 3 #43 Norte-2 a 43 Norte-114"
+    },
+    {
+      "name": "Iglesia Adventista del Septimo Día Galilea - IASD",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cl. 105 #5a-2 a 5a-24"
+    },
+    {
+      "name": "Iglesia Adventista María Paz",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra. 5 #15 Norte94 40n"
+    },
+    {
+      "name": "Iglesia Adventista Maranatha",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo Día Central Floridablanca",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista Peniel",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Cra. 7 #2135"
+    },
+    {
+      "name": "Iglesia Adventista del Septimo Dia Paraiso",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Floridablanca, Santander"
+    },
+    {
+      "name": "Iglesia Villas de Sión",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "IGLESIA ADVENTISTA DEL SEPTIMO DIA EBEN-EZER",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    },
+    {
+      "name": "Iglesia Adventista Del Séptimo Día Revive",
+      "lat": 7.119,
+      "lng": -73.119,
+      "direccion": "Santander"
+    }
+  ]
+}

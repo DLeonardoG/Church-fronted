@@ -52,7 +52,7 @@ export function useScrollHomeTrigger({
               scrub: true,
               markers,
             },
-            opacity: 0,
+            opacity: 1,
             ease: "none",
           })
         }

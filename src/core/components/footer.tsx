@@ -2,7 +2,7 @@ import { Facebook, Youtube, Instagram} from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="w-full h-screen pt-30 text-gray-800">
+    <footer className="w-full h-screen pt-30 text-gray-800 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 pb-5">
         <div className="flex flex-col xl:flex-row">
           <div className="flex flex-col justify-between">

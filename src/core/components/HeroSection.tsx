@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "@/shared/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CircleUser } from "lucide-react"
+import { CircleUser } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +15,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
   const heroRef = useRef<HTMLDivElement>(null);
   const text1Ref = useRef<HTMLHeadingElement>(null);
   const text2Ref = useRef<HTMLHeadingElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -26,7 +26,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
       scrollTrigger: {
         trigger: hero,
         start: "top top",
-        end: "+=300%", 
+        end: "+=300%",
         scrub: true,
         pin: true,
         anticipatePin: 1,
@@ -51,6 +51,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
       delay: 0.3,
       ease: "power2.inOut",
     });
+
     tl.fromTo(
       text2Ref.current,
       { opacity: 0, yPercent: 20 },
@@ -60,8 +61,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
 
     tl.fromTo(
       buttonRef.current,
-      { opacity: 0, scale: 0.8, yPercent: 20 },
-      { opacity: 1, scale: 1, yPercent: 0, duration: 1, ease: "back.out(1.7)" }
+      {
+        opacity: 0,
+        scale: 0.8,
+        yPercent: 20,
+        pointerEvents: "none",
+        zIndex: 20,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out(1.7)",
+        pointerEvents: "auto",
+      }
     );
 
     gsap.to(videoEl, {
@@ -83,14 +97,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-[100vh] flex items-center justify-center bg-black text-white overflow-hidden"
+      className="relative z-0 w-full h-[100vh] flex items-center justify-center bg-black text-white overflow-hidden"
     >
       <video
         className="hero__video absolute inset-0 w-full h-full object-cover"
-        src={
-          video ||
-          "https://cdn.coverr.co/videos/coverr-a-stormy-sea-6621/1080p.mp4"
-        }
+        src={video || "https://cdn.coverr.co/videos/coverr-a-stormy-sea-6621/1080p.mp4"}
         autoPlay
         muted
         loop
@@ -99,8 +110,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
 
       <div className="absolute inset-0 bg-black/30 z-[1]" />
 
-
-      <div className="hero__content relative text-center pointer-events-none flex flex-col items-center justify-center space-y-6 p-22">
+      <div className="hero__content relative text-center flex flex-col items-center justify-center space-y-6 p-6">
         <h1
           ref={text1Ref}
           className="text-[6vmin] font-bold tracking-tight leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]"
@@ -114,13 +124,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
           {titulo2}
         </h2>
 
-        <button
+        <a
+          href="#Contactanos"
           ref={buttonRef}
-          className="flex gap-2 items-center cursor-pointer opacity-0 px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg mt-6 pointer-events-auto hover:bg-gray-200 transition"
+          className="flex gap-2 items-center opacity-0 px-8 py-4 bg-white/90 text-black rounded-2xl font-bold text-lg mt-6 hover:bg-gray-200 transition relative z-20 pointer-events-auto"
         >
           Contactanos
-          <CircleUser className="w-5 h-5"/>
-        </button>
+          <CircleUser className="w-5 h-5" />
+        </a>
       </div>
     </section>
   );
