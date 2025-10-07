@@ -8,7 +8,7 @@ const churchIcon = L.icon({
   iconSize: [32, 37], // tamaño del icono (ajusta según tu imagen)
   iconAnchor: [16, 37], // punto del icono que estará en la coordenada
   popupAnchor: [0, -28], // punto desde donde sale el popup
-  shadowUrl: '/icons/marker-shadow.png', // opcional
+  shadowUrl: '/church.png', // opcional
   shadowSize: [41, 41],
 });
 
