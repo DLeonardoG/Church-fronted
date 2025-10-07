@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "@/shared/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CircleUser } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,9 +8,21 @@ interface HeroSectionProps {
   titulo1: string;
   titulo2: string;
   video?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  buttonIcon?: React.ReactNode; // cualquier ícono o componente
+  buttonClassName?: string; // para customizar estilos del botón
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({
+  titulo1,
+  titulo2,
+  video,
+  buttonText = "Contactanos",
+  buttonHref = "#Contactanos",
+  buttonIcon,
+  buttonClassName = "",
+}) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const text1Ref = useRef<HTMLHeadingElement>(null);
   const text2Ref = useRef<HTMLHeadingElement>(null);
@@ -113,7 +124,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
       <div className="hero__content relative text-center flex flex-col items-center justify-center space-y-6 p-6">
         <h1
           ref={text1Ref}
-          className="text-[6vmin] font-bold tracking-tight leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]"
+          className="text-[6vmin] tracking-wide  tracking-tight leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]"
         >
           {titulo1}
         </h1>
@@ -124,14 +135,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ titulo1, titulo2, video }) =>
           {titulo2}
         </h2>
 
-        <a
-          href="#Contactanos"
-          ref={buttonRef}
-          className="flex gap-2 items-center opacity-0 px-8 py-4 bg-white/90 text-black rounded-2xl font-bold text-lg mt-6 hover:bg-gray-200 transition relative z-20 pointer-events-auto"
-        >
-          Contactanos
-          <CircleUser className="w-5 h-5" />
-        </a>
+        {buttonText && (
+          <a
+            href={buttonHref}
+            ref={buttonRef}
+            className={`flex gap-2 items-center opacity-0 px-8 py-4 bg-white/90 text-black rounded-2xl font-bold text-lg mt-6 hover:bg-gray-200 transition relative z-20 pointer-events-auto ${buttonClassName}`}
+          >
+            {buttonText}
+            {buttonIcon && buttonIcon}
+          </a>
+        )}
       </div>
     </section>
   );

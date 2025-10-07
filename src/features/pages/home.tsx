@@ -7,6 +7,7 @@ import GraphHome from "@/core/components/graphsHome";
 const HeroSection = React.lazy(() => import("@/core/components/HeroSection"));
 import { Map } from "@/core/components/geoChurch";
 import { ChurchTable } from "@/core/components/tableChurch";
+import { CircleUser } from "lucide-react"
 
 
 function Home() {
@@ -50,6 +51,9 @@ function Home() {
               titulo1="Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre, y el que en mí cree, nunca tendrá sed. Juan 3:16"
               titulo2="Contactanos, para mas informacion"
               video="/prube.mp4"
+              buttonText="Quienes Somos"
+              buttonHref="#Contactanos"
+              buttonIcon={<CircleUser className="w-5 h-5" />}
             />
             <section id="Contactanos" className="w-full z-10 h-screen flex items-center justify-center bg-gray-100">
               <Contact></Contact>
