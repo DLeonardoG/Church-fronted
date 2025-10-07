@@ -192,10 +192,10 @@ export function NavigationMenuDemo() {
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
-        <ModeToggle/>
-        <LanguageToggle/>
-        <ProfileLogin/>
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2 z-50">
+        <ModeToggle />
+        <LanguageToggle />
+        <ProfileLogin />
       </div>
     </NavigationMenu>
   )

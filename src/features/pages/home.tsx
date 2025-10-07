@@ -6,6 +6,8 @@ import GraphHome from "@/core/components/graphsHome";
 import HeroSection from "@/core/components/HeroSection";
 import { Map } from "@/core/components/geoChurch";
 import { ChurchTable } from "@/core/components/tableChurch";
+import { ProfileLogin } from "@/core/components/profile-login";
+
 
 function Home() {
     useScrollHomeTrigger({
@@ -28,13 +30,20 @@ function Home() {
             <section id="section2" className="panel min-h-screen bg-gray-100 flex items-center justify-center">
               <GraphHome></GraphHome>
             </section>
-            <section id="section4" className="panel flex flex-wrap w-full min-h-screen items-center justify-center bg-gray-100 px-10 gap-2">
+            <section
+              id="section4"
+              className="panel flex flex-col md:flex-row w-full min-h-screen items-center justify-center bg-gray-100 px-10 gap-10"
+            >
               <Map></Map>
-              <div className="flex flex-col h-full gap-10 items-center justify-center">
-                <h2 className="text-4xl font-bold">Iglesias en Bucaramanga</h2>
+              <div className="flex flex-col items-center justify-center gap-10 md:w-1/2">
+                <h2 className="text-3xl md:text-4xl font-bold text-center">
+                  Iglesias en Bucaramanga
+                </h2>
+                <ProfileLogin></ProfileLogin>
                 <ChurchTable></ChurchTable>
               </div>
             </section>
+
             <section id="section4" className="panel flex items-center justify-center w-full h-[130vh] text-black font-bold text-center bg-gray-100 px-7">
               <h2 className="text-[4rem]">Queremos Ayudarte, Queremos Servirte.</h2>
             </section>

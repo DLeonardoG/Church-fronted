@@ -47,7 +47,6 @@ export default function Contact() {
             <div className="space-y-2">
               <Label htmlFor="email">Correo electrónico</Label>
               <Input
-                id="email"
                 name="email"
                 type="email"
                 value={form.email}

@@ -93,7 +93,7 @@ export function ChurchTable() {
   });
 
   return (
-    <div className="w-[500px] h-[50%] border border-gray-200 border-lg text-black p-4 rounded-md">
+    <div className="w-[400px] md:w-[380px] lg:w-[500px] md:h-[50%] border border-gray-200 border-lg text-black px-4 rounded-md">
       {/* Filtro */}
       <div className="flex items-center py-4">
         <Input
