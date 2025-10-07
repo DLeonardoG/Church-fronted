@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+const churchIcon = L.icon({
+  iconUrl: '/church.png', // ruta dentro de public
+  iconSize: [32, 37], // tamaño del icono (ajusta según tu imagen)
+  iconAnchor: [16, 37], // punto del icono que estará en la coordenada
+  popupAnchor: [0, -28], // punto desde donde sale el popup
+  shadowUrl: '/icons/marker-shadow.png', // opcional
+  shadowSize: [41, 41],
+});
 
 interface Iglesia {
   name: string;
@@ -8,6 +18,7 @@ interface Iglesia {
   lng: number;
   direccion: string;
 }
+
 
 export const Map = () => {
   const [iglesias, setIglesias] = useState<Iglesia[]>([]);
@@ -28,7 +39,7 @@ export const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {iglesias.map((iglesia, index) => (
-          <Marker key={index} position={[iglesia.lat, iglesia.lng]}>
+          <Marker key={index} position={[iglesia.lat, iglesia.lng]} icon={churchIcon}>
             <Popup>
               <strong>{iglesia.name}</strong>
               <br />
