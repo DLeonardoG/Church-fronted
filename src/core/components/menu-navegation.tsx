@@ -78,11 +78,7 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <button
-              onClick={() => scrollToSection("Anuncios", { offset: 450, debug: true })}
-            >
-              Anuncios
-            </button>
+            <a href="/#Anuncios">Anuncios</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
