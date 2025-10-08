@@ -33,7 +33,10 @@ function Nosotros() {
                     <div className="w-[54%] text-white italic">
                         <p>La Iglesia Adventista del Séptimo Día lleva esperanza al mundo para que las personas vivan con la certeza de que su historia no termina aquí. Esa es la certeza encontrada a lo largo de toda la Biblia.</p>
                     </div>
-                    <button className="flex justify-end text-white items-center bg-black w-[20%]">Quienes Somos</button>
+                    <a href="#nosotros" className="relative left-200 bottom-30 flex items-center justify-center bg-white/90 text-black italic hover:bg-white w-[15%] py-2 text-lg font-semibold rounded-3xl">
+                      Quienes Somos
+                    </a>
+
                 </div>
             </section>
 

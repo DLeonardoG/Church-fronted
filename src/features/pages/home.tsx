@@ -50,7 +50,7 @@ function Home() {
             <HeroSection
               titulo1="Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre, y el que en mí cree, nunca tendrá sed. Juan 3:16"
               titulo2="Contactanos, para mas informacion"
-              video="/prube.mp4"
+              video="/prueba.mp4"
               buttonText="Quienes Somos"
               buttonHref="#Contactanos"
               buttonIcon={<CircleUser className="w-5 h-5" />}

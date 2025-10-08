@@ -13,7 +13,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/core/components/ui/navigation-menu"
 import { Link } from "react-router-dom"
-import scrollToSection from "@/shared/hooks/gsapScroll"
 
 
 export function NavigationMenuDemo() {
@@ -64,7 +63,7 @@ export function NavigationMenuDemo() {
                 </NavigationMenuLink>
 
               </li>
-              <ListItem to="/docs" title="Quienes Somos?">
+              <ListItem to="/nosotros#nosotros" title="Quienes Somos?">
                 Los Adventistas del Séptimo Día son una familia global de cristianos...
               </ListItem>
               <ListItem to="/docs/installation" title="Creencias">
