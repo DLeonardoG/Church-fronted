@@ -124,13 +124,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="hero__content relative text-center flex flex-col items-center justify-center space-y-6 p-6">
         <h1
           ref={text1Ref}
-          className="text-[6vmin] tracking-wide  tracking-tight leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]"
+          className="text-[6vmin] font-extrabold tracking-wide  tracking-tight leading-none text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)]"
         >
           {titulo1}
         </h1>
         <h2
           ref={text2Ref}
-          className="text-[7vmin] font-semibold leading-none text-gray-100 opacity-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]"
+          className="text-[7vmin] font-extrabold leading-none text-gray-100 opacity-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]"
         >
           {titulo2}
         </h2>

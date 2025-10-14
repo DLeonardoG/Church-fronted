@@ -85,7 +85,7 @@ function Anuncios() {
 
 
   return (
-    <div className="w-full h-full flex px-5 justify-between">
+    <div className="flex flex-wrap w-full h-full flex px-5 justify-between">
 
 
       <aside
