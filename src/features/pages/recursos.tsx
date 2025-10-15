@@ -4,7 +4,7 @@ import { FlipPinnedOverlay } from "@/core/components/FlipPinnedOverlay"
 
 function Recursos() {
     return(
-        <section className="w-full h-full">
+        <div className="w-full h-full">
             <FlipPinnedOverlay
               flipEase="power2.inOut"
               scrub={0.25}         
@@ -14,7 +14,9 @@ function Recursos() {
                     <ResourceIG></ResourceIG>
                 </div>
             </FlipPinnedOverlay>
-        </section>
+            <section className="bg-gray-100 w-full min-h-screen">
+            </section>
+        </div>
     )
     
 }

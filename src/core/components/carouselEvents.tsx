@@ -67,17 +67,17 @@ export function CarouselOrientation({
               >
                 <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-120"
-          style={{ backgroundImage: `url(https://files.adventistas.org/institucional/es/2024/10/topo-reencontro-es-2025-mobile.jpg)` }}
+          style={{ backgroundImage: `url(${evento.imagen})` }}
         />
 
-        <div className="absolute inset-0 bg-white/20 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[4px]" />
                 <Card className="relative z-10 bg-transparent border-none shadow-none h-full">
                   <CardContent className="flex flex-col justify-between h-full p-5 gap-[10%]">
                     <div className="space-y-3">
                       <h3 className="font-bold text-4xl italic text-black">
                         {evento.titulo}
                       </h3>
-                      <p className="text-sm italic text-gray-800 line-clamp-2">
+                      <p className="text-sm italic text-black line-clamp-2">
                         {evento.descripcion}
                       </p>
                     </div>
@@ -86,11 +86,6 @@ export function CarouselOrientation({
                       <div className="w-100 h-full">
                         <CountdownTimer targetDate={evento.fecha} />
                       </div>
-                      <img
-                        className="rounded-lg w-40 h-25 object-cover"
-                        src={evento.imagen}
-                        alt={evento.titulo}
-                      />
                     </div>
                   </CardContent>
                 </Card>

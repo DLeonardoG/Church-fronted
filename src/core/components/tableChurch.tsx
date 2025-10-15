@@ -8,7 +8,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, } from "@tanstack/react-table";
+import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from "@tanstack/react-table";
+import { motion } from "framer-motion";
 
 import { Button } from "@/core/components/ui/button";
 import { Checkbox } from "@/core/components/ui/checkbox";
@@ -22,9 +23,19 @@ import {
   TableRow,
 } from "@/core/components/ui/table";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/core/components/ui/dialog";
+
 type Church = {
   name: string;
   direccion: string;
+  description: string;
+  images?: string[];
 };
 
 export const columns: ColumnDef<Church>[] = [
@@ -60,12 +71,11 @@ export const columns: ColumnDef<Church>[] = [
 
 export function ChurchTable() {
   const [data, setData] = React.useState<Church[]>([]);
+  const [selectedChurch, setSelectedChurch] = React.useState<Church | null>(null);
+  const [modalOpen, setModalOpen] = React.useState(false);
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   React.useEffect(() => {
@@ -89,6 +99,12 @@ export function ChurchTable() {
     getFilteredRowModel: getFilteredRowModel(),
     initialState: { pagination: { pageSize: 4 } },
   });
+
+  const openModal = (church: Church) => {
+    setSelectedChurch(church);
+    setModalOpen(true);
+  };
+
 
   return (
     <div className="w-[400px] md:w-[380px] lg:w-[500px] md:h-[50%] border border-gray-200 border-lg text-black px-4 rounded-md">
@@ -121,9 +137,16 @@ export function ChurchTable() {
           <TableBody className="w-full">
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow
+                  key={row.id}
+                  className="cursor-pointer hover:bg-gray-100"
+                  onClick={() => openModal(row.original)}
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="border-b text-gray-800 text-xs">
+                    <TableCell
+                      key={cell.id}
+                      className="border-b text-gray-900 text-xs"
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -159,6 +182,48 @@ export function ChurchTable() {
           Siguiente
         </Button>
       </div>
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="w-100 overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>{selectedChurch?.name}</DialogTitle>
+            <DialogDescription>
+              {selectedChurch?.direccion}
+            </DialogDescription>
+            <p className="mt-2 text-sm">{selectedChurch?.description}</p>
+          </DialogHeader>
+          <div className="flex justify-center items-center">
+              {selectedChurch?.images?.map((img, idx) => (
+                <motion.div
+                  key={"images" + idx}
+                  style={{
+                    rotate: Math.random() * 20 - 10,
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: 0,
+                    zIndex: 100,
+                  }}
+                  whileTap={{
+                    scale: 1.1,
+                    rotate: 0,
+                    zIndex: 100,
+                  }}
+                  className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 shrink-0 overflow-hidden"
+                >
+                  <img
+                    src={img}
+                    alt="bali images"
+                    width="400"
+                    height="400"
+                    className="rounded-lg h-20 w-10 md:h-28 md:w-25 object-cover shrink-0"
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -96,7 +96,7 @@ function Anuncios() {
           style={{ backgroundImage: `url(${eventosPrincipales.imagen})` }}
         />
 
-        <div className="absolute inset-0 bg-white/20 backdrop-blur-xs" />
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
 
         <div className="relative z-10 flex flex-col justify-between h-full">
           <div className="w-full h-40 p-3 space-y-5">
