@@ -29,7 +29,7 @@ export default function LoaderOverlay() {
           </div>
           <div className="w-full h-1/2 bg-black flex flex-col items-center justify-center">
             <SplittingText
-            className="text-5xl md:text-8xl lg:text-9xl font-extrabold tracking-wide text-white"
+            className="text-5xl md:text-8xl lg:text-9xlXC font-extrabold tracking-wide text-white"
             text="Norte"
           />
           <SplittingText

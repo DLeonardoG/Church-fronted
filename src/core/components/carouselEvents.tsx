@@ -62,9 +62,15 @@ export function CarouselOrientation({
           {eventos.map((evento, index) => (
             <CarouselItem key={index} className="pt-4 md:basis-full">
               <div
-                className="relative p-2 h-full overflow-hidden rounded-3xl group bg-white"
+                className="relative p-2 h-full overflow-hidden rounded-3xl group"
                 style={{ height: "280px" }}
               >
+                <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-120"
+          style={{ backgroundImage: `url(https://files.adventistas.org/institucional/es/2024/10/topo-reencontro-es-2025-mobile.jpg)` }}
+        />
+
+        <div className="absolute inset-0 bg-white/20 backdrop-blur-xl" />
                 <Card className="relative z-10 bg-transparent border-none shadow-none h-full">
                   <CardContent className="flex flex-col justify-between h-full p-5 gap-[10%]">
                     <div className="space-y-3">

@@ -35,7 +35,7 @@ export function NavigationMenuDemo() {
         </NavigationMenuItem>
   
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="cursor-pointer"><Link to="/nosotros" className="text-black">Nosotros</Link></NavigationMenuTrigger>
+          <NavigationMenuTrigger className="cursor-pointer"><Link to="/nosotros">Nosotros</Link></NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -139,7 +139,11 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="cursor-pointer">Recursos</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="cursor-pointer">
+              <Link to="/recursos">
+                Recursos
+              </Link>
+          </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-4">
                 <li>

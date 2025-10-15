@@ -1,0 +1,40 @@
+import React from 'react';
+import { InstagramProfile } from '@/core/components/profileIG';
+
+
+
+
+
+const IPhoneHomeScreen: React.FC = () => {
+
+  return (
+    <div className="flex items-center">
+        {/* iPhone Bezel */}
+        <div className="w-65 h-[500px] bg-black rounded-[3rem] p-2.5 shadow-2xl">
+          {/* Screen */}
+          <div className="w-full h-full bg-white rounded-[2.5rem] relative overflow-hidden">
+            {/* Dynamic Island */}
+            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-22 h-4 bg-black rounded-full"></div>
+            
+            {/* Status Bar */}
+            <div className="flex justify-between items-center px-6 pt-5 pb-1 bg-black/80">
+              <div className="text-white text-sm">9:41</div>
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-2 bg-white rounded-sm"></div>
+                <div className="w-6 h-3 border border-white rounded-sm flex items-center">
+                  <div className="w-4 h-3 bg-green-400 rounded-sm"></div>
+                </div>
+              </div>
+            </div>
+            
+            <InstagramProfile></InstagramProfile>
+            
+            {/* Home Indicator */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full opacity-60"></div>
+          </div>
+        </div>
+    </div>
+  );
+};
+
+export default IPhoneHomeScreen;
