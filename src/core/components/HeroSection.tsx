@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { gsap } from "@/shared/lib/gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/shared/lib/gsap";
 
-gsap.registerPlugin(ScrollTrigger);
 
 interface HeroSectionProps {
   titulo1: string;

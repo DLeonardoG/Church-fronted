@@ -85,7 +85,7 @@ export function InstagramReel({
       )}
 
       {/* Right side action buttons */}
-      <div className="absolute right-3 bottom-15 flex flex-col items-center space-y-4 z-20">
+      <div className="absolute right-3 bottom-20 flex flex-col items-center space-y-4 z-20">
         <div className="flex flex-col items-center">
           <Button variant="ghost" size="sm" className="rounded-full hover:bg-white/20">
             <Heart className={`w-6 h-6 ${isLiked ? 'fill-red-500 text-red-500' : 'text-white'}`} />
@@ -118,7 +118,7 @@ export function InstagramReel({
       </div>
 
       {/* Bottom content */}
-      <div className="absolute bottom-2 left-0 right-16 p-4 z-20">
+      <div className="absolute bottom-13 left-0 right-16 p-4 z-20">
         {/* Profile info */}
         <div className="flex w-40 items-center space-x-2 mb-2">
           <span className="text-white text-sm leading-relaxed line-clamp-3 font-medium">@{username}</span>
@@ -148,7 +148,7 @@ export function InstagramReel({
       </div>
 
       {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30 z-10">
+      <div className="absolute bottom-12 left-0 right-0 h-1 bg-white/30 z-10">
         <div className="h-full bg-white w-1/3 transition-all duration-1000" />
       </div>
     </div>

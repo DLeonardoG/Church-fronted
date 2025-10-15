@@ -8,7 +8,7 @@ export default function Phone() {
   const [currentView, setCurrentView] = useState<'home' | 'app'>('home');
 
   return (
-    <div className="h-full w-40 flex flex-col space-y-2 items-center">
+    <div className="h-full w-40 flex flex-col space-y-1 items-center">
 
       <div className="flex">
         <div className="bg-black/40 backdrop-blur-md rounded-full p-1 flex gap-1">
