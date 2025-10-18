@@ -80,13 +80,13 @@ export const testimonials = [
 
 export default function TestimonialOverlap() {
   return (
-    <div className="w-full max-w-6xl mx-auto relative overflow-visible">
+    <div className="w-100 md:max-w-5xl lg:w-6xl mx-auto relative overflow-visible">
       <Carousel  opts={{loop: false }}>
         <CarouselContent className="-ml-8">
           {testimonials.map((t, idx) => (
             <CarouselItem
               key={idx}
-              className="basis-full sm:basis-2/3 md:basis-1/2 lg:basis-1/3 h-80 px-8"
+              className="basis-full sm:basis-1/2 md:basis-1 lg:basis-1/3 h-80 md:px-1 lg:px-8"
             >
               <motion.div
                 whileHover={{
