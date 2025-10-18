@@ -1,6 +1,6 @@
 import { ImageWithFallback } from '@/core/components/ImageWithFallback';
 import { Button } from '@/core/components/ui/button';
-import { MoreHorizontal, Grid3X3, Play, User, Heart, MessageCircle, Send, Bookmark } from 'lucide-react';
+import { Grid3X3, Play, User, Heart, MessageCircle } from 'lucide-react';
 
 const profileData = {
   username: 'pomodoros_jozi',

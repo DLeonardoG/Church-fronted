@@ -2,7 +2,7 @@ import { Youtube } from "lucide-react";
 
 function ResourceYT() {
   return (
-    <section className="min-h-[100vh] flex items-center bg-gray-100 text-gray-900 lg:pt-20">
+    <section className="min-h-[100vh] flex items-center bg-gray-100 text-gray-900 ">
       <div className="container mx-auto flex flex-col md:flex-row items-center max-w-7xl px-6 py-25 gap-10">
 
         {/* Texto principal */}
