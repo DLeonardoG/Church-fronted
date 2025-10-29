@@ -12,17 +12,17 @@ const viewModes = ["Mes", "Semana", "Dia", "Lista"];
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 const filterOptions = [
-  { id: "all", label: "View All", color: "#81878B", checked: true },
-  { id: "project", label: "Project", color: "#309EA8", checked: true },
-  { id: "product", label: "Product", color: "#A9CF38", checked: true },
-  { id: "other", label: "Other", color: "#3899FE", checked: true },
+  { id: "all", label: "Ver Todo", color: "#81878B", checked: false },
+  { id: "project", label: "Estructura Adventista", color: "#3899FE", checked: true },
+  { id: "product", label: "Eventos Misioneros", color: "#3899FE", checked: true },
+  { id: "other", label: "Otros", color: "#3899FE", checked: true },
 ];
 
 const scheduleData = [
   { 
     id: 1, 
     date: 1, 
-    name: "Carmen Voss", 
+    name: "Santa Cena", 
     status: "Unassigned", 
     hours: "6 hr", 
     type: "unassigned",
@@ -124,6 +124,61 @@ const scheduleData = [
     description: "Product Certification Audit",
     location: "Enterprise Ltd Main Site"
   },
+  {
+  id: 8,
+  date: 31,
+  name: "Retiro Espiritual de Sanidad",
+  status: "Pending",
+  hours: "9 hr",
+  type: "scheduled",
+  category: "product",
+  client: "Ministerio de Sanidad y Restauración",
+  time: "09:00 - 18:00",
+  startTime: "09:00",
+  endTime: "18:00",
+  description: "Un encuentro transformador con Dios. Te invitamos a un día de renovación espiritual donde experimentarás la presencia de Dios a través de la adoración, la oración y la ministración. Este retiro está diseñado para quienes buscan sanidad emocional, física y espiritual.",
+  location: "Centro de Retiros Monte Horeb, Calle 45 #23-15, Floridablanca",
+  "details": {
+    "fechaEvento": "Sábado, 16 de Noviembre de 2025",
+    "capacidad": 120,
+    "cuposDisponibles": 35,
+    "inversion": "Entrada libre - Ofrenda voluntaria"
+  },
+  "programa": [
+    { "hora": "09:00 AM", "actividad": "Registro y Bienvenida" },
+    { "hora": "09:30 AM", "actividad": "Alabanza y Adoración" },
+    { "hora": "10:30 AM", "actividad": "Mensaje: 'Jesús el Sanador'" },
+    { "hora": "12:00 PM", "actividad": "Almuerzo (incluido)" },
+    { "hora": "01:30 PM", "actividad": "Taller: Sanidad Interior y Restauración del Corazón" },
+    { "hora": "03:00 PM", "actividad": "Tiempo de Oración Personal" },
+    { "hora": "04:00 PM", "actividad": "Ministración y Testimonios" },
+    { "hora": "05:30 PM", "actividad": "Cierre y Bendición Final" }
+  ],
+  "incluye": [
+    "Material de estudio y reflexión",
+    "Almuerzo y refrigerios",
+    "Transporte desde la iglesia",
+    "Certificado de participación",
+    "Espacios de oración guiada y acompañamiento"
+  ],
+  "requisitos": [
+    "Llevar Biblia personal",
+    "Ropa cómoda y apropiada",
+    "Actitud de apertura y fe"
+  ],
+  "organiza": "Ministerio de Sanidad y Restauración",
+  "invitadoEspecial": {
+    "nombre": "Pastor Juan Carlos Martínez",
+    "descripcion": "Pastor invitado con más de 20 años de experiencia en ministerios de sanidad interior y restauración espiritual."
+  },
+  "meta": {
+    "categoriaGeneral": "Evento Espiritual",
+    "estado": "Activo",
+    "visibilidad": "Público",
+    "creadoEl": "2025-10-28T00:00:00Z"
+  }
+}
+
 ];
 
 const timeSlots = [
@@ -312,7 +367,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-[#309ea8] text-[#309ea8] hover:bg-[#309ea8]/10"
+              className="border-black text-black hover:bg-black/10 p-4"
               onClick={() => {
                 const today = new Date();
                 const startOfWeek = new Date(today);
@@ -350,7 +405,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-[#309ea8] text-[#309ea8] hover:bg-[#309ea8]/10"
+              className="border-black text-black hover:bg-black/10 p-4"
               onClick={() => setCurrentDay(new Date())}
             >
               Hoy
@@ -387,7 +442,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-[#309ea8] text-[#309ea8] hover:bg-[#309ea8]/10"
+              className="border-black text-black hover:bg-black/10 p-4"
               onClick={() => {
                 const today = new Date();
                 setCurrentMonth(today.getMonth());
@@ -453,7 +508,7 @@ export function CalendarView() {
                       }`}>
                         <div className="text-xs text-[#81878b]">{daysOfWeek[date.getDay()]}</div>
                         <div className={`text-sm font-medium ${
-                          isCurrentDay ? "text-[#309ea8] bg-[#309ea8] text-white rounded-full w-6 h-6 flex items-center justify-center" : "text-[#353f45]"
+                          isCurrentDay ? "text-black bg-black text-white rounded-full w-6 h-6 flex items-center justify-center" : "text-black"
                         }`}>
                           {date.getDate()}
                         </div>
@@ -474,7 +529,7 @@ export function CalendarView() {
                                 }}
                               >
                                 <div className="font-medium text-[#353f45] truncate">
-                                  {schedule.name}
+                                  {schedule.name}hola
                                 </div>
                                 <div className="text-[#81878b] truncate">
                                   {schedule.client}
@@ -518,7 +573,7 @@ export function CalendarView() {
                   isCurrentDayToday ? "bg-gray-100" : ""
                 }`}>
                   <div className={`text-lg font-medium ${
-                    isCurrentDayToday ? "text-[#309ea8]" : "text-[#353f45]"
+                    isCurrentDayToday ? "text-black" : "text-black"
                   }`}>
                     {daysOfWeekFull[currentDay.getDay()]}, {months[currentDay.getMonth()]} {currentDay.getDate()}
                   </div>
@@ -536,7 +591,7 @@ export function CalendarView() {
                           onClick={() => setShowEventModal(true)}
                         >
                           <div className="font-medium text-[#353f45]">
-                            {schedule.name}
+                            {schedule.name}hola
                           </div>
                           <div className="text-sm text-[#81878b] mt-1">
                             {schedule.client} • {schedule.time}
@@ -662,7 +717,7 @@ export function CalendarView() {
                         !day.isCurrentMonth 
                           ? "text-[#b3b7b9]" 
                           : isToday(day.date)
-                          ? "font-semibold text-[#309ea8]"
+                          ? "font-semibold text-black"
                           : "text-[#353f45]"
                       }`}>
                         {day.date}
@@ -673,11 +728,13 @@ export function CalendarView() {
                           {schedules.slice(0, 2).map((schedule) => (
                             <div
                               key={schedule.id}
-                              className="text-xs p-1 rounded cursor-pointer hover:shadow-sm transition-shadow"
-                              style={{ backgroundColor: filterOptions.find(f => f.id === schedule.category)?.color + '20' }}
+                              className="h-20 text-xs p-1 rounded cursor-pointer hover:shadow-sm transition-shadow bg-gray-200"
                             >
                               <div className="font-medium text-[#353f45] truncate">
                                 {schedule.name}
+                              </div>
+                              <div className="text-[#353f45] truncate pr-4">
+                                {schedule.description}
                               </div>
                               <div className="flex items-center gap-1 mt-1">
                                 <Badge 
@@ -710,7 +767,7 @@ export function CalendarView() {
   };
 
   return (
-    <div className="bg-white w-full border border-[#edeef1] shadow-[0px_4px_8px_-2px_rgba(10,13,18,0.1),0px_2px_4px_-2px_rgba(10,13,18,0.06)] rounded-lg h-full flex">
+    <div  className="bg-gray-100  w-full border border-[#edeef1] shadow-[0px_4px_8px_-2px_rgba(10,13,18,0.1),0px_2px_4px_-2px_rgba(10,13,18,0.06)] rounded-lg h-full flex">
       {/* Sidebar */}
       <div className="w-[276px] border-r border-[#edeef1] flex flex-col">
         {/* Add Schedule Button */}
@@ -786,11 +843,11 @@ export function CalendarView() {
                       !day.isCurrentMonth
                         ? "text-[#b3b7b9]"
                         : isToday(day.date)
-                        ? "bg-gray-200 text-[#309ea8] font-semibold ring-2 ring-[#309ea8] ring-opacity-50"
+                        ? "bg-gray-200 text-black font-semibold ring-2 ring-black/50 ring-opacity-50"
                         : day.date === selectedDate
-                        ? "bg-[#dffcff] text-[#28848c]"
+                        ? "bg-gray-300 text-black/40"
                         : getScheduleForDate(day.date).length > 0
-                        ? "bg-[#f0f9ff] text-[#309ea8] font-medium"
+                        ? "bg-gray-200 text-black/50 font-medium"
                         : "text-[#353f45]"
                     }`}
                     onClick={() => handleDateClick(day.date, day.isCurrentMonth)}
@@ -806,7 +863,7 @@ export function CalendarView() {
         {/* Filters and Actions */}
         <div className="flex-1 p-5">
           <div className="flex gap-2 mb-4 items-center">
-            <h3 className="font-medium text-[#353f45]">Filter Events</h3>
+            <h3 className="font-medium text-[#353f45]">Filtros</h3>
             <Filter className="w-4 h-4" color="#353f45" />
           </div>
           
@@ -833,20 +890,20 @@ export function CalendarView() {
 
           {/* Quick Stats */}
           <div className="mt-6 p-4 bg-[#f9f9f9] rounded-lg">
-            <h4 className="text-sm font-medium text-[#353f45] mb-3">This Month</h4>
+            <h4 className="text-sm font-medium text-[#353f45] mb-3">Este Mes</h4>
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Total Events</span>
+                <span className="text-[#81878b]">Eventos Totales</span>
                 <span className="font-medium text-[#353f45]">{scheduleData.length}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Unassigned</span>
+                <span className="text-[#81878b]">Sin Completar</span>
                 <span className="font-medium text-red-600">
                   {scheduleData.filter(s => s.status === 'Unassigned').length}
                 </span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Scheduled</span>
+                <span className="text-[#81878b]">Completados</span>
                 <span className="font-medium text-green-600">
                   {scheduleData.filter(s => s.status === 'Scheduled' || s.status === 'Confirmed').length}
                 </span>
@@ -867,7 +924,7 @@ export function CalendarView() {
                 key={mode}
                 className={`px-4 py-2 text-sm font-medium border ${
                   mode === selectedView
-                    ? "bg-[#f1feff] border-[#309ea8] text-[#309ea8]"
+                    ? "bg-black/10 border-black text-black"
                     : "bg-white border-[#dde0e5] text-[#686f73] hover:bg-gray-50"
                 } ${
                   index === 0 ? "rounded-l" : 
@@ -887,13 +944,14 @@ export function CalendarView() {
 
       {/* Event Details Modal */}
       <EventDetailsModal
-        isOpen={showEventModal}
-        onClose={() => setShowEventModal(false)}
-        events={getScheduleForDate(selectedDate)}
-        selectedDate={selectedDate}
-        monthName={months[currentMonth]}
-        year={currentYear}
-      />
+  isOpen={showEventModal}
+  onClose={() => setShowEventModal(false)}
+  events={getScheduleForDate(selectedDate)}
+  selectedDate={selectedDate}
+  monthName={months[currentMonth]}
+  year={currentYear}
+/>
+
     </div>
   );
 }

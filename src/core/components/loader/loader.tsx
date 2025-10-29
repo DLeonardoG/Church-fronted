@@ -21,9 +21,9 @@ export default function LoaderOverlay() {
           className="fixed inset-0 z-[9999] w-full h-screen flex flex-col items-center justify-center"
         >
 
-          <div className="w-full h-1/2 bg-white flex items-center justify-center">
+          <div className="w-full h-1/2 bg-black flex items-center justify-center">
             <SplittingText
-            className="text-5xl md:text-8xl lg:text-9xl font-extrabold tracking-wide text-black"
+            className="text-5xl md:text-8xl lg:text-9xl font-extrabold tracking-wide text-white"
             text="Comunicaciones"
           />
           </div>
