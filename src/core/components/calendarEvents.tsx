@@ -318,21 +318,7 @@ export function CalendarView() {
     ));
   };
 
-  const getStatusColor = (status: string, type: string) => {
-    switch (status.toLowerCase()) {
-      case 'unassigned':
-        return 'bg-red-100 text-red-700';
-      case 'scheduled':
-      case 'confirmed':
-        return 'bg-green-100 text-green-700';
-      case 'in progress':
-        return 'bg-blue-100 text-blue-700';
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
-  };
+  
 
   const today = new Date();
   const isToday = (date: number) => {
@@ -598,7 +584,7 @@ export function CalendarView() {
                           </div>
                           <Badge 
                             variant="secondary" 
-                            className={`text-xs mt-1 ${getStatusColor(schedule.status, schedule.type)}`}
+                            className={`text-xs mt-1`}
                           >
                             {schedule.status}
                           </Badge>
@@ -639,7 +625,7 @@ export function CalendarView() {
                           <h3 className="text-lg font-medium text-[#353f45]">{schedule.name}</h3>
                           <Badge 
                             variant="secondary" 
-                            className={`${getStatusColor(schedule.status, schedule.type)}`}
+                            className={``}
                           >
                             {schedule.status}
                           </Badge>
@@ -739,7 +725,7 @@ export function CalendarView() {
                               <div className="flex items-center gap-1 mt-1">
                                 <Badge 
                                   variant="secondary" 
-                                  className={`text-[10px] px-1 py-0 ${getStatusColor(schedule.status, schedule.type)}`}
+                                  className={`text-[10px] px-1 py-0`}
                                 >
                                   {schedule.status}
                                 </Badge>

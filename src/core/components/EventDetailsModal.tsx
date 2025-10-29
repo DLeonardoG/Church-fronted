@@ -1,5 +1,4 @@
 import { X } from "lucide-react";
-import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
 interface EventData {
@@ -53,10 +52,7 @@ interface EventDetailsModalProps {
 export function EventDetailsModal({
   isOpen,
   onClose,
-  events,
-  selectedDate,
-  monthName,
-  year,
+  events
 }: EventDetailsModalProps) {
   if (!isOpen || events.length === 0) return null;
 

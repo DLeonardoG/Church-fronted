@@ -23,12 +23,12 @@ function Home() {
             <section id="sectionD" className="panel flex w-full h-screen justify-center">
                 <CarouselPlugin></CarouselPlugin>
             </section>
-            <section id="Anuncios" className="panel flex flex-col bg-gray-100 w-full min-h-screen pt-20 px-15 py-9 items-center  gap-[3%]">
+            <section id="Anuncios" className="panel flex flex-col bg-gray-100 w-full h-[140%] pt-20 px-15 py-9 items-center  gap-[3%]">
                 <h1 className="text-black font-bold text-4xl">Anuncios</h1>
                 <Anuncios></Anuncios>
             </section>
 
-            <section id="section2" className="panel min-h-screen bg-gray-100 flex items-center justify-center">
+            <section id="section2" className="panel h-[140%] bg-gray-100 flex items-center justify-center">
               <GraphHome></GraphHome>
             </section>
             <section

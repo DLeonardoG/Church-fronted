@@ -1,26 +1,84 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { NewsCard } from "@/core/components/newsCard"
 
-const sampleImages = [
-  "https://img.yumpu.com/14079511/1/500x640/revista-adventist-world-jovenes-adventistas-de-nicaragua.jpg",
-  "https://apologeticacatolica.org/wp-content/uploads/2021/01/adventistas-del-7-dia.jpg",
-  "https://files.adventistas.org/noticias/es/2022/04/16192607/crencas-fundamentais-dos-adventistas-o-remanescente-e-sua-missao.jpeg",
-  "https://i.pinimg.com/originals/4f/9d/bf/4f9dbf54a0cc2086f1a8933e2f3791b3.jpg",
-  "https://blog.orionstereo.org/content/images/2022/02/Greg_Olsen_Take_My_Hand_600-600x330.jpg",
-  "https://files.adventistas.org/downloads_v2/es/2013/09/dia-del-joven-adventista.jpg",
-  "https://www.recursos-biblicos.com/wp-content/uploads/2014/08/99-Consejos-para-L%C3%ADderes-de-J%C3%B3venes-Adventistas-e1555872906672.jpg"
-  
+
+
+
+const newsEvents = [
+  {
+    id: 8,
+    name: "Retiro Espiritual de Sanidad",
+    date: 31,
+    status: "Pending",
+    imageUrl: "https://es.armsa.com/wp-content/uploads/2018/01/Capa-Face-Acamp-Verao-ARM-2018-Esp_3000px.jpg",
+    description: "Un encuentro transformador con Dios. Te invitamos a un día de renovación espiritual...",
+    category: "Evento Espiritual",
+    details: {
+      fechaEvento: "Sábado, 16 de Noviembre de 2025",
+    },
+  },
+  {
+    id: 9,
+    name: "Conferencia de Avivamiento 2025",
+    date: 7,
+    status: "Active",
+    imageUrl: "https://files.adventistas.org/downloads_v2/es/2024/10/22185443/Capa.jpg",
+    description: "Tres días de renovación espiritual, milagros y palabra viva. Un encuentro para avivar la fe...",
+    category: "Conferencia Cristiana",
+    details: {
+      fechaEvento: "Viernes, 21 de Noviembre de 2025",
+    },
+  },
+  {
+    id: 10,
+    name: "Noche de Adoración y Milagros",
+    date: 15,
+    status: "Confirmed",
+    imageUrl: "https://i.ytimg.com/vi/9UKPeLll7Pk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLADPkK4O-Yj7sUbNHhjz2RVBbj_0w",
+    description: "Una noche de encuentro con Dios donde los cielos se abren. Ven con fe y expectativa...",
+    category: "Evento Espiritual",
+    details: {
+      fechaEvento: "Sábado, 23 de Noviembre de 2025",
+    },
+  },
+  {
+    id: 11,
+    name: "Taller de Liderazgo Juvenil",
+    date: 20,
+    status: "Scheduled",
+    imageUrl: "https://i.ytimg.com/vi/12_uwZnBBVM/maxresdefault.jpg",
+    description: "Capacitación intensiva para líderes jóvenes que desean crecer en visión, propósito y servicio...",
+    category: "Capacitación Ministerial",
+    details: {
+      fechaEvento: "Domingo, 17 de Noviembre de 2025",
+    },
+  },
+  {
+    id: 12,
+    name: "Campamento Conquistadores",
+    date: 24,
+    status: "Pending",
+    imageUrl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/flags%2C-pathfinders%2C-conquistadores%2C-adventist-design-template-2de78eb0694895dba3344950549a7896_screen.jpg?ts=1743438334",
+    description: "Tres días para fortalecer la unión familiar bajo los principios bíblicos...",
+    category: "Campamento Familiar",
+    details: {
+      fechaEvento: "Del 22 al 24 de Noviembre de 2025",
+    },
+  }
 ];
 
+
+
 export function CarouselEvent() {
-  const [centerIndex, setCenterIndex] = useState(Math.floor(sampleImages.length / 2));
+  const [centerIndex, setCenterIndex] = useState(Math.floor(newsEvents.length / 2));
 
   const handleScroll = (dir: "left" | "right") => {
     setCenterIndex((prev) =>
       dir === "left"
-        ? (prev - 1 + sampleImages.length) % sampleImages.length
-        : (prev + 1) % sampleImages.length
+        ? (prev - 1 + newsEvents.length) % newsEvents.length
+        : (prev + 1) % newsEvents.length
     );
   };
 
@@ -56,8 +114,8 @@ export function CarouselEvent() {
           <ArrowLeft color="#ffff"/>
         </button>
 
-        <div className="relative flex items-center justify-center bottom-10 w-150 h-200">
-          {sampleImages.map((src, index) => {
+        <div className="relative flex items-center justify-center bottom-15 w-150 h-200">
+          {newsEvents.map((event, index) => {
             const offset = index - centerIndex;
             const absOffset = Math.abs(offset);
             const scale = 1.3 - absOffset * 0.1;
@@ -67,37 +125,30 @@ export function CarouselEvent() {
 
             return (
               <motion.div
-                key={src}
+                key={event.id}
                 className="absolute cursor-pointer rounded-xl overflow-hidden shadow-2xl"
                 style={{
-                  width: "280px",
-                  height: "280px",
+                  width: "80%",
+                  height: "50%",
                   transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
                   zIndex,
                   transition: "transform 0.5s ease, opacity 0.5s ease",
                   opacity: absOffset > 3 ? 0 : 1,
                 }}
               >
-                <img
-                  src={src}
-                  alt={`Cover ${index}`}
-                  className="w-full h-full object-cover rounded-xl shadow-lg"
+
+
+                <div className="w-full h-full object-cover rounded-xl shadow-lg">
+                  <NewsCard
+                  key={event.id}
+            title={event.name}
+            description={event.description}
+            date={event.details.fechaEvento}
+            category={event.category}
+            imageUrl={event.imageUrl}
                 />
-                <motion.img
-                src={src}
-                alt={`Reflection ${index}`}
-                className="rounded-xl opacity-25 blur-sm"
-                style={{
-                  width: 280,
-                  height: 280,
-                  transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg) scaleY(-1) translateY(40px)`,
-                  zIndex,
-                  maskImage:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 80%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 80%)",
-                }}
-              />
+                </div>
+
                 
               </motion.div>
 
