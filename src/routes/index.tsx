@@ -1,8 +1,8 @@
-import { createBrowserRouter } from "react-router-dom"
-import Home from "@/features/pages/home"
-import Nosotros from "@/features/pages/nosotros"
+import { Home } from "@/domains/Home"
 import Eventos from "@/features/pages/eventos"
+import Nosotros from "@/features/pages/nosotros"
 import Recursos from "@/features/pages/recursos"
+import { createBrowserRouter } from "react-router-dom"
 
 import MainLayout from "@/shared/layouts/MainLayout"
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/core/components/ui/card";
 import {
   Carousel,
@@ -9,15 +8,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/core/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import type { EmblaCarouselType } from "embla-carousel";
 import { CountdownTimer } from "@/core/components/ui/countdown-timer";
+import { cn } from "@/shared/lib/utils";
+import type { EmblaCarouselType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { Calendar, MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-interface Evento {
+export interface Evento {
   titulo: string;
   descripcion: string;
   fecha: string;
   imagen: string;
+  lugar?: string;
 }
 
 interface CarouselOrientationProps {
@@ -27,10 +30,10 @@ interface CarouselOrientationProps {
 
 export function CarouselOrientation({
   eventos,
-  itemHeight = "345px",
+  itemHeight = "400px",
 }: CarouselOrientationProps) {
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 2500, stopOnInteraction: false })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
   const carouselContainer = useRef<HTMLDivElement>(null);
   const [emblaApi, setEmbla] = useState<EmblaCarouselType | null>(null);
@@ -47,7 +50,7 @@ export function CarouselOrientation({
 
     container.addEventListener("wheel", handleWheel, { passive: false });
     return () => container.removeEventListener("wheel", handleWheel);
-  }, [emblaApi]); 
+  }, [emblaApi]);
 
   return (
     <Carousel
@@ -55,37 +58,75 @@ export function CarouselOrientation({
       opts={{ align: "start", loop: true }}
       orientation="vertical"
       className="w-full max-w-4xl overflow-hidden"
-      setApi={(api) => setEmbla(api ?? null)} 
+      setApi={(api) => setEmbla(api ?? null)}
     >
       <div ref={carouselContainer}>
-        <CarouselContent className="space-y-3" style={{ height: itemHeight }}>
+        <CarouselContent className="space-y-4" style={{ height: itemHeight }}>
           {eventos.map((evento, index) => (
             <CarouselItem key={index} className="pt-4 md:basis-full">
               <div
-                className="relative p-2 h-full overflow-hidden rounded-3xl group"
-                style={{ height: "280px" }}
+                className={cn(
+                  "relative p-1 h-full overflow-hidden rounded-2xl",
+                  "group cursor-pointer transition-all duration-300",
+                  "hover:shadow-2xl"
+                )}
+                style={{ height: "320px" }}
               >
+                {/* Imagen de fondo con efecto parallax */}
                 <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-120"
-          style={{ backgroundImage: `url(${evento.imagen})` }}
-        />
+                  className={cn(
+                    "absolute inset-0 bg-cover bg-center",
+                    "transition-transform duration-700 ease-out",
+                    "group-hover:scale-110"
+                  )}
+                  style={{ backgroundImage: `url(${evento.imagen})` }}
+                />
 
-        <div className="absolute inset-0 bg-white/10 backdrop-blur-[4px]" />
+                {/* Overlay con degradado */}
+                <div className={cn(
+                  "absolute inset-0",
+                  "bg-linear-to-t from-background/95 via-background/60 to-background/30",
+                  "backdrop-blur-[1px]"
+                )} />
+
+                {/* Contenido */}
                 <Card className="relative z-10 bg-transparent border-none shadow-none h-full">
-                  <CardContent className="flex flex-col justify-between h-full p-5 gap-[10%]">
+                  <CardContent className="flex flex-col justify-between h-full p-6 gap-4">
+                    {/* Header del evento */}
                     <div className="space-y-3">
-                      <h3 className="font-bold text-4xl italic text-black">
-                        {evento.titulo}
-                      </h3>
-                      <p className="text-sm italic text-black line-clamp-2">
+                      <div className="flex items-start gap-2">
+                        <Calendar className="w-5 h-5 text-primary mt-1 shrink-0" />
+                        <h3 className={cn(
+                          "font-bold text-3xl text-foreground",
+                          "leading-tight tracking-tight",
+                          "line-clamp-2"
+                        )}>
+                          {evento.titulo}
+                        </h3>
+                      </div>
+                      
+                      <p className={cn(
+                        "text-sm text-muted-foreground",
+                        "line-clamp-2 leading-relaxed"
+                      )}>
                         {evento.descripcion}
                       </p>
+
+                      {evento.lugar && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="w-4 h-4" />
+                          <span>{evento.lugar}</span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="flex items-center w-full h-60 gap-[2%]">
-                      <div className="w-100 h-full">
-                        <CountdownTimer targetDate={evento.fecha} />
-                      </div>
+                    {/* Countdown */}
+                    <div className="w-full">
+                      <CountdownTimer 
+                        targetDate={evento.fecha} 
+                        variant="compact"
+                        className="scale-90 origin-left"
+                      />
                     </div>
                   </CardContent>
                 </Card>
@@ -95,8 +136,8 @@ export function CarouselOrientation({
         </CarouselContent>
       </div>
 
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden md:flex" />
+      <CarouselNext className="hidden md:flex" />
     </Carousel>
   );
 }
