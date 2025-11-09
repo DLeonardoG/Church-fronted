@@ -1,8 +1,5 @@
-import * as React from "react"
 import { ModeToggle } from "@/core/components/mode-toggle"
-import { LanguageToggle } from "@/core/components/language-selector"
 import { ProfileLogin } from "@/core/components/profile-login"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,210 +9,345 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/core/components/ui/navigation-menu"
-import { Link } from "react-router-dom"
-
+import { cn } from "@/shared/lib/utils"
+import { ChevronDown, Menu, X } from "lucide-react"
+import * as React from "react"
+import { Link, useLocation } from "react-router-dom"
 
 export function NavigationMenuDemo() {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null)
+  const location = useLocation()
+
+  React.useEffect(() => {
+    setMobileMenuOpen(false)
+    setOpenSubmenu(null)
+  }, [location])
+
+  const toggleSubmenu = (menu: string) => {
+    setOpenSubmenu(openSubmenu === menu ? null : menu)
+  }
+
   return (
-    <NavigationMenu viewport={false}>
-      <div className="absolute left-4 top-1/2 -translate-y-1/2">
-        <img
-          src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
-          alt="Logo"
-          className="h-15 w-40"
-        />
-      </div>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/">
-              Inicio
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-  
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="cursor-pointer"><Link to="/nosotros">Nosotros</Link></NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="relative flex h-full w-full flex-col justify-end rounded-md overflow-hidden p-6 no-underline outline-hidden select-none focus:shadow-md"
-                    to="/"
-                  >
-                    <img
-                      src="https://scontent.fbga1-3.fna.fbcdn.net/v/t1.6435-9/79649146_2211901442445196_8153083340790956032_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=-gu1bcLvCUwQ7kNvwHBdpIk&_nc_oc=AdlhjsIPMBKj4Xmk6MYPUZ61NdrBMx751qHW5PJYMrcwXqX8JfT3yxkbk5-lBSytbpU&_nc_zt=23&_nc_ht=scontent.fbga1-3.fna&_nc_gid=aakpHa2kkhTA7hs9nNwHmA&oh=00_Affl2cSVr394w9IEUD1zN3K2LI4xzcSXMHGTXFz3EGLBhg&oe=6906B48C"
-                      alt="Fondo"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
+    <>
+      {/* Desktop Navigation */}
+      <NavigationMenu 
+        viewport={false} 
+        className="hidden lg:flex border-b border-border/50 shadow-sm"
+      >
+        <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-3">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
+          >
+            <img
+              src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
+              alt="Logo IASD"
+              className="h-10 w-auto"
+            />
+          </Link>
+        </div>
 
-                    <div className="absolute inset-0 bg-white/40 z-5"></div>
-
-                    <div className="relative z-10 mt-4 mb-2 text-lg font-medium text-center text-black">
-                      Comunicaciones Norte
-                    </div>
-                    <p className="relative z-10 text-sm leading-tight text-center text-black">
-                      Somos la Iglesia Adventista del Séptimo Dia Norte Bucaramanga
-                    </p>
-                  </Link>
-
-                </NavigationMenuLink>
-
-              </li>
-              <ListItem to="/nosotros#nosotros" title="Quienes Somos?">
-                Los Adventistas del Séptimo Día son una familia global de cristianos...
-              </ListItem>
-              <ListItem to="/docs/installation" title="Creencias">
-                Desde las neuronas a las nebulosas, desde el ADN hasta las distantes galaxias...
-              </ListItem>
-              <ListItem to="/docs/primitives/typography" title="Equipo">
-                Guiados por la fe y los principios adventistas, para servir y fortalecer a nuestra comunidad.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <a href="/#Anuncios">Anuncios</a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="cursor-pointer">Departamentos</NavigationMenuTrigger>
-            <NavigationMenuContent>
-            <ul className="grid w-[250px] gap-4">
-              <li className="flex gap-2">
-                <div>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Mayordomia</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Ministerios Personales</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Comunicaciones</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Escuela Sabatica</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Jovenes</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Universitarios</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Educacion</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Capellania</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Familia</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Salud</Link>
-                  </NavigationMenuLink>
-                </div>
-                <div>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Dorcas</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Diaconos</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Evangelismo</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Tesoreria</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">Secretaria</Link>
-                  </NavigationMenuLink>
-                </div>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="cursor-pointer">
-              <Link to="/recursos">
-                Recursos
+        <NavigationMenuList className="gap-1">
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <Link 
+                to="/" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Inicio
               </Link>
-          </NavigationMenuTrigger>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+    
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="cursor-pointer font-medium text-foreground hover:text-primary data-[state=open]:text-primary transition-colors">
+              Nosotros
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[300px] gap-4">
-                <li>
+              <ul className="grid gap-3 p-6 md:w-[500px] lg:w-[600px] lg:grid-cols-[.75fr_1fr] bg-popover">
+                <li className="row-span-4">
                   <NavigationMenuLink asChild>
-                    <Link to="#">
-                      <div className="font-medium">"Las 28 Creencias Adventistas"</div>
-                      <div className="text-muted-foreground">
-                        No hay "289 creencias" adventistas, sino las 28 Creencias Fundamentales de la Iglesia Adventist...
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">
-                      <div className="font-medium">Leccion Escuela Sabatica</div>
-                      <div className="text-muted-foreground">
-                        La leccion tiene como propósito en fortalecer la fe, profundizar el conocimiento de las Escrituras y fomen...
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">
-                      <div className="font-medium">"Mente caracter y personalidad"</div>
-                      <div className="text-muted-foreground">
-                        Ser semejantes a Jesús en carácter es el ideal de Dios para su pueblo. Desde el principio fue el plan de...
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">
-                      <div className="font-medium">Revista Adventista</div>
-                      <div className="text-muted-foreground">
-                        Se publica mensualmente en varios idiomas y se distribuye gratuitamente a más de 140 países, ofreciendo un panorama internacional de la iglesia. 
+                    <Link
+                      className="relative flex h-full w-full min-h-[300px] flex-col justify-end rounded-lg overflow-hidden p-6 no-underline outline-none select-none hover:shadow-xl hover:ring-2 hover:ring-ring transition-all duration-300 group border border-border"
+                      to="/nosotros"
+                    >
+                      <img
+                        src="https://scontent.fbga1-3.fna.fbcdn.net/v/t1.6435-9/79649146_2211901442445196_8153083340790956032_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=-gu1bcLvCUwQ7kNvwHBdpIk&_nc_oc=AdlhjsIPMBKj4Xmk6MYPUZ61NdrBMx751qHW5PJYMrcwXqX8JfT3yxkbk5-lBSytbpU&_nc_zt=23&_nc_ht=scontent.fbga1-3.fna&_nc_gid=aakpHa2kkhTA7hs9nNwHmA&oh=00_Affl2cSVr394w9IEUD1zN3K2LI4xzcSXMHGTXFz3EGLBhg&oe=6906B48C"
+                        alt="Iglesia Adventista Norte"
+                        className="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(to_top,oklch(0_0_0/0.8),oklch(0_0_0/0.3),oklch(0_0_0/0))] z-5"></div>
+                      <div className="relative z-10 space-y-2">
+                        <div className="text-xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                          Comunicaciones Norte
+                        </div>
+                        <p className="text-sm leading-relaxed text-white/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                          Iglesia Adventista del Séptimo Día Norte Bucaramanga
+                        </p>
                       </div>
                     </Link>
                   </NavigationMenuLink>
                 </li>
+                <ListItem to="/nosotros#quienes-somos" title="¿Quiénes Somos?">
+                  Una familia global de cristianos unidos por la fe y el servicio
+                </ListItem>
+                <ListItem to="/nosotros#creencias" title="Creencias">
+                  Principios fundamentales basados en las Escrituras
+                </ListItem>
+                <ListItem to="/nosotros#equipo" title="Nuestro Equipo">
+                  Líderes comprometidos con la comunidad adventista
+                </ListItem>
+                <ListItem to="/nosotros#historia" title="Nuestra Historia">
+                  Décadas de servicio y testimonio en Bucaramanga
+                </ListItem>
               </ul>
             </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/eventos">
-              Eventos
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2 z-50">
-        <ModeToggle />
-        {/* <LanguageToggle /> */}
-        <ProfileLogin />
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <a 
+                href="/#Anuncios" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Anuncios
+              </a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="cursor-pointer font-medium text-foreground hover:text-primary data-[state=open]:text-primary transition-colors">
+              Departamentos
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[520px] gap-3 p-6 md:grid-cols-2 bg-popover">
+                <DepartmentItem to="#" title="Mayordomía" />
+                <DepartmentItem to="#" title="Ministerios Personales" />
+                <DepartmentItem to="#" title="Comunicaciones" />
+                <DepartmentItem to="#" title="Escuela Sabática" />
+                <DepartmentItem to="#" title="Jóvenes" />
+                <DepartmentItem to="#" title="Universitarios" />
+                <DepartmentItem to="#" title="Educación" />
+                <DepartmentItem to="#" title="Capellanía" />
+                <DepartmentItem to="#" title="Familia" />
+                <DepartmentItem to="#" title="Salud" />
+                <DepartmentItem to="#" title="Dorcas" />
+                <DepartmentItem to="#" title="Diáconos" />
+                <DepartmentItem to="#" title="Evangelismo" />
+                <DepartmentItem to="#" title="Tesorería" />
+                <DepartmentItem to="#" title="Secretaría" />
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <Link 
+                to="/recursos" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Recursos
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <Link 
+                to="/eventos" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Eventos
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-1.5 z-50">
+          <ModeToggle />
+          <ProfileLogin />
+        </div>
+      </NavigationMenu>
+
+      {/* Mobile Navigation */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-md border-b border-border/50 shadow-sm">
+        <div className="flex items-center justify-between px-4 py-3">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <img
+              src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
+              alt="Logo IASD"
+              className="h-9 w-auto"
+            />
+          </Link>
+          
+          <div className="flex items-center gap-1.5">
+            <ModeToggle />
+            <ProfileLogin />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-1.5 hover:bg-accent/80 hover:text-accent-foreground rounded-md transition-colors duration-200"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-background/85 backdrop-blur-lg border-b border-border/50 shadow-xl max-h-[calc(100vh-80px)] overflow-y-auto">
+            <nav className="p-4 space-y-1">
+              <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>
+                Inicio
+              </MobileNavLink>
+              
+              <MobileSubmenu
+                title="Nosotros"
+                isOpen={openSubmenu === 'nosotros'}
+                onToggle={() => toggleSubmenu('nosotros')}
+              >
+                <MobileNavLink to="/nosotros" onClick={() => setMobileMenuOpen(false)}>
+                  ¿Quiénes Somos?
+                </MobileNavLink>
+                <MobileNavLink to="/nosotros#creencias" onClick={() => setMobileMenuOpen(false)}>
+                  Creencias
+                </MobileNavLink>
+                <MobileNavLink to="/nosotros#equipo" onClick={() => setMobileMenuOpen(false)}>
+                  Nuestro Equipo
+                </MobileNavLink>
+              </MobileSubmenu>
+
+              <MobileNavLink to="/#Anuncios" onClick={() => setMobileMenuOpen(false)}>
+                Anuncios
+              </MobileNavLink>
+
+              <MobileSubmenu
+                title="Departamentos"
+                isOpen={openSubmenu === 'departamentos'}
+                onToggle={() => toggleSubmenu('departamentos')}
+              >
+                <div className="grid grid-cols-2 gap-1">
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Mayordomía</MobileNavLink>
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Min. Personales</MobileNavLink>
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Comunicaciones</MobileNavLink>
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Esc. Sabática</MobileNavLink>
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Jóvenes</MobileNavLink>
+                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Universitarios</MobileNavLink>
+                </div>
+              </MobileSubmenu>
+
+              <MobileNavLink to="/recursos" onClick={() => setMobileMenuOpen(false)}>
+                Recursos
+              </MobileNavLink>
+
+              <MobileNavLink to="/eventos" onClick={() => setMobileMenuOpen(false)}>
+                Eventos
+              </MobileNavLink>
+            </nav>
+          </div>
+        )}
       </div>
-    </NavigationMenu>
+
+      {/* Mobile Spacer */}
+      <div className="lg:hidden h-[60px]"></div>
+    </>
   )
 }
 
+// Helper Components
 function ListItem({
   title,
   children,
   to,
+  className,
   ...props
 }: React.ComponentPropsWithoutRef<"li"> & { to: string }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link to={to}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+        <Link
+          to={to}
+          className={cn(
+            "block select-none space-y-1.5 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:shadow-sm border border-transparent hover:border-border",
+            className
+          )}
+        >
+          <div className="text-sm font-semibold leading-none text-foreground">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>
       </NavigationMenuLink>
     </li>
+  )
+}
+
+function DepartmentItem({ to, title }: { to: string; title: string }) {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          to={to}
+          className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:shadow-sm border border-transparent hover:border-border"
+        >
+          <div className="text-sm font-medium text-foreground">{title}</div>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  )
+}
+
+function MobileNavLink({ 
+  to, 
+  children, 
+  onClick 
+}: { 
+  to: string; 
+  children: React.ReactNode; 
+  onClick?: () => void 
+}) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="block px-4 py-2.5 text-sm font-medium rounded-lg hover:bg-accent/80 hover:text-accent-foreground transition-all duration-200 text-foreground"
+    >
+      {children}
+    </Link>
+  )
+}
+
+function MobileSubmenu({
+  title,
+  children,
+  isOpen,
+  onToggle,
+}: {
+  title: string
+  children: React.ReactNode
+  isOpen: boolean
+  onToggle: () => void
+}) {
+  return (
+    <div>
+      <button
+        onClick={onToggle}
+        className="flex items-center justify-between w-full px-4 py-2.5 text-sm font-medium rounded-lg hover:bg-accent/80 hover:text-accent-foreground transition-all duration-200 text-foreground"
+      >
+        {title}
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 transition-transform duration-300 text-muted-foreground",
+            isOpen && "rotate-180 text-foreground"
+          )}
+        />
+      </button>
+      {isOpen && (
+        <div className="mt-1 ml-4 space-y-1 border-l-2 border-primary/30 pl-3 animate-in slide-in-from-top-2 duration-200">
+          {children}
+        </div>
+      )}
+    </div>
   )
 }

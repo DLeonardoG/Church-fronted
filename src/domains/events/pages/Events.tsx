@@ -7,7 +7,7 @@ import { CarouselSection } from "../components/CarouselSection";
  */
 export default function Events() {
   return (
-    <main className="flex flex-col min-h-screen bg-background w-full items-center pt-20 gap-4">
+    <main className="flex flex-col min-h-screen bg-background w-full">
       {/* Sección del carousel de eventos */}
       <CarouselSection />
 

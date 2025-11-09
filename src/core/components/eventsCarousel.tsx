@@ -84,7 +84,7 @@ export function CarouselEvent() {
 
   return (
     <div
-      className="h-screen w-full overflow-hidden text-white relative bg-gradient-to-b from-background via-muted/20 to-muted/40"
+      className="h-screen w-full overflow-hidden relative bg-gradient-to-b from-background via-muted/20 to-muted/40"
       style={{
         isolation: "isolate",
       }}
@@ -114,13 +114,13 @@ export function CarouselEvent() {
           <ArrowLeft className="text-primary-foreground w-6 h-6"/>
         </button>
 
-        <div className="relative flex items-center justify-center bottom-15 w-150 h-200">
+        <div className="relative flex items-center justify-center w-full" style={{ height: "400px" }}>
           {newsEvents.map((event, index) => {
             const offset = index - centerIndex;
             const absOffset = Math.abs(offset);
             const scale = 1.3 - absOffset * 0.1;
             const rotateY = offset * -25;
-            const translateX = offset * 120  ;
+            const translateX = offset * 120;
             const zIndex = 100 - absOffset;
 
             return (
@@ -128,34 +128,27 @@ export function CarouselEvent() {
                 key={event.id}
                 className="absolute cursor-pointer rounded-xl overflow-hidden shadow-2xl"
                 style={{
-                  width: "80%",
-                  height: "50%",
+                  width: "min(600px, 80vw)",
+                  height: "350px",
                   transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
                   zIndex,
                   transition: "transform 0.5s ease, opacity 0.5s ease",
                   opacity: absOffset > 3 ? 0 : 1,
                 }}
               >
-
-
                 <div className="w-full h-full object-cover rounded-xl shadow-lg">
                   <NewsCard
-                  key={event.id}
-            title={event.name}
-            description={event.description}
-            date={event.details.fechaEvento}
-            category={event.category}
-            imageUrl={event.imageUrl}
-                />
+                    key={event.id}
+                    title={event.name}
+                    description={event.description}
+                    date={event.details.fechaEvento}
+                    category={event.category}
+                    imageUrl={event.imageUrl}
+                  />
                 </div>
-
-                
               </motion.div>
-
             );
-            
           })}
-          
         </div>
 
         <button
