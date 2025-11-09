@@ -3,11 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.17.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "pnpm store prune",
+    "reinstall": "pnpm clean && rm -rf node_modules pnpm-lock.yaml && pnpm install"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
