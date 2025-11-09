@@ -1,9 +1,8 @@
-// src/components/FlipPinnedOverlay.tsx
-import React, { useEffect, useRef, useState } from "react";
-import type { ReactNode } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import type { ReactNode } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -19,6 +18,10 @@ interface FlipPinnedOverlayProps {
   autoScrollDuration?: number;
 }
 
+/**
+ * Componente de overlay con efecto flip 3D
+ * Crea una transición animada entre dos secciones con scroll pinning
+ */
 export function FlipPinnedOverlay({
   children,
   headerOffsetPx = 0,

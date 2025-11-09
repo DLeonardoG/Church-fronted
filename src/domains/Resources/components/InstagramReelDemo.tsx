@@ -1,4 +1,4 @@
-import { InstagramReel } from '@/core/components/InstagramReel';
+import { InstagramReel } from './InstagramReel';
 
 export function InstagramReelDemo() {
   const reels = [
@@ -25,3 +25,4 @@ export function InstagramReelDemo() {
     </div>
   );
 }
+

@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import { Heart, MessageCircle, Send, MoreHorizontal, Play, Music, Volume2 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/core/components/ui/avatar';
 import { Button } from '@/core/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/core/components/ui/avatar';
+import { Heart, MessageCircle, MoreHorizontal, Music, Play, Send, Volume2 } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 interface InstagramReelProps {
   username?: string;
@@ -44,7 +44,7 @@ export function InstagramReel({
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto aspect-[9/17] bg-black rounded-lg overflow-hidden relative">
+    <div className="w-full max-w-sm mx-auto aspect-9/17 bg-black rounded-lg overflow-hidden relative">
       
       {/* Video de fondo */}
       <video
@@ -154,3 +154,4 @@ export function InstagramReel({
     </div>
   );
 }
+

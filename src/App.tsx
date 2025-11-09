@@ -1,14 +1,14 @@
 import LoadingFallback from "@/core/components/loading";
 import { ThemeProvider } from "@/core/components/theme-provider";
-import MainLayout from "@/shared/layouts/MainLayout";
+import MainLayout from "@/core/layouts/MainLayout";
 import { lazy, Suspense } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 // Lazy load of components
 const Home = lazy(() => import("@/domains/Home").then(m => ({ default: m.Home })));
-const Nosotros = lazy(() => import("@/features/pages/nosotros"));
+const About = lazy(() => import("@/domains/About").then(m => ({ default: m.About })));
 const Events = lazy(() => import("@/domains/events").then(m => ({ default: m.Events })));
-const Recursos = lazy(() => import("@/features/pages/recursos"));
+const Resources = lazy(() => import("@/domains/Resources").then(m => ({ default: m.Resources })));
 
 function App() {
   const router = createHashRouter([
@@ -27,7 +27,7 @@ function App() {
           path: "/nosotros",
           element: (
             <Suspense fallback={<LoadingFallback />}>
-              <Nosotros />
+              <About />
             </Suspense>
           ),
         },
@@ -43,7 +43,7 @@ function App() {
           path: "/recursos",
           element: (
             <Suspense fallback={<LoadingFallback />}>
-              <Recursos />
+              <Resources />
             </Suspense>
           ),
         },
