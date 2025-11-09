@@ -7,7 +7,7 @@ export function AnnouncementsSection() {
   return (
     <section
       id={HOME_SECTION_IDS.ANNOUNCEMENTS}
-      className="panel flex flex-col bg-muted/50 w-full min-h-screen py-20 px-6 lg:px-16 items-center gap-12"
+      className="panel flex flex-col bg-background w-full min-h-screen py-20 px-6 lg:px-16 items-center gap-12"
     >
       {/* Header mejorado */}
       <div className="flex flex-col items-center gap-4 text-center max-w-3xl">

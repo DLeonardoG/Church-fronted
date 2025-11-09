@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -7,6 +6,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useEffect, useState } from "react";
 
 import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from "@tanstack/react-table";
 import { motion } from "framer-motion";
@@ -26,10 +26,13 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/core/components/ui/dialog";
+
+import { cn } from "@/shared/lib/utils";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 type Church = {
   name: string;
@@ -70,15 +73,15 @@ export const columns: ColumnDef<Church>[] = [
 ];
 
 export function ChurchTable() {
-  const [data, setData] = React.useState<Church[]>([]);
-  const [selectedChurch, setSelectedChurch] = React.useState<Church | null>(null);
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [data, setData] = useState<Church[]>([]);
+  const [selectedChurch, setSelectedChurch] = useState<Church | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("/data/church.json")
       .then((res) => res.json())
       .then((json) => setData(json.bga))
@@ -105,27 +108,35 @@ export function ChurchTable() {
     setModalOpen(true);
   };
 
-
   return (
-    <div className="w-[400px] md:w-[380px] lg:w-[500px] md:h-[50%] border border-gray-200 border-lg text-black px-4 rounded-md">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Buscar Iglesia.."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+    <div className={cn(
+      "w-full max-w-[500px]",
+      "bg-card border border-border rounded-xl shadow-lg",
+      "p-4 md:p-6"
+    )}>
+      {/* Buscador */}
+      <div className="flex items-center gap-2 mb-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            placeholder="Buscar iglesia..."
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+            className="pl-10"
+          />
+        </div>
       </div>
 
-      <div className="overflow-hidden rounded-md border">
-        <Table className="text-black w-full">
-          <TableHeader className="w-full">
+      {/* Tabla */}
+      <div className="rounded-lg border border-border overflow-hidden">
+        <Table>
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="hover:bg-transparent">
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="border-b font-bold">
+                  <TableHead key={header.id} className="font-bold">
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -134,18 +145,21 @@ export function ChurchTable() {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="w-full">
+          <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className="cursor-pointer hover:bg-gray-100"
+                  className={cn(
+                    "cursor-pointer transition-colors",
+                    "hover:bg-muted/50"
+                  )}
                   onClick={() => openModal(row.original)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="border-b text-gray-900 text-xs"
+                      className="text-sm"
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
@@ -155,7 +169,7 @@ export function ChurchTable() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No se encontraron resultados.
+                  <p className="text-muted-foreground">No se encontraron resultados.</p>
                 </TableCell>
               </TableRow>
             )}
@@ -164,41 +178,56 @@ export function ChurchTable() {
       </div>
 
       {/* Paginación */}
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Anterior
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Siguiente
-        </Button>
+      <div className="flex items-center justify-between mt-4">
+        <p className="text-sm text-muted-foreground">
+          Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+        </p>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className="gap-1"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Anterior
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className="gap-1"
+          >
+            Siguiente
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
 
+      {/* Modal de Detalles */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="w-100 overflow-hidden">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>{selectedChurch?.name}</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-2xl">{selectedChurch?.name}</DialogTitle>
+            <DialogDescription className="text-base">
               {selectedChurch?.direccion}
             </DialogDescription>
-            <p className="mt-2 text-sm">{selectedChurch?.description}</p>
           </DialogHeader>
-          <div className="flex justify-center items-center">
-              {selectedChurch?.images?.map((img, idx) => (
+          
+          {selectedChurch?.description && (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {selectedChurch.description}
+            </p>
+          )}
+
+          {selectedChurch?.images && selectedChurch.images.length > 0 && (
+            <div className="flex gap-4 justify-center items-center flex-wrap mt-4">
+              {selectedChurch.images.map((img, idx) => (
                 <motion.div
-                  key={"images" + idx}
-                  style={{
-                    rotate: Math.random() * 20 - 10,
-                  }}
+                  key={`image-${idx}`}
+                  initial={{ rotate: Math.random() * 20 - 10 }}
                   whileHover={{
                     scale: 1.1,
                     rotate: 0,
@@ -209,19 +238,22 @@ export function ChurchTable() {
                     rotate: 0,
                     zIndex: 100,
                   }}
-                  className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 shrink-0 overflow-hidden"
+                  className={cn(
+                    "rounded-xl p-1",
+                    "bg-card border border-border",
+                    "shrink-0 overflow-hidden",
+                    "shadow-md hover:shadow-xl transition-shadow"
+                  )}
                 >
                   <img
                     src={img}
-                    alt="bali images"
-                    width="400"
-                    height="400"
-                    className="rounded-lg h-20 w-10 md:h-28 md:w-25 object-cover shrink-0"
+                    alt={`${selectedChurch.name} - Imagen ${idx + 1}`}
+                    className="rounded-lg h-32 w-32 object-cover"
                   />
                 </motion.div>
               ))}
             </div>
-
+          )}
         </DialogContent>
       </Dialog>
     </div>

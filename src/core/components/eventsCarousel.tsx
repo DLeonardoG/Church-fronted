@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { NewsCard } from "@/core/components/newsCard";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import { NewsCard } from "@/core/components/newsCard"
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 
 
@@ -84,9 +84,8 @@ export function CarouselEvent() {
 
   return (
     <div
-      className="h-screen w-full overflow-hidden text-white relative "
+      className="h-screen w-full overflow-hidden text-white relative bg-gradient-to-b from-background via-muted/20 to-muted/40"
       style={{
-        background: "linear-gradient(to bottom, #f8f8f8 0%, #e5e7eb 100%)",
         isolation: "isolate",
       }}
     >
@@ -109,9 +108,10 @@ export function CarouselEvent() {
       >
         <button
           onClick={() => handleScroll("left")}
-          className="bg-black w-10 h-10 z-100 flex items-center justify-center rounded-full absolute left-5 text-gray-400 hover:text-white text-5xl select-none"
+          className="bg-primary hover:bg-primary/90 w-10 h-10 z-100 flex items-center justify-center rounded-full absolute left-5 transition-all shadow-lg hover:shadow-xl select-none"
+          aria-label="Anterior"
         >
-          <ArrowLeft color="#ffff"/>
+          <ArrowLeft className="text-primary-foreground w-6 h-6"/>
         </button>
 
         <div className="relative flex items-center justify-center bottom-15 w-150 h-200">
@@ -160,9 +160,10 @@ export function CarouselEvent() {
 
         <button
           onClick={() => handleScroll("right")}
-          className="bg-black w-10 h-10 flex justify-center items-center z-100 rounded-full absolute right-4 text-gray-400 hover:text-white text-3xl select-none"
+          className="bg-primary hover:bg-primary/90 w-10 h-10 flex justify-center items-center z-100 rounded-full absolute right-4 transition-all shadow-lg hover:shadow-xl select-none"
+          aria-label="Siguiente"
         >
-          <ArrowRight color="#ffff"></ArrowRight>
+          <ArrowRight className="text-primary-foreground w-6 h-6"/>
         </button>
       </div>
 

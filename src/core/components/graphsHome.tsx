@@ -1,7 +1,74 @@
+import { cn } from "@/shared/lib/utils";
+import { Building2, CalendarDays, Heart, Users, UsersRound } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-function GraphHome() {
+interface StatCardProps {
+  icon: React.ReactNode;
+  count: number;
+  label: string;
+  delay?: number;
+  isImage?: boolean;
+}
+
+function StatCard({ icon, count, label, delay = 0, isImage = false }: StatCardProps) {
+  return (
+    <div
+      className={cn(
+        "group relative w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%]",
+        "min-w-[160px] max-w-[260px]",
+        "rounded-3xl bg-card border border-border",
+        "p-6 aspect-square",
+        "flex flex-col items-center justify-center gap-4",
+        "transition-all duration-500 ease-out",
+        "hover:scale-105 hover:shadow-2xl hover:border-primary/50",
+        "cursor-pointer"
+      )}
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      {/* Gradiente de fondo sutil */}
+      <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col items-center gap-4 w-full">
+        {/* Icono */}
+        <div className={cn(
+          "flex items-center justify-center",
+          isImage ? "h-16" : "w-16 h-16 rounded-2xl bg-primary/10 text-primary",
+          "transition-all duration-300",
+          !isImage && "group-hover:scale-110 group-hover:bg-primary/20"
+        )}>
+          {icon}
+        </div>
+
+        {/* Número */}
+        <div className="flex items-baseline gap-1">
+          <h2 className={cn(
+            "text-4xl md:text-5xl font-bold",
+            "text-foreground tabular-nums",
+            "transition-colors duration-300"
+          )}>
+            {count}
+          </h2>
+          <span className="text-2xl font-bold text-primary">+</span>
+        </div>
+
+        {/* Label */}
+        <p className={cn(
+          "text-sm md:text-base font-medium",
+          "text-muted-foreground text-center",
+          "transition-colors duration-300",
+          "group-hover:text-foreground"
+        )}>
+          {label}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function GraphHome() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const [activeMembers, setActiveMembers] = useState(0);
   const [smallGroups, setSmallGroups] = useState(0);
@@ -17,41 +84,36 @@ function GraphHome() {
     youth: 50,
   };
 
-  const animateCount = (setter: Function, target: number, duration = 1500) => {
+  const animateCount = (setter: Function, target: number, duration = 2000) => {
     let start = 0;
-    const increment = target / (duration / 90);
+    const increment = target / (duration / 16);
     const counter = setInterval(() => {
       start += increment;
       if (start >= target) {
-        start = target;
+        setter(target);
         clearInterval(counter);
+      } else {
+        setter(Math.floor(start));
       }
-      setter(Math.floor(start));
-    }, 30);
+    }, 16);
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Animar todos los contadores
-            animateCount(setActiveMembers, targetNumbers.activeMembers);
-            animateCount(setSmallGroups, targetNumbers.smallGroups);
-            animateCount(setDepartments, targetNumbers.departments);
-            animateCount(setEvents, targetNumbers.events);
-            animateCount(setYouth, targetNumbers.youth);
-          } else {
-            // Resetear contadores cuando salga de la vista
-            setActiveMembers(0);
-            setSmallGroups(0);
-            setDepartments(0);
-            setEvents(0);
-            setYouth(0);
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            // Animar contadores con delays escalonados
+            setTimeout(() => animateCount(setActiveMembers, targetNumbers.activeMembers), 100);
+            setTimeout(() => animateCount(setSmallGroups, targetNumbers.smallGroups), 200);
+            setTimeout(() => animateCount(setDepartments, targetNumbers.departments), 300);
+            setTimeout(() => animateCount(setEvents, targetNumbers.events), 400);
+            setTimeout(() => animateCount(setYouth, targetNumbers.youth), 500);
           }
         });
       },
-      { threshold: 0.5 } // 50% visible para activar
+      { threshold: 0.3 }
     );
 
     if (containerRef.current) {
@@ -59,153 +121,82 @@ function GraphHome() {
     }
 
     return () => {
-      if (containerRef.current) observer.unobserve(containerRef.current);
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
     };
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <div
       ref={containerRef}
-      className="flex flex-col w-full h-full p-8 pt-20 items-center gap-12"
+      className="flex flex-col w-full h-full p-8 py-20 items-center gap-16"
     >
-      <h2 className="font-bold text-3xl md:text-4xl lg:text-4xl text-center">
-        Iglesia Adventista Norte
-      </h2>
-      <div className="flex flex-wrap gap-6 justify-center">
-        {/* Miembros Activos */}
-        <div className="w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%] min-w-[160px] max-w-[260px] rounded-[25px] bg-white p-6 aspect-square flex flex-col items-center justify-center">
-          <div className="h-12">
-            <svg
-              className="h-full fill-white stroke-black"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-              />
-            </svg>
-          </div>
-          <div className="my-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span>{activeMembers}</span> +
-            </h2>
-          </div>
-          <div>
-            <p className="mt-1 sm:mt-2 font-sans text-sm md:text-base font-medium text-gray-500 text-center">
-              Miembros Activos
-            </p>
-          </div>
+      {/* Header */}
+      <div className="flex flex-col items-center gap-4 text-center max-w-3xl">
+        <div className="flex items-center gap-3">
+          <Heart className="w-8 h-8 text-primary" />
+          <h2 className={cn(
+            "font-bold text-4xl md:text-5xl lg:text-6xl",
+            "text-foreground tracking-tight"
+          )}>
+            Iglesia Adventista Norte
+          </h2>
         </div>
+        <p className="text-muted-foreground text-lg max-w-2xl">
+          Una comunidad vibrante dedicada al servicio y la fe
+        </p>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="flex flex-wrap gap-6 justify-center items-center max-w-7xl">
+        {/* Miembros Activos */}
+        <StatCard
+          icon={<Users className="w-8 h-8" />}
+          count={activeMembers}
+          label="Miembros Activos"
+          delay={100}
+        />
 
         {/* Grupos Pequeños */}
-        <div className="w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%] min-w-[160px] max-w-[260px] rounded-[25px] bg-white p-6 aspect-square flex flex-col items-center justify-center">
-          <div className="h-12">
-            <svg
-              className="h-full fill-white stroke-black"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 7a4 4 0 100 8 4 4 0 000-8zm8 0a4 4 0 100 8 4 4 0 000-8zM2 21v-2a4 4 0 014-4h12a4 4 0 014 4v2H2z"
-              />
-            </svg>
-          </div>
-          <div className="my-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span>{smallGroups}</span> +
-            </h2>
-          </div>
-          <div>
-            <p className="mt-1 sm:mt-2 font-sans text-sm md:text-base font-medium text-gray-500 text-center">
-              Grupos Pequeños
-            </p>
-          </div>
-        </div>
+        <StatCard
+          icon={<UsersRound className="w-8 h-8" />}
+          count={smallGroups}
+          label="Grupos Pequeños"
+          delay={200}
+        />
 
         {/* Departamentos */}
-        <div className="w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%] min-w-[160px] max-w-[260px] rounded-[25px] bg-white p-6 aspect-square flex flex-col items-center justify-center">
-          <div className="h-12">
-            <img
-              className="h-12 object-contain"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHl9avPSDpTzstUbwDCOXCIQHcav6j9h6Qnw&s"
-              alt="Mayordomía Cristiana"
-            />
-          </div>
-          <div className="my-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span>{departments}</span> +
-            </h2>
-          </div>
-          <div>
-            <p className="mt-1 sm:mt-2 font-sans text-sm md:text-base font-medium text-gray-500 text-center">
-              Departamentos
-            </p>
-          </div>
-        </div>
+        <StatCard
+          icon={<Building2 className="w-8 h-8" />}
+          count={departments}
+          label="Departamentos"
+          delay={300}
+        />
 
         {/* Eventos */}
-        <div className="w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%] min-w-[160px] max-w-[260px] rounded-[25px] bg-white p-6 aspect-square flex flex-col items-center justify-center">
-          <div className="h-12">
-            <svg
-              className="h-full fill-white stroke-black"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </div>
-          <div className="my-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span>{events}</span> +
-            </h2>
-          </div>
-          <div>
-            <p className="mt-1 sm:mt-2 font-sans text-sm md:text-base font-medium text-gray-500 text-center">
-              Eventos
-            </p>
-          </div>
-        </div>
+        <StatCard
+          icon={<CalendarDays className="w-8 h-8" />}
+          count={events}
+          label="Eventos Mensuales"
+          delay={400}
+        />
 
-        {/* Niños y Jóvenes */}
-        <div className="w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%] min-w-[160px] max-w-[260px] rounded-[25px] bg-white p-6 aspect-square flex flex-col items-center justify-center">
-          <div className="h-12">
+        {/* Niños y Jóvenes - Imagen personalizada */}
+        <StatCard
+          icon={
             <img
-              className="h-12 object-contain"
+              className="h-16 w-auto object-contain"
               src="https://www.guiasmayores.com/uploads/1/1/3/1/1131412/cq_dna_-_blanco_y_negro.png"
-              alt="Niños y Jóvenes"
+              alt="Guías Mayores"
             />
-          </div>
-          <div className="my-2">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span>{youth}</span> +
-            </h2>
-          </div>
-          <div>
-            <p className="mt-1 sm:mt-2 font-sans text-sm md:text-base font-medium text-gray-500 text-center">
-              Niños y Jóvenes
-            </p>
-          </div>
-        </div>
+          }
+          count={youth}
+          label="Niños y Jóvenes"
+          delay={500}
+          isImage={true}
+        />
       </div>
     </div>
   );
 }
-
-export default GraphHome;

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Search, Filter, MoreHorizontal, Clock, MapPin } from "lucide-react";
+import { EventDetailsModal } from "@/core/components/EventDetailsModal";
+import { Badge } from "@/core/components/ui/badge";
 import { Button } from "@/core/components/ui/button";
 import { Checkbox } from "@/core/components/ui/checkbox";
 import { Input } from "@/core/components/ui/input";
-import { Badge } from "@/core/components/ui/badge";
-import { EventDetailsModal } from "@/core/components/EventDetailsModal";
+import { ChevronLeft, ChevronRight, Clock, Filter, MapPin, MoreHorizontal, Search } from "lucide-react";
+import { useState } from "react";
 
 const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 const daysOfWeekFull = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
@@ -189,12 +189,13 @@ const timeSlots = [
 
 
 export function CalendarView() {
+  const today = new Date();
   const [selectedView, setSelectedView] = useState("Month");
-  const [currentMonth, setCurrentMonth] = useState(7); // August (0-indexed)
-  const [currentYear, setCurrentYear] = useState(2025);
-  const [currentWeekStart, setCurrentWeekStart] = useState(new Date(2025, 7, 24)); // Week starting Aug 24, 2025
-  const [currentDay, setCurrentDay] = useState(new Date(2025, 7, 25)); // Aug 25, 2025
-  const [selectedDate, setSelectedDate] = useState(25);
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentWeekStart, setCurrentWeekStart] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay()));
+  const [currentDay, setCurrentDay] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(today.getDate());
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState(filterOptions);
   const [showEventModal, setShowEventModal] = useState(false);
@@ -320,15 +321,16 @@ export function CalendarView() {
 
   
 
-  const today = new Date();
   const isToday = (date: number) => {
-    return date === today.getDate() && 
-           currentMonth === today.getMonth() && 
-           currentYear === today.getFullYear();
+    const now = new Date();
+    return date === now.getDate() && 
+           currentMonth === now.getMonth() && 
+           currentYear === now.getFullYear();
   };
 
   const isTodayDateObj = (dateObj: Date) => {
-    return dateObj.toDateString() === today.toDateString();
+    const now = new Date();
+    return dateObj.toDateString() === now.toDateString();
   };
 
   const handleDateClick = (date: number, isCurrentMonth: boolean) => {
@@ -353,7 +355,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-black text-black hover:bg-black/10 p-4"
+              className="border-primary text-primary hover:bg-primary/10 p-4"
               onClick={() => {
                 const today = new Date();
                 const startOfWeek = new Date(today);
@@ -368,18 +370,18 @@ export function CalendarView() {
             <div className="flex">
               <button 
                 onClick={() => navigateWeek('prev')}
-                className="p-2 bg-white rounded-l border hover:bg-gray-50"
+                className="p-2 bg-background rounded-l border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
               <button 
                 onClick={() => navigateWeek('next')}
-                className="p-2 bg-white rounded-r border hover:bg-gray-50"
+                className="p-2 bg-background rounded-r border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 text-foreground" />
               </button>
             </div>
-            <span className="text-xl font-medium text-[#353f45]">
+            <span className="text-xl font-medium text-foreground">
               {months[currentWeekStart.getMonth()]} {currentWeekStart.getDate()} - {
                 new Date(currentWeekStart.getTime() + 6 * 24 * 60 * 60 * 1000).getDate()
               }, {currentWeekStart.getFullYear()}
@@ -391,7 +393,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-black text-black hover:bg-black/10 p-4"
+              className="border-primary text-primary hover:bg-primary/10 p-4"
               onClick={() => setCurrentDay(new Date())}
             >
               Hoy
@@ -399,18 +401,18 @@ export function CalendarView() {
             <div className="flex">
               <button 
                 onClick={() => navigateDay('prev')}
-                className="p-2 bg-white rounded-l border hover:bg-gray-50"
+                className="p-2 bg-background rounded-l border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
               <button 
                 onClick={() => navigateDay('next')}
-                className="p-2 bg-white rounded-r border hover:bg-gray-50"
+                className="p-2 bg-background rounded-r border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 text-foreground" />
               </button>
             </div>
-            <span className="text-xl font-medium text-[#353f45]">
+            <span className="text-xl font-medium text-foreground">
               {daysOfWeekFull[currentDay.getDay()]}, {months[currentDay.getMonth()]} {currentDay.getDate()}, {currentDay.getFullYear()}
             </span>
           </div>
@@ -418,8 +420,8 @@ export function CalendarView() {
       case "Lista":
         return (
           <div className="flex items-center gap-4">
-            <span className="text-xl font-medium text-[#353f45]">
-              Schedule List - {months[currentMonth]} {currentYear}
+            <span className="text-xl font-medium text-foreground">
+              Lista de Eventos - {months[currentMonth]} {currentYear}
             </span>
           </div>
         );
@@ -428,7 +430,7 @@ export function CalendarView() {
           <div className="flex items-center gap-4">
             <Button 
               variant="outline" 
-              className="border-black text-black hover:bg-black/10 p-4"
+              className="border-primary text-primary hover:bg-primary/10 p-4"
               onClick={() => {
                 const today = new Date();
                 setCurrentMonth(today.getMonth());
@@ -442,18 +444,18 @@ export function CalendarView() {
             <div className="flex">
               <button 
                 onClick={() => navigateMonth('prev')}
-                className="p-2 bg-white rounded-l border hover:bg-gray-50"
+                className="p-2 bg-background rounded-l border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
               <button 
                 onClick={() => navigateMonth('next')}
-                className="p-2 bg-white rounded-r border hover:bg-gray-50"
+                className="p-2 bg-background rounded-r border border-border hover:bg-muted/50 transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 text-foreground" />
               </button>
             </div>
-            <span className="text-xl font-medium text-[#353f45]">
+            <span className="text-xl font-medium text-foreground">
               {months[currentMonth]} {currentYear}
             </span>
           </div>
@@ -465,16 +467,16 @@ export function CalendarView() {
     switch (selectedView) {
       case "Semana":
         return (
-          <div className="flex-1 bg-[#f8f9fa] p-1">
+          <div className="flex-1 bg-muted/10 p-1">
             {/* Time column and days grid */}
             <div className="flex h-full">
               {/* Time column */}
-              <div className="w-20 bg-white border border-[#edeef1] mr-1">
-                <div className="h-12 border-b border-[#edeef1] flex items-center justify-center text-sm font-medium text-[#353f45]">
-                  Time
+              <div className="w-20 bg-card border border-border mr-1">
+                <div className="h-12 border-b border-border flex items-center justify-center text-sm font-medium text-foreground">
+                  Hora
                 </div>
                 {timeSlots.map((time) => (
-                  <div key={time} className="h-16 border-b border-[#edeef1] flex items-center justify-center text-sm text-[#81878b]">
+                  <div key={time} className="h-16 border-b border-border flex items-center justify-center text-sm text-muted-foreground">
                     {time}
                   </div>
                 ))}
@@ -487,14 +489,14 @@ export function CalendarView() {
                   const isCurrentDay = isTodayDateObj(date);
                   
                   return (
-                    <div key={index} className="bg-white border border-[#edeef1] min-h-full">
+                    <div key={index} className="bg-card border border-border min-h-full">
                       {/* Day header */}
-                      <div className={`h-12 border-b border-[#edeef1] flex flex-col items-center justify-center ${
-                        isCurrentDay ? "bg-gray-100" : ""
+                      <div className={`h-12 border-b border-border flex flex-col items-center justify-center ${
+                        isCurrentDay ? "bg-muted/50" : ""
                       }`}>
-                        <div className="text-xs text-[#81878b]">{daysOfWeek[date.getDay()]}</div>
+                        <div className="text-xs text-muted-foreground">{daysOfWeek[date.getDay()]}</div>
                         <div className={`text-sm font-medium ${
-                          isCurrentDay ? "text-black bg-black text-white rounded-full w-6 h-6 flex items-center justify-center" : "text-black"
+                          isCurrentDay ? "bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center" : "text-foreground"
                         }`}>
                           {date.getDate()}
                         </div>
@@ -503,21 +505,20 @@ export function CalendarView() {
                       {/* Time slots */}
                       <div className="relative">
                         {timeSlots.map((time) => (
-                          <div key={time} className="h-16 border-b border-[#edeef1] p-1">
+                          <div key={time} className="h-16 border-b border-border p-1">
                             {schedules.filter(s => s.startTime <= time && s.endTime > time).map((schedule) => (
                               <div
                                 key={schedule.id}
-                                className="text-xs p-1 rounded mb-1 cursor-pointer hover:shadow-sm transition-shadow"
-                                style={{ backgroundColor: filterOptions.find(f => f.id === schedule.category)?.color + '20' }}
+                                className="text-xs p-1 rounded mb-1 cursor-pointer hover:shadow-md transition-all bg-primary/10 border border-primary/20"
                                 onClick={() => {
                                   setSelectedDate(date.getDate());
                                   setShowEventModal(true);
                                 }}
                               >
-                                <div className="font-medium text-[#353f45] truncate">
-                                  {schedule.name}hola
+                                <div className="font-medium text-foreground truncate">
+                                  {schedule.name}
                                 </div>
-                                <div className="text-[#81878b] truncate">
+                                <div className="text-muted-foreground truncate">
                                   {schedule.client}
                                 </div>
                               </div>
@@ -538,28 +539,28 @@ export function CalendarView() {
         const isCurrentDayToday = isTodayDateObj(currentDay);
         
         return (
-          <div className="flex-1 bg-[#f8f9fa] p-1">
+          <div className="flex-1 bg-muted/10 p-1">
             <div className="flex h-full">
               {/* Time column */}
-              <div className="w-20 bg-white border border-[#edeef1] mr-1">
-                <div className="h-12 border-b border-[#edeef1] flex items-center justify-center text-sm font-medium text-[#353f45]">
-                  Time
+              <div className="w-20 bg-card border border-border mr-1">
+                <div className="h-12 border-b border-border flex items-center justify-center text-sm font-medium text-foreground">
+                  Hora
                 </div>
                 {timeSlots.map((time) => (
-                  <div key={time} className="h-16 border-b border-[#edeef1] flex items-center justify-center text-sm text-[#81878b]">
+                  <div key={time} className="h-16 border-b border-border flex items-center justify-center text-sm text-muted-foreground">
                     {time}
                   </div>
                 ))}
               </div>
               
               {/* Day content */}
-              <div className="flex-1 bg-white border border-[#edeef1]">
+              <div className="flex-1 bg-card border border-border">
                 {/* Day header */}
-                <div className={`h-12 border-b border-[#edeef1] flex items-center justify-center ${
-                  isCurrentDayToday ? "bg-gray-100" : ""
+                <div className={`h-12 border-b border-border flex items-center justify-center ${
+                  isCurrentDayToday ? "bg-muted/50" : ""
                 }`}>
                   <div className={`text-lg font-medium ${
-                    isCurrentDayToday ? "text-black" : "text-black"
+                    isCurrentDayToday ? "text-primary" : "text-foreground"
                   }`}>
                     {daysOfWeekFull[currentDay.getDay()]}, {months[currentDay.getMonth()]} {currentDay.getDate()}
                   </div>
@@ -568,18 +569,17 @@ export function CalendarView() {
                 {/* Time slots */}
                 <div className="relative">
                   {timeSlots.map((time) => (
-                    <div key={time} className="h-16 border-b border-[#edeef1] p-2">
+                    <div key={time} className="h-16 border-b border-border p-2">
                       {daySchedules.filter(s => s.startTime <= time && s.endTime > time).map((schedule) => (
                         <div
                           key={schedule.id}
-                          className="text-sm p-2 rounded mb-1 cursor-pointer hover:shadow-sm transition-shadow"
-                          style={{ backgroundColor: filterOptions.find(f => f.id === schedule.category)?.color + '20' }}
+                          className="text-sm p-2 rounded mb-1 cursor-pointer hover:shadow-md transition-all bg-primary/10 border border-primary/20"
                           onClick={() => setShowEventModal(true)}
                         >
-                          <div className="font-medium text-[#353f45]">
-                            {schedule.name}hola
+                          <div className="font-medium text-foreground">
+                            {schedule.name}
                           </div>
-                          <div className="text-sm text-[#81878b] mt-1">
+                          <div className="text-sm text-muted-foreground mt-1">
                             {schedule.client} • {schedule.time}
                           </div>
                           <Badge 
@@ -602,18 +602,18 @@ export function CalendarView() {
         const allSchedules = getAllFilteredSchedules();
         
         return (
-          <div className="flex-1 bg-white p-6">
+          <div className="flex-1 bg-background p-6">
             <div className="space-y-4">
               {allSchedules.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="text-[#81878b] text-lg mb-2">No schedules found</div>
-                  <div className="text-[#81878b] text-sm">Try adjusting your filters or search terms</div>
+                  <div className="text-muted-foreground text-lg mb-2">No se encontraron eventos</div>
+                  <div className="text-muted-foreground text-sm">Intenta ajustar tus filtros o términos de búsqueda</div>
                 </div>
               ) : (
                 allSchedules.map((schedule) => (
                   <div
                     key={schedule.id}
-                    className="border border-[#edeef1] rounded-lg p-4 hover:shadow-sm transition-shadow cursor-pointer"
+                    className="border border-border rounded-lg p-4 hover:shadow-md transition-all cursor-pointer bg-card hover:bg-accent/50"
                     onClick={() => {
                       setSelectedDate(schedule.date);
                       setShowEventModal(true);
@@ -622,20 +622,19 @@ export function CalendarView() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-medium text-[#353f45]">{schedule.name}</h3>
+                          <h3 className="text-lg font-medium text-foreground">{schedule.name}</h3>
                           <Badge 
                             variant="secondary" 
-                            className={``}
+                            className="text-xs"
                           >
                             {schedule.status}
                           </Badge>
                           <div 
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: filterOptions.find(f => f.id === schedule.category)?.color }}
+                            className="w-3 h-3 rounded-full bg-primary"
                           ></div>
                         </div>
                         
-                        <div className="grid grid-cols-2 gap-4 text-sm text-[#81878b]">
+                        <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4" />
                             <span>{months[currentMonth]} {schedule.date}, {currentYear} • {schedule.time}</span>
@@ -647,17 +646,17 @@ export function CalendarView() {
                         </div>
                         
                         <div className="mt-2">
-                          <p className="text-sm text-[#353f45] font-medium">{schedule.client}</p>
-                          <p className="text-sm text-[#81878b]">{schedule.description}</p>
+                          <p className="text-sm text-foreground font-medium">{schedule.client}</p>
+                          <p className="text-sm text-muted-foreground">{schedule.description}</p>
                         </div>
                       </div>
                       
                       <div className="text-right">
-                        <div className="text-sm font-medium text-[#353f45]">{schedule.hours}</div>
+                        <div className="text-sm font-medium text-foreground">{schedule.hours}</div>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0 hover:bg-gray-100 mt-2"
+                          className="h-8 w-8 p-0 hover:bg-muted mt-2"
                         >
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
@@ -674,16 +673,16 @@ export function CalendarView() {
         return (
           <>
             {/* Days Header */}
-            <div className="flex border-b border-[#edeef1] bg-[#f8f9fa]">
+            <div className="flex border-b border-border bg-muted/30">
               {daysOfWeek.map((day) => (
-                <div key={day} className="flex-1 p-4 text-center text-sm font-medium text-[#353f45]">
+                <div key={day} className="flex-1 p-4 text-center text-sm font-medium text-foreground">
                   {day}
                 </div>
               ))}
             </div>
 
             {/* Calendar Grid */}
-            <div className="flex-1 bg-[#f8f9fa] p-1">
+            <div className="flex-1 bg-muted/10 p-1">
               <div className="grid grid-cols-7 gap-1 h-full">
                 {getDaysInMonth().map((day, index) => {
                   const schedules = getScheduleForDate(day.date);
@@ -692,19 +691,19 @@ export function CalendarView() {
                   return (
                     <div
                       key={index}
-                      className={`bg-white border border-[#edeef1] p-2 min-h-[120px] hover:shadow-sm transition-shadow cursor-pointer ${
-                        isToday(day.date) && day.isCurrentMonth ? "bg-gray-50" : ""
+                      className={`bg-card border border-border p-2 min-h-[120px] hover:shadow-md transition-all cursor-pointer ${
+                        isToday(day.date) && day.isCurrentMonth ? "ring-2 ring-primary/50" : ""
                       } ${
-                        day.date === selectedDate && day.isCurrentMonth && !isToday(day.date) ? "bg-[#f0f9ff]" : ""
+                        day.date === selectedDate && day.isCurrentMonth && !isToday(day.date) ? "bg-accent/50" : ""
                       }`}
                       onClick={() => handleDateClick(day.date, day.isCurrentMonth)}
                     >
                       <div className={`text-sm mb-1 ${
                         !day.isCurrentMonth 
-                          ? "text-[#b3b7b9]" 
+                          ? "text-muted-foreground/40" 
                           : isToday(day.date)
-                          ? "font-semibold text-black"
-                          : "text-[#353f45]"
+                          ? "font-semibold text-primary"
+                          : "text-foreground"
                       }`}>
                         {day.date}
                       </div>
@@ -714,12 +713,12 @@ export function CalendarView() {
                           {schedules.slice(0, 2).map((schedule) => (
                             <div
                               key={schedule.id}
-                              className="h-20 text-xs p-1 rounded cursor-pointer hover:shadow-sm transition-shadow bg-gray-200"
+                              className="h-20 text-xs p-1 rounded cursor-pointer hover:shadow-sm transition-shadow bg-muted/80"
                             >
-                              <div className="font-medium text-[#353f45] truncate">
+                              <div className="font-medium text-foreground truncate">
                                 {schedule.name}
                               </div>
-                              <div className="text-[#353f45] truncate pr-4">
+                              <div className="text-muted-foreground truncate pr-4">
                                 {schedule.description}
                               </div>
                               <div className="flex items-center gap-1 mt-1">
@@ -729,15 +728,15 @@ export function CalendarView() {
                                 >
                                   {schedule.status}
                                 </Badge>
-                                <span className="text-[#81878b] text-[10px]">
+                                <span className="text-muted-foreground text-[10px]">
                                   {schedule.hours}
                                 </span>
                               </div>
                             </div>
                           ))}
                           {schedules.length > 2 && (
-                            <div className="text-[10px] text-[#81878b] font-medium cursor-pointer hover:text-[#309ea8]">
-                              +{schedules.length - 2} more
+                            <div className="text-[10px] text-muted-foreground font-medium cursor-pointer hover:text-primary transition-colors">
+                              +{schedules.length - 2} más
                             </div>
                           )}
                         </div>
@@ -753,16 +752,16 @@ export function CalendarView() {
   };
 
   return (
-    <div  className="bg-gray-100  w-full border border-[#edeef1] shadow-[0px_4px_8px_-2px_rgba(10,13,18,0.1),0px_2px_4px_-2px_rgba(10,13,18,0.06)] rounded-lg h-full flex">
+    <div className="bg-background w-full border border-border shadow-lg rounded-lg h-full flex">
       {/* Sidebar */}
-      <div className="w-[276px] border-r border-[#edeef1] flex flex-col">
+      <div className="w-[276px] border-r border-border flex flex-col bg-card">
         {/* Add Schedule Button */}
-        <div className="border-b border-[#edeef1] p-5">
+        <div className="border-b border-border p-5">
 
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#81878b]" />
-            <Input className="pl-10 h-8 bg-white text-sm"
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input className="pl-10 h-8 bg-background text-sm"
               placeholder="Buscar..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -770,19 +769,19 @@ export function CalendarView() {
 
           </div>
           {searchTerm.trim() !== "" && (
-            <ul className="space-y-2">
+            <ul className="space-y-2 mt-2">
               {filteredSchedules.length > 0 ? (
                 filteredSchedules.map((schedule) => (
                   <li
                     key={schedule.id}
-                    className="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+                    className="p-3 border border-border rounded-lg hover:bg-muted/50 transition cursor-pointer"
                   >
-                    <p className="font-semibold text-gray-800">{schedule.name}</p>
-                    <p className="text-sm text-gray-600">{schedule.client}</p>
+                    <p className="font-semibold text-foreground">{schedule.name}</p>
+                    <p className="text-sm text-muted-foreground">{schedule.client}</p>
                   </li>
                 ))
               ) : (
-                <p className="text-gray-500 text-sm p-4">No hay resultados.</p>
+                <p className="text-muted-foreground text-sm p-4">No hay resultados.</p>
               )}
             </ul>
           )}
@@ -790,33 +789,33 @@ export function CalendarView() {
 
         {/* Mini Calendar */}
         <div className="p-5">
-          <div className="bg-white">
+          <div className="bg-card">
             {/* Calendar Header */}
-            <div className="flex items-center justify-between p-3 border-b">
-              <span className="text-sm font-normal text-[#353f45]">
+            <div className="flex items-center justify-between p-3 border-b border-border">
+              <span className="text-sm font-normal text-foreground">
                 {months[currentMonth]} {currentYear}
               </span>
               <div className="flex gap-2">
                 <button 
                   onClick={() => navigateMonth('prev')}
-                  className="p-2 bg-[#f9f9f9] border border-[#edeef1] rounded hover:bg-gray-100"
+                  className="p-2 bg-muted border border-border rounded hover:bg-muted/70 transition-colors"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-4 h-4 text-foreground" />
                 </button>
                 <button 
                   onClick={() => navigateMonth('next')}
-                  className="p-2 bg-[#f9f9f9] border border-[#edeef1] rounded hover:bg-gray-100"
+                  className="p-2 bg-muted border border-border rounded hover:bg-muted/70 transition-colors"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4 text-foreground" />
                 </button>
               </div>
             </div>
 
             {/* Mini Calendar Grid */}
-            <div className="bg-white rounded-md p-3">
+            <div className="bg-card rounded-md p-3">
               <div className="grid grid-cols-7 gap-1 mb-2">
                 {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
-                  <div key={day} className="text-center text-[10px] font-medium text-[#81878b] pb-2">
+                  <div key={day} className="text-center text-[10px] font-medium text-muted-foreground pb-2">
                     {day}
                   </div>
                 ))}
@@ -825,16 +824,16 @@ export function CalendarView() {
                 {getDaysInMonth().map((day, index) => (
                   <div
                     key={index}
-                    className={`h-8 flex items-center justify-center text-sm rounded cursor-pointer hover:bg-gray-100 ${
+                    className={`h-8 flex items-center justify-center text-sm rounded cursor-pointer hover:bg-muted/50 transition-colors ${
                       !day.isCurrentMonth
-                        ? "text-[#b3b7b9]"
+                        ? "text-muted-foreground/50"
                         : isToday(day.date)
-                        ? "bg-gray-200 text-black font-semibold ring-2 ring-black/50 ring-opacity-50"
+                        ? "bg-primary text-primary-foreground font-semibold ring-2 ring-primary/50"
                         : day.date === selectedDate
-                        ? "bg-gray-300 text-black/40"
+                        ? "bg-accent text-accent-foreground"
                         : getScheduleForDate(day.date).length > 0
-                        ? "bg-gray-200 text-black/50 font-medium"
-                        : "text-[#353f45]"
+                        ? "bg-muted text-foreground font-medium"
+                        : "text-foreground"
                     }`}
                     onClick={() => handleDateClick(day.date, day.isCurrentMonth)}
                   >
@@ -849,8 +848,8 @@ export function CalendarView() {
         {/* Filters and Actions */}
         <div className="flex-1 p-5">
           <div className="flex gap-2 mb-4 items-center">
-            <h3 className="font-medium text-[#353f45]">Filtros</h3>
-            <Filter className="w-4 h-4" color="#353f45" />
+            <h3 className="font-medium text-foreground">Filtros</h3>
+            <Filter className="w-4 h-4 text-foreground" />
           </div>
           
           
@@ -861,13 +860,9 @@ export function CalendarView() {
                 <Checkbox 
                   checked={option.checked}
                   onCheckedChange={(checked) => handleFilterChange(option.id, !!checked)}
-                  style={{ 
-                    backgroundColor: option.checked ? option.color : undefined,
-                    borderColor: option.color
-                  }}
                 />
-                <span className="text-sm font-medium text-[#353f45]">{option.label}</span>
-                <span className="text-xs text-[#81878b] ml-auto">
+                <span className="text-sm font-medium text-foreground">{option.label}</span>
+                <span className="text-xs text-muted-foreground ml-auto">
                   {scheduleData.filter(s => s.category === option.id).length}
                 </span>
               </div>
@@ -875,22 +870,22 @@ export function CalendarView() {
           </div>
 
           {/* Quick Stats */}
-          <div className="mt-6 p-4 bg-[#f9f9f9] rounded-lg">
-            <h4 className="text-sm font-medium text-[#353f45] mb-3">Este Mes</h4>
+          <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+            <h4 className="text-sm font-medium text-foreground mb-3">Este Mes</h4>
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Eventos Totales</span>
-                <span className="font-medium text-[#353f45]">{scheduleData.length}</span>
+                <span className="text-muted-foreground">Eventos Totales</span>
+                <span className="font-medium text-foreground">{scheduleData.length}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Sin Completar</span>
-                <span className="font-medium text-red-600">
+                <span className="text-muted-foreground">Sin Completar</span>
+                <span className="font-medium text-destructive">
                   {scheduleData.filter(s => s.status === 'Unassigned').length}
                 </span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-[#81878b]">Completados</span>
-                <span className="font-medium text-green-600">
+                <span className="text-muted-foreground">Completados</span>
+                <span className="font-medium text-green-600 dark:text-green-400">
                   {scheduleData.filter(s => s.status === 'Scheduled' || s.status === 'Confirmed').length}
                 </span>
               </div>
@@ -902,16 +897,16 @@ export function CalendarView() {
       {/* Main Calendar */}
       <div className="flex-1 flex flex-col" key={refreshKey}>
         {/* Calendar Header */}
-        <div className="border-b border-[#edeef1] p-4 flex items-center justify-between">
+        <div className="border-b border-border p-4 flex items-center justify-between bg-card">
           {renderNavigation()}
           <div className="flex">
             {viewModes.map((mode, index) => (
               <button
                 key={mode}
-                className={`px-4 py-2 text-sm font-medium border ${
+                className={`px-4 py-2 text-sm font-medium border transition-colors ${
                   mode === selectedView
-                    ? "bg-black/10 border-black text-black"
-                    : "bg-white border-[#dde0e5] text-[#686f73] hover:bg-gray-50"
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background border-border text-muted-foreground hover:bg-muted/50"
                 } ${
                   index === 0 ? "rounded-l" : 
                   index === viewModes.length - 1 ? "rounded-r" : ""

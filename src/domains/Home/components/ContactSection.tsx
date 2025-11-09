@@ -5,7 +5,7 @@ export function ContactSection() {
   return (
     <section
       id={HOME_SECTION_IDS.CONTACT}
-      className="w-full z-10 h-screen flex items-center justify-center bg-muted/50"
+      className="w-full z-10 h-screen flex items-center justify-center bg-background"
     >
       <Contact />
     </section>

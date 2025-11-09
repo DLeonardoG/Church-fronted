@@ -1,8 +1,8 @@
-import { Card, CardContent } from "@/core/components/ui/card"
 import { Badge } from "@/core/components/ui/badge"
-import { motion } from "framer-motion"
-import { Calendar, ArrowRight } from "lucide-react"
 import { Button } from "@/core/components/ui/button"
+import { Card, CardContent } from "@/core/components/ui/card"
+import { motion } from "framer-motion"
+import { ArrowRight, Calendar } from "lucide-react"
 
 interface NewsCardProps {
   title: string
@@ -26,10 +26,10 @@ export const NewsCard: React.FC<NewsCardProps> = ({
       transition={{ duration: 0.5 }}
       className="w-full h-full"
     >
-      <Card className="relative overflow-hidden rounded-2xl shadow-xl border-none text-white h-full">
+      <Card className="relative overflow-hidden rounded-2xl shadow-xl border border-border text-white h-full group">
         {/* Imagen de fondo */}
         <div
-          className="absolute inset-0 bg-cover bg-center brightness-[0.55] hover:brightness-[0.75] transition-all duration-500"
+          className="absolute inset-0 bg-cover bg-center brightness-[0.55] group-hover:brightness-[0.75] transition-all duration-500"
           style={{ backgroundImage: `url(${imageUrl})` }}
         />
 
@@ -37,8 +37,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({
         <CardContent className="relative z-10 p-6 flex flex-col justify-end h-80">
           <div className="flex justify-between items-center mb-3">
             <Badge
-              variant="secondary"
-              className="bg-red-600/80 text-white px-3 py-1 text-xs uppercase tracking-wider"
+              variant="default"
+              className="bg-primary/90 hover:bg-primary text-primary-foreground px-3 py-1 text-xs uppercase tracking-wider"
             >
               {category}
             </Badge>
@@ -58,10 +58,11 @@ export const NewsCard: React.FC<NewsCardProps> = ({
 
           <Button
             variant="secondary"
-            className="bg-white/90 h-6 text-black hover:bg-white flex items-center gap-1 w-fit"
+            size="sm"
+            className="bg-white/90 text-black hover:bg-white flex items-center gap-1 w-fit"
           >
-            Mas...
-            <ArrowRight></ArrowRight>
+            Ver más
+            <ArrowRight className="w-4 h-4" />
           </Button>
         </CardContent>
 
