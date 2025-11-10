@@ -90,7 +90,7 @@ export function TestimonialsSection() {
   return (
     <section
       id={RESOURCES_SECTION_IDS.TESTIMONIALS}
-      className="flex justify-center items-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 w-full min-h-screen"
+      className="flex justify-center items-center  to-gray-100  dark:bg-black w-full min-h-screen"
     >
       <div className="flex flex-col w-7xl h-full space-y-14">
         <div className="flex w-full h-20 justify-center items-center">

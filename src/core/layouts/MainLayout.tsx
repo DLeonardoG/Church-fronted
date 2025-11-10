@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { NavigationMenuDemo } from "@/core/components/menu-navegation"
-import Footer from "@/core/components/footer"
+import Footer from "@/core/components/footer/footer"
 import Loader from "@/core/components/loader/loader"
 
 export default function MainLayout() {

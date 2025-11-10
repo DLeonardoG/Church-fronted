@@ -13,7 +13,7 @@ export function IPhoneMockup({ children, showHomeIndicator = true }: IPhoneMocku
   return (
     <div className="flex items-center">
       {/* iPhone Bezel */}
-      <div className="w-65 h-[470px] bg-black rounded-[3rem] p-2.5 shadow-2xl">
+      <div className="w-65 h-[470px] bg-black rounded-[3rem] p-2.5 shadow-2xl dark:bg-white/10">
         {/* Screen */}
         <div className="w-full h-full bg-white rounded-[2.5rem] relative overflow-hidden">
           {/* Dynamic Island */}

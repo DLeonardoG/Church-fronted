@@ -12,12 +12,13 @@ import {
 import { cn } from "@/shared/lib/utils"
 import { ChevronDown, Menu, X } from "lucide-react"
 import * as React from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 export function NavigationMenuDemo() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null)
   const location = useLocation()
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     setMobileMenuOpen(false)
@@ -26,6 +27,19 @@ export function NavigationMenuDemo() {
 
   const toggleSubmenu = (menu: string) => {
     setOpenSubmenu(openSubmenu === menu ? null : menu)
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    // Si no estamos en la página principal, navegar primero a ella con estado
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollToSection: sectionId } })
+    } else {
+      // Si ya estamos en la página principal, solo hacer scroll
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
   }
 
   return (
@@ -43,7 +57,7 @@ export function NavigationMenuDemo() {
             <img
               src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
               alt="Logo IASD"
-              className="h-10 w-auto"
+              className="h-13 w-auto dark:brightness-0 dark:invert transition-all duration-300"
             />
           </Link>
         </div>
@@ -107,12 +121,12 @@ export function NavigationMenuDemo() {
 
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <a 
-                href="/#Anuncios" 
-                className="font-medium text-foreground hover:text-primary transition-colors"
+              <button 
+                onClick={() => scrollToSection('Anuncios')} 
+                className="font-medium text-foreground hover:text-primary transition-colors cursor-pointer"
               >
                 Anuncios
-              </a>
+              </button>
             </NavigationMenuLink>
           </NavigationMenuItem>
 
@@ -177,7 +191,7 @@ export function NavigationMenuDemo() {
             <img
               src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
               alt="Logo IASD"
-              className="h-9 w-auto"
+              className="h-9 w-auto dark:brightness-0 dark:invert transition-all duration-300"
             />
           </Link>
           
@@ -218,9 +232,15 @@ export function NavigationMenuDemo() {
                 </MobileNavLink>
               </MobileSubmenu>
 
-              <MobileNavLink to="/#Anuncios" onClick={() => setMobileMenuOpen(false)}>
+              <button
+                onClick={() => {
+                  scrollToSection('Anuncios')
+                  setMobileMenuOpen(false)
+                }}
+                className="block px-4 py-2.5 text-sm font-medium rounded-lg hover:bg-accent/80 hover:text-accent-foreground transition-all duration-200 text-foreground w-full text-left"
+              >
                 Anuncios
-              </MobileNavLink>
+              </button>
 
               <MobileSubmenu
                 title="Departamentos"

@@ -1,4 +1,5 @@
 import { useScrollHomeTrigger } from "@/shared/hooks/scrollHomeTrigger";
+import { useScrollToSection } from "@/shared/hooks/useScrollToSection";
 import { AnnouncementsSection } from "../components/AnnouncementsSection";
 import { CallToActionSection } from "../components/CallToActionSection";
 import { CarouselSection } from "../components/CarouselSection";
@@ -15,6 +16,9 @@ import { HOME_SCROLL_CONFIG } from "../constants/homeConfig";
 export default function Home() {
   // Configurar el scroll animado para las secciones
   useScrollHomeTrigger(HOME_SCROLL_CONFIG);
+  
+  // Manejar scroll a secciones cuando se navega desde otras páginas
+  useScrollToSection();
 
   return (
     <main className="w-full min-h-screen bg-background">

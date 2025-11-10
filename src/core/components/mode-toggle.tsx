@@ -29,7 +29,7 @@ export const ModeToggle: React.FC = () => {
     >
       <Sun className={cn(
         "h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
-        effectiveTheme === 'light' ? "text-amber-500" : "text-muted-foreground"
+        effectiveTheme === 'light' ? "text-black" : "text-muted-foreground"
       )} />
       <Moon className={cn(
         "absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",

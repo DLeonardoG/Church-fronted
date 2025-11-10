@@ -10,7 +10,7 @@ export function InstagramSection() {
   return (
     <section
       id={RESOURCES_SECTION_IDS.INSTAGRAM}
-      className="bg-white dark:bg-gray-900 h-full lg:flex lg:items-center"
+      className="bg-white dark:bg-black h-full lg:flex lg:items-center"
     >
       <div className="px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
