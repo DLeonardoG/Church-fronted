@@ -4,6 +4,7 @@ import { ABOUT_SECTION_IDS, ABOUT_TEXTS } from "../constants/aboutConfig";
 import { HistorySection } from "./HistorySection";
 import { MissionVisionSection } from "./MissionVisionSection";
 import { ValuesSection } from "./ValuesSection";
+import { BeliefsSection } from "./BeliefsSection";
 
 /**
  * Sección de contenido principal de la página About
@@ -15,14 +16,13 @@ export function AboutContentSection() {
       id={ABOUT_SECTION_IDS.CONTENT} 
       className={cn(
         "panel flex flex-col items-center",
-        "min-h-screen w-full py-20 px-4 md:px-8",
-        "bg-background"
+        "w-full py-20 px-4 md:px-8",
+        "bg-background pb-[100px]"
       )}
     >
       {/* Header principal */}
       <div className="flex flex-col items-center gap-6 text-center max-w-4xl mb-16">
         <div className="flex items-center gap-3 justify-center">
-          <Heart className="w-10 h-10 text-primary animate-pulse" />
           <h2 className={cn(
             "text-4xl md:text-5xl lg:text-6xl font-bold",
             "text-foreground tracking-tight"
@@ -54,6 +54,13 @@ export function AboutContentSection() {
         <ValuesSection />
 
         {/* Separador visual */}
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="h-px bg-linear-to-r from-transparent via-border to-transparent" />
+        </div>
+        
+
+        <BeliefsSection />
+
         <div className="w-full max-w-7xl mx-auto">
           <div className="h-px bg-linear-to-r from-transparent via-border to-transparent" />
         </div>

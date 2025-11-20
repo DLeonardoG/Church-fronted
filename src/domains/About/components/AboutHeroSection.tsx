@@ -4,88 +4,75 @@ import { ABOUT_LINKS, ABOUT_MEDIA, ABOUT_TEXTS } from "../constants/aboutConfig"
 
 /**
  * Sección Hero de la página About
- * Muestra el mensaje principal con imagen de fondo y CTAs
+ * Totalmente responsiva y accesible
  */
 export function AboutHeroSection() {
   return (
-    <section className="panel w-full h-screen flex justify-center items-center pt-12 bg-background">
-      <div
-        className={cn(
-          "flex flex-col relative w-[98%] md:w-200 lg:w-[90%] h-[90%] md:h-250 lg:h-[85%]",
-          "rounded-4xl px-9 py-15 overflow-hidden",
-          "border border-border shadow-2xl"
-        )}
-      >
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center rounded-4xl"
-          style={{
-            backgroundImage: `url('${ABOUT_MEDIA.HERO_BACKGROUND}')`,
-          }}
-        />
-        
-        {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40 dark:bg-black/60 rounded-4xl" />
+    <section className="w-full py-12 md:py-16 lg:py-20 bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl border border-border">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url('${ABOUT_MEDIA.HERO_BACKGROUND}')`,
+            }}
+          />
 
-        {/* Header con links de acción */}
-        <div className="w-full flex justify-between text-m italic mb-18 relative z-10">
-          <a 
-            href={ABOUT_LINKS.JOIN_US_HREF} 
-            className={cn(
-              "flex gap-1 items-center group transition-all",
-              "hover:scale-105"
-            )}
-          >
-            <p className="text-white font-bold group-hover:text-white/80">
-              {ABOUT_TEXTS.JOIN_US}
-            </p>
-            <MousePointerClick className="h-5 w-5 text-white group-hover:text-white/80" />
-          </a>
-          <span className="text-white font-bold">{ABOUT_TEXTS.VISIT_US}</span>
+          {/* Overlay oscuro */}
+          <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+
+          {/* Contenido posicionado con flex */}
+          <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 md:p-10">
+            {/* Header con acciones */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm sm:text-base italic">
+              <a
+                href={ABOUT_LINKS.JOIN_US_HREF}
+                className="flex items-center gap-2 group transition-transform text-xs md:text-lg hover:scale-105 text-white font-bold"
+              >
+                {ABOUT_TEXTS.JOIN_US}
+                <MousePointerClick className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-white/80" />
+              </a>
+              <span className="text-white font-bold text-xs md:text-lg">{ABOUT_TEXTS.VISIT_US}</span>
+            </div>
+
+            {/* Títulos */}
+            <div className="max-w-2xl">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
+                {ABOUT_TEXTS.TITLE_1}
+                 {ABOUT_TEXTS.TITLE_2}
+              </h1>
+            </div>
+
+            {/* Descripción */}
+            <div className="max-w-2xl">
+              <p className="text-white/90 italic text-[10px] sm:text-base md:text-lg lg:text-xl  leading-relaxed">
+                {ABOUT_TEXTS.DESCRIPTION}
+              </p>
+            </div>
+
+            {/* Botón CTA */}
+            <div className="mt-6 sm:mt-8">
+              <a
+                href={ABOUT_LINKS.HERO_BUTTON_HREF}
+                className={cn(
+                  "inline-flex items-center justify-center",
+                  "bg-white/90 text-black font-semibold italic",
+                  "hover:bg-white active:bg-white/80",
+                  "px-6 py-2 sm:px-8 sm:py-4",
+                  "rounded-3xl",
+                  "text-base sm:text-lg",
+                  "shadow-lg hover:shadow-xl hover:scale-[1.02]",
+                  "transition-all duration-200",
+                  "w-full sm:w-auto"
+                )}
+              >
+                {ABOUT_TEXTS.HERO_BUTTON}
+              </a>
+            </div>
+          </div>
         </div>
-
-        {/* Títulos principales */}
-        <div className="flex flex-col space-y-2 w-full md:w-[70%] lg:w-[54%] mb-5 relative z-10">
-          <span className={cn(
-            "text-5xl md:text-6xl lg:text-7xl font-bold",
-            "text-white tracking-tight"
-          )}>
-            {ABOUT_TEXTS.TITLE_1}
-          </span>
-          <span className={cn(
-            "text-6xl md:text-7xl lg:text-8xl font-bold",
-            "text-white tracking-tight"
-          )}>
-            {ABOUT_TEXTS.TITLE_2}
-          </span>
-        </div>
-
-        {/* Descripción */}
-        <div className="w-full md:w-[70%] lg:w-[54%] relative z-10">
-          <p className="text-white/90 italic text-base md:text-lg leading-relaxed">
-            {ABOUT_TEXTS.DESCRIPTION}
-          </p>
-        </div>
-
-        {/* Botón de acción */}
-        <a
-          href={ABOUT_LINKS.HERO_BUTTON_HREF}
-          className={cn(
-            "relative mt-auto mx-auto md:mx-0 md:left-200 bottom-0 md:bottom-30",
-            "flex items-center justify-center",
-            "bg-white/90 text-black",
-            "hover:bg-white active:bg-white/80",
-            "w-full md:w-[30%] lg:w-[15%] py-2 px-4",
-            "text-lg font-semibold rounded-3xl",
-            "italic transition-all duration-200",
-            "shadow-lg hover:shadow-xl hover:scale-105",
-            "z-10"
-          )}
-        >
-          {ABOUT_TEXTS.HERO_BUTTON}
-        </a>
       </div>
     </section>
   );
 }
-

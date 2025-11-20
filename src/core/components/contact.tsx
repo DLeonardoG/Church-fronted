@@ -33,17 +33,20 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Ubicación",
-      content: "Cra 15 #54-78, Bucaramanga"
+      content: "Cra 15 #54-78, Bucaramanga",
+      link: "https://maps.app.goo.gl/ZqSgVh6FFauMWBBSA",
     },
     {
       icon: Phone,
       title: "Teléfono",
-      content: "+57 (7) 123 4567"
+      content: "+57 (7) 123 4567",
+      link: "https://w.app/1081276993"
     },
     {
       icon: Mail,
       title: "Email",
-      content: "contacto@iadnorte.com"
+      content: "contacto@iadnorte.com",
+      link: "iadnorte@gmail.com"
     }
   ]
 
@@ -73,17 +76,19 @@ export default function Contact() {
             {contactInfo.map((info, index) => (
               <Card 
                 key={index}
-                className="group hover:shadow-md transition-all duration-300 border-border/50 hover:border-primary/30"
+                className="group bg-transparent border-none"
               >
-                <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-primary/10">
-                    <info.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-muted-foreground">{info.title}</p>
-                    <p className="text-base font-semibold text-foreground">{info.content}</p>
-                  </div>
-                </CardContent>
+                <a href={info.link} target="_blank">
+                  <CardContent className="p-4 flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-primary/10">
+                      <info.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-muted-foreground">{info.title}</p>
+                      <p className="text-base font-semibold text-foreground">{info.content}</p>
+                    </div>
+                  </CardContent>
+                </a>
               </Card>
             ))}
           </div>

@@ -15,7 +15,7 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen scroll-smooth relative">
       {isLoading && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black">
           <Loader />
         </div>
       )}

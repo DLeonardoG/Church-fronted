@@ -11,7 +11,7 @@ export function YouTubeSection() {
       id={RESOURCES_SECTION_IDS.YOUTUBE}
       className="min-h-screen flex items-center bg-white dark:bg-black"
     >
-      <div className="container mx-auto flex flex-col md:flex-row items-center max-w-7xl px-6 py-25 gap-10">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center max-w-7xl px-6 py-25 gap-10">
         {/* Texto principal */}
         <div 
           className="flex-1 space-y-6 flex flex-col justify-center" 

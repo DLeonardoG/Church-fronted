@@ -18,6 +18,7 @@ export interface ResourceItem {
   bg: string;
   icon: ReactNode;
   actionLink: string;
+  coverImage: string;
 }
 
 /**

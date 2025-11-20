@@ -76,27 +76,27 @@ export function NavigationMenuDemo() {
     
           <NavigationMenuItem>
             <NavigationMenuTrigger className="cursor-pointer font-medium text-foreground hover:text-primary data-[state=open]:text-primary transition-colors">
-              Nosotros
+              <Link to="/nosotros">Nosotros</Link>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-3 p-6 md:w-[500px] lg:w-[600px] lg:grid-cols-[.75fr_1fr] bg-popover">
+              <ul className="grid gap-0 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-4">
                   <NavigationMenuLink asChild>
                     <Link
-                      className="relative flex h-full w-full min-h-[300px] flex-col justify-end rounded-lg overflow-hidden p-6 no-underline outline-none select-none hover:shadow-xl hover:ring-2 hover:ring-ring transition-all duration-300 group border border-border"
+                      className="relative flex h-full w-full  flex-col justify-end rounded-lg overflow-hidden p-6 no-underline outline-none select-none hover:shadow-xl hover:ring-2 hover:ring-ring transition-all duration-300 group border border-border"
                       to="/nosotros"
                     >
                       <img
-                        src="https://scontent.fbga1-3.fna.fbcdn.net/v/t1.6435-9/79649146_2211901442445196_8153083340790956032_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=-gu1bcLvCUwQ7kNvwHBdpIk&_nc_oc=AdlhjsIPMBKj4Xmk6MYPUZ61NdrBMx751qHW5PJYMrcwXqX8JfT3yxkbk5-lBSytbpU&_nc_zt=23&_nc_ht=scontent.fbga1-3.fna&_nc_gid=aakpHa2kkhTA7hs9nNwHmA&oh=00_Affl2cSVr394w9IEUD1zN3K2LI4xzcSXMHGTXFz3EGLBhg&oe=6906B48C"
+                        src="/logo.jpg"
                         alt="Iglesia Adventista Norte"
                         className="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(to_top,oklch(0_0_0/0.8),oklch(0_0_0/0.3),oklch(0_0_0/0))] z-5"></div>
                       <div className="relative z-10 space-y-2">
-                        <div className="text-xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        <div className="flex text-center text-xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                           Comunicaciones Norte
                         </div>
-                        <p className="text-sm leading-relaxed text-white/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                        <p className="text-sm text-center leading-relaxed text-white/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
                           Iglesia Adventista del Séptimo Día Norte Bucaramanga
                         </p>
                       </div>
@@ -108,9 +108,6 @@ export function NavigationMenuDemo() {
                 </ListItem>
                 <ListItem to="/nosotros#creencias" title="Creencias">
                   Principios fundamentales basados en las Escrituras
-                </ListItem>
-                <ListItem to="/nosotros#equipo" title="Nuestro Equipo">
-                  Líderes comprometidos con la comunidad adventista
                 </ListItem>
                 <ListItem to="/nosotros#historia" title="Nuestra Historia">
                   Décadas de servicio y testimonio en Bucaramanga
@@ -135,7 +132,7 @@ export function NavigationMenuDemo() {
               Departamentos
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[520px] gap-3 p-6 md:grid-cols-2 bg-popover">
+              <ul className="grid w-[25rem] gap-0 p-1 md:grid-cols-2 bg-popover">
                 <DepartmentItem to="#" title="Mayordomía" />
                 <DepartmentItem to="#" title="Ministerios Personales" />
                 <DepartmentItem to="#" title="Comunicaciones" />

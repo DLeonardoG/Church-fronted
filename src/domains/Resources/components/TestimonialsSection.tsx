@@ -10,9 +10,8 @@ import { Download, ShoppingCart } from "lucide-react";
 import { RESOURCES_SECTION_IDS, RESOURCES_TEXTS } from "../constants/resourcesConfig";
 import type { ResourceItem } from "../types";
 
-/**
- * Datos de los recursos principales
- */
+
+// En resourcesData (dentro de TestimonialsSection.tsx)
 const resourcesData: ResourceItem[] = [
   {
     id: 1,
@@ -22,8 +21,9 @@ const resourcesData: ResourceItem[] = [
     author: "Comunidad Adventista",
     type: "download",
     bg: "bg-neutral-900 text-white",
-    icon: <Download size={15} />,
+    icon: <Download size={14} />,
     actionLink: "/descargas/28-creencias.pdf",
+    coverImage: "https://image.slidesharecdn.com/libro28creenciasadventistasseptimodia-121003232132-phpapp02/75/Libro-de-las-28-Creencias-de-los-Adventistas-del-Septimo-Dia-1-2048.jpg",
   },
   {
     id: 2,
@@ -33,8 +33,9 @@ const resourcesData: ResourceItem[] = [
     author: "Editorial Safeliz",
     type: "buy",
     bg: "bg-blue-700 text-white",
-    icon: <ShoppingCart size={15} />,
+    icon: <ShoppingCart size={14} />,
     actionLink: "/tienda/conflicto-de-los-siglos",
+    coverImage: "https://cdnx.jumpseller.com/aces-peru/image/37474002/resize/1000/1100?1689008534",
   },
   {
     id: 3,
@@ -44,8 +45,9 @@ const resourcesData: ResourceItem[] = [
     author: "Asociación Publicadora Interamericana",
     type: "buy",
     bg: "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white",
-    icon: <ShoppingCart size={15} />,
+    icon: <ShoppingCart size={14} />,
     actionLink: "/tienda/ministerio-de-curacion",
+    coverImage: "https://imgv2-2-f.scribdassets.com/img/word_document/482334930/original/1bc82230e2/1?v=1",
   },
   {
     id: 4,
@@ -55,8 +57,9 @@ const resourcesData: ResourceItem[] = [
     author: "Comunidad Adventista",
     type: "download",
     bg: "bg-blue-500 text-white",
-    icon: <Download size={15} />,
+    icon: <Download size={14} />,
     actionLink: "/descargas/el-camino-a-cristo.pdf",
+    coverImage: "https://cdnx.jumpseller.com/aces-peru/image/37473724/resize/1000/1100?1689007643",
   },
   {
     id: 5,
@@ -66,8 +69,9 @@ const resourcesData: ResourceItem[] = [
     author: "Editorial ACES",
     type: "buy",
     bg: "bg-neutral-900 text-white",
-    icon: <ShoppingCart size={15} />,
+    icon: <ShoppingCart size={14} />,
     actionLink: "/tienda/eventos-de-los-ultimos-dias",
+    coverImage: "https://m.media-amazon.com/images/I/617m1TYgJXL._AC_UF1000,1000_QL80_.jpg",
   },
   {
     id: 6,
@@ -77,74 +81,127 @@ const resourcesData: ResourceItem[] = [
     author: "Secretaría General IASD",
     type: "download",
     bg: "bg-blue-800 text-white",
-    icon: <Download size={15} />,
+    icon: <Download size={14} />,
     actionLink: "/descargas/manual-de-iglesia.pdf",
+    coverImage: "https://iadpa.org/cdn/shop/products/Manualdeiglesia2022.jpg?v=1678461368",
   },
 ];
 
-/**
- * Sección de Testimonios/Recursos Principales
- * Muestra un carousel con recursos descargables y comprables
- */
 export function TestimonialsSection() {
   return (
     <section
       id={RESOURCES_SECTION_IDS.TESTIMONIALS}
-      className="flex justify-center items-center  to-gray-100  dark:bg-black w-full min-h-screen"
+      className="w-full py-16 md:py-24"
     >
-      <div className="flex flex-col w-7xl h-full space-y-14">
-        <div className="flex w-full h-20 justify-center items-center">
-          <h2 className="text-4xl font-extrabold font-sans text-gray-900 dark:text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Título */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             {RESOURCES_TEXTS.TESTIMONIALS_TITLE}
           </h2>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+            Explora nuestros recursos espirituales: libros, manuales y documentos para tu crecimiento en Cristo.
+          </p>
         </div>
 
-        <div className="w-full min-h-6xl">
-          <div className="w-100 md:max-w-5xl lg:w-6xl mx-auto relative overflow-visible">
-            <Carousel opts={{ loop: false }}>
-              <CarouselContent className="-ml-8">
-                {resourcesData.map((resource, idx) => (
-                  <CarouselItem
-                    key={idx}
-                    className="basis-full sm:basis-1/2 md:basis-1 lg:basis-1/3 h-80 md:px-1 lg:px-8"
+        {/* Carousel */}
+        <div className="relative">
+          <Carousel opts={{ loop: false, dragFree: true }}>
+            <CarouselContent className="-ml-4 md:-ml-1">
+              {resourcesData.map((resource) => (
+                <CarouselItem
+                  key={resource.id}
+                  className="pl-14 md:pl-0 basis-full sm:basis-1/2 lg:basis-1/4"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    className="group relative h-full cursor-pointer"
                   >
-                    <motion.div
-                      whileHover={{
-                        scale: 1.05,
-                        zIndex: 20,
-                        rotate: 0,
+                    {/* Tarjeta con forma de libro */}
+                    <div
+                      className="rounded-xl overflow-hidden w-80 h-[400px] flex flex-col relative"
+                      style={{
+                        perspective: "1000px",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                        border: "1px solid rgba(0,0,0,0.05)",
                       }}
-                      initial={{
-                        rotate: 0,
-                      }}
-                      className={`relative -mr-28 rounded-2xl shadow-xl h-70 ${resource.bg} p-6 md:p-8 transition-all duration-300`}
                     >
-                      <div>
-                        <h3 className="text-lg font-semibold uppercase tracking-tight">
+                      {/* Efecto de lomo del libro (borde izquierdo) */}
+                      <div
+                        className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-r from-primary/70 to-transparent rounded-l-xl"
+                        style={{
+                          transform: "translateZ(20px)",
+                        }}
+                      />
+
+                      {/* Portada del libro con hover → descripción */}
+                      <div
+                        className="relative w-full aspect-[3/4] flex items-center justify-center overflow-hidden rounded-t-lg"
+                        style={{
+                          transformStyle: "preserve-3d",
+                          transform: "rotateY(20deg) translateZ(0)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
+                        <img
+                          src={resource.coverImage}
+                          alt={`Portada de ${resource.title}`}
+                          className="w-full h-[90%] object-contain p-2 transition-opacity duration-300 group-hover:opacity-40"
+                        />
+
+                        <div className="absolute inset-0 p-3 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <p className="dark:text-white text-black text-xs text-center leading-relaxed px-2">
+                            {resource.text}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Contenido inferior */}
+                      <div className="p-4 flex flex-col flex-1">
+                        <h3 className="text-lg font-semibold text-foreground line-clamp-2 leading-tight">
                           {resource.title}
                         </h3>
-                        <p className="text-sm mt-3 opacity-90 leading-relaxed">
-                          {resource.text}
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {resource.author}
                         </p>
-                      </div>
-                      <div className="mt-6">
-                        <button
-                          onClick={() => (window.location.href = resource.actionLink)}
-                          className="flex justify-center cursor-pointer items-center gap-1 text-xs text-gray-900 dark:text-gray-900 font-semibold w-24 h-10 bg-white hover:bg-gray-100 dark:bg-white dark:hover:bg-gray-200 mt-2 rounded-lg transition-colors shadow-sm"
-                        >
-                          {resource.role} {resource.icon}
-                        </button>
-                        <p className="mt-2 text-xs opacity-70">{resource.author}</p>
-                      </div>
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
 
-              <CarouselPrevious className="hidden md:flex absolute -left-16 top-1/2 w-15 h-15" />
-              <CarouselNext className="hidden md:flex absolute -right-16 top-1/2 w-15 h-15" />
-            </Carousel>
-          </div>
+                        <div className="mt-auto pt-3">
+                          <a
+                            href={resource.actionLink}
+                            className={`w-full py-2.5 text-center text-sm font-medium rounded-md flex items-center justify-center gap-1.5 transition-colors ${
+                              resource.type === "download"
+                                ? "bg-emerald-700 text-white hover:bg-emerald-800"
+                                : "bg-primary text-primary-foreground hover:bg-primary-700"
+                            }`}
+                          >
+                            {resource.type === "download" ? (
+                              <>
+                                <Download className="w-3.5 h-3.5" />
+                                Descargar
+                              </>
+                            ) : (
+                              <>
+                                <ShoppingCart className="w-3.5 h-3.5" />
+                                Comprar
+                              </>
+                            )}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            {/* Botones de navegación */}
+            <div className="hidden md:block absolute -left-0 top-1/2 -translate-y-1/2">
+              <CarouselPrevious className="w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-gray-100" />
+            </div>
+            <div className="hidden md:block absolute -right-0 top-1/2 -translate-y-1/2">
+              <CarouselNext className="w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-gray-100" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

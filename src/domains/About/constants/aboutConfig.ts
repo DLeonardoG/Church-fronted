@@ -14,7 +14,7 @@ export const ABOUT_SCROLL_CONFIG = {
  */
 export const ABOUT_SECTION_IDS = {
   HERO: "hero__nosotros",
-  CONTENT: "nosotros",
+  CONTENT: "quienes-somos",
 } as const;
 
 /**
@@ -23,12 +23,12 @@ export const ABOUT_SECTION_IDS = {
 export const ABOUT_TEXTS = {
   JOIN_US: "Unete a Nosotros",
   VISIT_US: "Visitanos!",
-  TITLE_1: "Iglesia Adventista",
+  TITLE_1: "Iglesia Adventista ",
   TITLE_2: "Norte",
   DESCRIPTION:
     "La Iglesia Adventista del Séptimo Día lleva esperanza al mundo para que las personas vivan con la certeza de que su historia no termina aquí. Esa es la certeza encontrada a lo largo de toda la Biblia.",
   HERO_BUTTON: "Quienes Somos",
-  CONTENT_TITLE: "Quienes Somos",
+  CONTENT_TITLE: "Quienes Somos?",
   CONTENT_SUBTITLE: "Descubre más sobre nuestra misión, visión y valores que nos impulsan a servir a la comunidad.",
 } as const;
 
@@ -109,6 +109,54 @@ export const ABOUT_LINKS = {
  */
 export const ABOUT_MEDIA = {
   HERO_BACKGROUND:
-    "https://media.istockphoto.com/id/1062640036/es/foto/incontables-decenas-de-hermosas-rosas-rojas-en-un-carro-de-flor-visto-desde-arriba-en-una.jpg?s=612x612&w=0&k=20&c=ajZFBmCWLU4oL1sOWvkbl5IGnka-C1mO12646kPxXyg=",
+    "https://oidyved.com/wp-content/uploads/2021/11/Screen-Shot-2021-11-10-at-5.50.05-AM.png.webp",
 } as const;
 
+/**
+ * Creencias fundamentales de la Iglesia Adventista
+ */
+export const CHURCH_BELIEFS = [
+  {
+    ICON: "book-open",
+    TITLE: "La Biblia como autoridad",
+    DESCRIPTION:
+      "Creemos que la Biblia es la Palabra inspirada de Dios, la única regla infalible de fe y práctica. Es la revelación escrita de Su voluntad y el fundamento de todas nuestras enseñanzas.",
+  },
+  {
+    ICON: "cross",
+    TITLE: "Jesucristo, nuestra esperanza",
+    DESCRIPTION:
+      "Jesús es el Hijo eterno de Dios, nuestro Salvador y Redentor. Por Su vida, muerte y resurrección, nos ofrece salvación gratuita y reconciliación con el Padre.",
+  },
+  {
+    ICON: "heart",
+    TITLE: "El sábado como santo",
+    DESCRIPTION:
+      "Guardamos el séptimo día de la semana (del ocaso del viernes al ocaso del sábado) como día de reposo, adoración y comunión. Es un memorial de la creación y un signo de nuestra relación con Dios.",
+  },
+  {
+    ICON: "sun",
+    TITLE: "La segunda venida de Cristo",
+    DESCRIPTION:
+      "Creemos en la inminente, visible y gloriosa venida de Jesucristo. Este evento transformará la tierra y marcará el fin del pecado, inaugurando la vida eterna con Dios.",
+  },
+] as const;
+
+/**
+ * Textos para la sección de Creencias
+ */
+export const BELIEFS_SECTION_TEXTS = {
+  SECTION_TITLE: "Nuestras Creencias Fundamentales",
+  SECTION_SUBTITLE:
+    "Como iglesia adventista del séptimo día, nuestra fe se basa en la Biblia y se resume en 28 principios fundamentales. Aquí presentamos algunos pilares de nuestra identidad cristiana y esperanza.",
+  CTA_TITLE: "¿Quieres profundizar?",
+  CTA_DESCRIPTION:
+    "Te invitamos a conocer los 28 Principios Fundamentales de la fe adventista, un resumen fiel de lo que creemos según las Escrituras.",
+  CTA_BUTTON_TEXT: "Leer los 28 Principios",
+  CTA_LINK: "https://www.adventistas.org/es/creencias/",
+} as const;
+
+export const BELIEF_SECTION_IDS = {
+  HERO: "hero__creencias",
+  CONTENT: "creencias",
+} as const;

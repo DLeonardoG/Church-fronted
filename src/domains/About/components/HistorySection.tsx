@@ -9,7 +9,7 @@ import { CHURCH_HISTORY } from "../constants/aboutConfig";
  */
 export function HistorySection() {
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-16">
+    <div id="historia" className="w-full max-w-7xl mx-auto px-4 py-16">
       <Card className="border-2 hover:border-primary/50 transition-all">
         <CardContent className="p-8 md:p-12">
           {/* Header con icono */}
