@@ -1,6 +1,5 @@
 import Anuncios from "@/core/components/anuncios";
 import { cn } from "@/shared/lib/utils";
-import { Megaphone } from "lucide-react";
 import { HOME_SECTION_IDS, HOME_TEXTS } from "../constants/homeConfig";
 
 export function AnnouncementsSection() {
@@ -12,7 +11,6 @@ export function AnnouncementsSection() {
       {/* Header mejorado */}
       <div className="flex flex-col items-center gap-4 text-center max-w-3xl">
         <div className="flex items-center gap-3 justify-center">
-          <Megaphone className="w-8 h-8 text-primary" />
           <h1 className={cn(
             "text-foreground font-bold text-5xl lg:text-6xl",
             "tracking-tight"

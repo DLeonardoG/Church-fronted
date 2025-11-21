@@ -1,169 +1,202 @@
-import { NewsCard } from "@/core/components/newsCard";
+import { cn } from "@/shared/lib/utils";
+import { Calendar, ArrowLeft, ArrowRight, ArrowRightIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-
-
-
-const newsEvents = [
+// Tu lista de eventos
+const events = [
   {
     id: 8,
     name: "Retiro Espiritual de Sanidad",
-    date: 31,
-    status: "Pending",
-    imageUrl: "https://es.armsa.com/wp-content/uploads/2018/01/Capa-Face-Acamp-Verao-ARM-2018-Esp_3000px.jpg",
-    description: "Un encuentro transformador con Dios. Te invitamos a un día de renovación espiritual...",
+    description: "Un encuentro transformador con Dios. Te invitamos a un día de renovación espiritual, oración y unción para sanidad integral.",
     category: "Evento Espiritual",
-    details: {
-      fechaEvento: "Sábado, 16 de Noviembre de 2025",
-    },
+    date: "Sábado, 16 de Noviembre de 2025",
+    imageUrl: "https://es.armsa.com/wp-content/uploads/2018/01/Capa-Face-Acamp-Verao-ARM-2018-Esp_3000px.jpg",
   },
   {
     id: 9,
     name: "Conferencia de Avivamiento 2025",
-    date: 7,
-    status: "Active",
-    imageUrl: "https://files.adventistas.org/downloads_v2/es/2024/10/22185443/Capa.jpg",
-    description: "Tres días de renovación espiritual, milagros y palabra viva. Un encuentro para avivar la fe...",
+    description: "Tres días de renovación espiritual, milagros y palabra viva. Un encuentro para avivar la fe y experimentar el poder del Espíritu Santo.",
     category: "Conferencia Cristiana",
-    details: {
-      fechaEvento: "Viernes, 21 de Noviembre de 2025",
-    },
+    date: "Viernes, 21 de Noviembre de 2025",
+    imageUrl: "https://files.adventistas.org/downloads_v2/es/2024/10/22185443/Capa.jpg",
   },
   {
     id: 10,
     name: "Noche de Adoración y Milagros",
-    date: 15,
-    status: "Confirmed",
-    imageUrl: "https://i.ytimg.com/vi/9UKPeLll7Pk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLADPkK4O-Yj7sUbNHhjz2RVBbj_0w",
-    description: "Una noche de encuentro con Dios donde los cielos se abren. Ven con fe y expectativa...",
+    description: "Una noche de encuentro con Dios donde los cielos se abren. Ven con fe y expectativa para experimentar lo sobrenatural.",
     category: "Evento Espiritual",
-    details: {
-      fechaEvento: "Sábado, 23 de Noviembre de 2025",
-    },
+    date: "Sábado, 23 de Noviembre de 2025",
+    imageUrl: "https://i.ytimg.com/vi/9UKPeLll7Pk/hq720.jpg",
   },
   {
     id: 11,
     name: "Taller de Liderazgo Juvenil",
-    date: 20,
-    status: "Scheduled",
-    imageUrl: "https://i.ytimg.com/vi/12_uwZnBBVM/maxresdefault.jpg",
-    description: "Capacitación intensiva para líderes jóvenes que desean crecer en visión, propósito y servicio...",
+    description: "Capacitación intensiva para líderes jóvenes que desean crecer en visión, propósito y servicio al cuerpo de Cristo.",
     category: "Capacitación Ministerial",
-    details: {
-      fechaEvento: "Domingo, 17 de Noviembre de 2025",
-    },
+    date: "Domingo, 17 de Noviembre de 2025",
+    imageUrl: "https://i.ytimg.com/vi/12_uwZnBBVM/maxresdefault.jpg",
   },
   {
     id: 12,
     name: "Campamento Conquistadores",
-    date: 24,
-    status: "Pending",
-    imageUrl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/flags%2C-pathfinders%2C-conquistadores%2C-adventist-design-template-2de78eb0694895dba3344950549a7896_screen.jpg?ts=1743438334",
-    description: "Tres días para fortalecer la unión familiar bajo los principios bíblicos...",
+    description: "Tres días para fortalecer la unión familiar bajo los principios bíblicos. Actividades, devocionales y aventura para toda la familia.",
     category: "Campamento Familiar",
-    details: {
-      fechaEvento: "Del 22 al 24 de Noviembre de 2025",
-    },
-  }
+    date: "Del 22 al 24 de Noviembre de 2025",
+    imageUrl: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/flags%2C-pathfinders%2C-conquistadores%2C-adventist-design-template-2de78eb0694895dba3344950549a7896_screen.jpg",
+  },
 ];
 
+export function EventsCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
+  const handleScroll = (direction: "left" | "right") => {
+    if (!carouselRef.current) return;
 
-export function CarouselEvent() {
-  const [centerIndex, setCenterIndex] = useState(Math.floor(newsEvents.length / 2));
+    const itemWidth = carouselRef.current.querySelector('.carousel-item')?.clientWidth || 0;
+    const scrollAmount = direction === "left" ? -itemWidth : itemWidth;
 
-  const handleScroll = (dir: "left" | "right") => {
-    setCenterIndex((prev) =>
-      dir === "left"
-        ? (prev - 1 + newsEvents.length) % newsEvents.length
-        : (prev + 1) % newsEvents.length
-    );
+    carouselRef.current.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
   };
 
+  // Detectar scroll y actualizar índice (opcional)
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const onScroll = () => {
+      const itemWidth = carousel.querySelector('.carousel-item')?.clientWidth || 0;
+      const newIndex = Math.round(carousel.scrollLeft / itemWidth);
+      setCurrentIndex(newIndex);
+    };
+
+    carousel.addEventListener('scroll', onScroll);
+    return () => carousel.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Calcular cuántas tarjetas mostrar según el ancho
+  const getVisibleCount = () => {
+    if (typeof window === "undefined") return 1;
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  };
+
+  const visibleCount = getVisibleCount();
+  const maxIndex = Math.max(0, events.length - visibleCount);
+
   return (
-    <div
-      className="h-screen w-full overflow-hidden relative bg-gradient-to-b from-background via-muted/20 to-muted/40"
-      style={{
-        isolation: "isolate",
-      }}
-    >
-      {/* 🌫️ Reflejo tipo piso */}
-      <div
-        className="fixed bottom-0 left-0 right-0 h-1/2 pointer-events-none"
-        style={{
-          background: "linear-gradient(to top, rgba(255,255,255,0.03) 0%, transparent 100%)",
-          transform: "perspective(1000px) rotateX(60deg)",
-          transformOrigin: "bottom",
-          zIndex: 1,
-        }}
-      />
-
-
-      {/* 💽 Carrusel principal */}
-      <div
-        className="relative flex items-center justify-center w-full h-full"
-        style={{ perspective: "1000px", zIndex: 10 }}
-      >
-        <button
-          onClick={() => handleScroll("left")}
-          className="bg-primary hover:bg-primary/90 w-10 h-10 z-100 flex items-center justify-center rounded-full absolute left-5 transition-all shadow-lg hover:shadow-xl select-none"
-          aria-label="Anterior"
-        >
-          <ArrowLeft className="text-primary-foreground w-6 h-6"/>
-        </button>
-
-        <div className="relative flex items-center justify-center w-full" style={{ height: "400px" }}>
-          {newsEvents.map((event, index) => {
-            const offset = index - centerIndex;
-            const absOffset = Math.abs(offset);
-            const scale = 1.3 - absOffset * 0.1;
-            const rotateY = offset * -25;
-            const translateX = offset * 120;
-            const zIndex = 100 - absOffset;
-
-            return (
-              <motion.div
-                key={event.id}
-                className="absolute cursor-pointer rounded-xl overflow-hidden shadow-2xl"
-                style={{
-                  width: "min(600px, 80vw)",
-                  height: "350px",
-                  transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
-                  zIndex,
-                  transition: "transform 0.5s ease, opacity 0.5s ease",
-                  opacity: absOffset > 3 ? 0 : 1,
-                }}
-              >
-                <div className="w-full h-full object-cover rounded-xl shadow-lg">
-                  <NewsCard
-                    key={event.id}
-                    title={event.name}
-                    description={event.description}
-                    date={event.details.fechaEvento}
-                    category={event.category}
-                    imageUrl={event.imageUrl}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
+    <section className="w-full py-16 md:py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Encabezado */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Próximos Eventos
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            Únete a nuestra comunidad en eventos diseñados para fortalecer tu fe, tu familia y tu llamado ministerial.
+          </p>
         </div>
 
-        <button
-          onClick={() => handleScroll("right")}
-          className="bg-primary hover:bg-primary/90 w-10 h-10 flex justify-center items-center z-100 rounded-full absolute right-4 transition-all shadow-lg hover:shadow-xl select-none"
-          aria-label="Siguiente"
-        >
-          <ArrowRight className="text-primary-foreground w-6 h-6"/>
-        </button>
-      </div>
+        {/* Carousel contenedor */}
+        <div className="relative">
+          {/* Flechas */}
+          <button
+            onClick={() => handleScroll("left")}
+            disabled={currentIndex <= 0}
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 left-2 z-10 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors",
+              currentIndex <= 0 && "opacity-50 cursor-not-allowed"
+            )}
+            aria-label="Anterior"
+          >
+            <ArrowLeft className="w-5 h-5 text-foreground dark:text-black" />
+          </button>
 
-      {/* 🪞 Reflejo visual */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center opacity-10 blur-lg pointer-events-none">
-        <div className="w-[300px] h-[40px] bg-gradient-to-t from-black/10 to-transparent rounded-full" />
+          <button
+            onClick={() => handleScroll("right")}
+            disabled={currentIndex >= maxIndex}
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 right-2 z-10 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors",
+              currentIndex >= maxIndex && "opacity-50 cursor-not-allowed"
+            )}
+            aria-label="Siguiente"
+          >
+            <ArrowRight className="w-5 h-5 text-foreground dark:text-black" />
+          </button>
+
+          {/* Carrusel horizontal */}
+          <div
+            ref={carouselRef}
+            className="flex overflow-x-auto scrollbar-hide gap-6 py-4 px-2 md:px-4 snap-x snap-mandatory"
+            style={{
+              scrollSnapType: "x mandatory",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            {events.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="carousel-item flex-shrink-0 w-[90vw] sm:w-[45vw] md:w-[30vw] lg:w-[28vw] snap-start"
+              >
+                <div className="group flex flex-col border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                  {/* Imagen */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={event.imageUrl}
+                      alt={event.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    {/* Overlay de categoría */}
+                    <div className="absolute top-3 left-3 px-2 py-1 bg-red-500 text-white text-xs font-medium rounded-full">
+                      {event.category}
+                    </div>
+                  </div>
+
+                  {/* Contenido */}
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2">
+                      {event.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+                      {event.description}
+                    </p>
+
+                    {/* Fecha */}
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mt-auto pt-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
+                    </div>
+
+                    {/* Botón “Continue Reading” */}
+                    <button
+                      className={cn(
+                        "mt-4 flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors",
+                        "group-hover:underline"
+                      )}
+                    >
+                      Continua leyendo
+                      <ArrowRightIcon className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA final opcional */}
+        
       </div>
-    </div>
+    </section>
   );
 }

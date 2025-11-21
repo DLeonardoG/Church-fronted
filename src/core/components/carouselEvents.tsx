@@ -106,7 +106,7 @@ export function CarouselOrientation({
                       </div>
                       
                       <p className={cn(
-                        "text-sm text-muted-foreground",
+                        "text-sm text-black dark:text-white",
                         "line-clamp-2 leading-relaxed"
                       )}>
                         {evento.descripcion}

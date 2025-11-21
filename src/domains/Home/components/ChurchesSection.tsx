@@ -1,7 +1,6 @@
 import { Map } from "@/core/components/geoChurch";
 import { ChurchTable } from "@/core/components/tableChurch";
 import { cn } from "@/shared/lib/utils";
-import { Church } from "lucide-react";
 import { HOME_SECTION_IDS, HOME_TEXTS } from "../constants/homeConfig";
 
 export function ChurchesSection() {
@@ -13,7 +12,6 @@ export function ChurchesSection() {
       {/* Header */}
       <div className="flex flex-col items-center gap-4 text-center max-w-3xl">
         <div className="flex items-center gap-3">
-          <Church className="w-8 h-8 text-primary" />
           <h2 className={cn(
             "text-4xl md:text-5xl lg:text-6xl font-bold",
             "text-foreground tracking-tight"

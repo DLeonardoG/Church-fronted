@@ -1,14 +1,14 @@
 import { Button } from "@/core/components/ui/button";
 import { CountdownTimer } from "@/core/components/ui/countdown-timer";
 import { cn } from "@/shared/lib/utils";
-import { ArrowRight, Calendar, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CarouselOrientation, type Evento } from "./carouselEvents";
 
 const eventosPrincipales = {
   titulo: "Santa Cena",
   descripcion:
     "La Santa Cena es una celebración cuatrimestral que simboliza el sacrificio de Cristo y la promesa de su regreso.",
-  fecha: "2025-10-21T00:00:00",
+  fecha: "2026-01-21T00:00:00",
   imagen:
     "https://marketplace.canva.com/EAGYTACmB7o/2/0/1600w/canva-post-de-instagram-santa-cena-iglesia-cristiana-uj4YxF3HReg.jpg",
 };
@@ -109,11 +109,6 @@ export default function Anuncios() {
         <div className="relative z-10 flex flex-col justify-between h-full p-8">
           {/* Header */}
           <div className="space-y-6">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 w-fit">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Evento Destacado</span>
-            </div>
 
             {/* Título */}
             <div className="space-y-3">
@@ -125,8 +120,7 @@ export default function Anuncios() {
               </h3>
 
               <div className="flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-primary mt-1 shrink-0" />
-                <p className="text-base text-muted-foreground leading-relaxed max-w-md">
+                <p className="text-black dark:text-white leading-relaxed max-w-md">
                   {eventosPrincipales.descripcion}
                 </p>
               </div>
@@ -144,8 +138,8 @@ export default function Anuncios() {
             <Button 
               size="lg"
               className={cn(
-                "w-full group/btn",
-                "text-lg font-semibold",
+                "w-[30] h-12 group/btn",
+                "text-lg font-semibold flex justify-self-center rounded-2xl",
                 "transition-all duration-300"
               )}
             >

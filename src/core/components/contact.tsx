@@ -56,10 +56,6 @@ export default function Contact() {
         {/* Información de contacto */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-              <Send className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Estamos aquí para ayudarte</span>
-            </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
               Contáctanos
