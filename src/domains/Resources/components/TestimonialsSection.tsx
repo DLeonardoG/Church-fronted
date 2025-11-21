@@ -170,8 +170,8 @@ export function TestimonialsSection() {
                             href={resource.actionLink}
                             className={`w-full py-2.5 text-center text-sm font-medium rounded-md flex items-center justify-center gap-1.5 transition-colors ${
                               resource.type === "download"
-                                ? "bg-emerald-700 text-white hover:bg-emerald-800"
-                                : "bg-primary text-primary-foreground hover:bg-primary-700"
+                                ? "bg-amber-700 text-white hover:bg-amber-800"
+                                : "bg-amber-950 text-white hover:bg-orange-950"
                             }`}
                           >
                             {resource.type === "download" ? (

@@ -55,7 +55,7 @@ export function NavigationMenuDemo() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
           >
             <img
-              src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
+              src="/logo-remove.png"
               alt="Logo IASD"
               className="h-13 w-auto dark:brightness-0 dark:invert transition-all duration-300"
             />

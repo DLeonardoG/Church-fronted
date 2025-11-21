@@ -130,7 +130,7 @@ export default function GraphHome() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col w-full h-full p-8 py-20 items-center gap-16"
+      className="flex flex-col w-full h-full p-8 py-20 items-center gap-16 bg-background"
     >
       {/* Header */}
       <div className="flex flex-col items-center gap-4 text-center max-w-3xl">

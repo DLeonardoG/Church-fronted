@@ -27,7 +27,7 @@ export const HOME_SECTION_IDS = {
 export const HOME_TEXTS = {
   ANNOUNCEMENTS_TITLE: "Anuncios",
   CHURCHES_TITLE: "Iglesias en Bucaramanga",
-  CALL_TO_ACTION: "Queremos Ayudarte, Queremos Servirte.",
+  CALL_TO_ACTION: "Cristo Viene Pronto ¿Estás Preparado?",
   HERO_TITLE_1: "Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre, y el que en mí cree, nunca tendrá sed. Juan 3:16",
   HERO_TITLE_2: "Contactanos, para mas informacion",
   HERO_BUTTON_TEXT: "Contactanos",

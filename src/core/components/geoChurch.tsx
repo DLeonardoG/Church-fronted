@@ -36,7 +36,7 @@ export function Map() {
   return (
     <div className={cn(
       "relative w-full md:w-1/2",
-      "h-[400px] md:h-[500px] lg:h-[600px]",
+      "h-[400px] md:h-[500px] lg:h-[400px]",
       "rounded-2xl overflow-hidden",
       "border border-border shadow-lg",
       "group"

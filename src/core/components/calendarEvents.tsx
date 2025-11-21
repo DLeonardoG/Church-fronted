@@ -192,8 +192,6 @@ export function CalendarView() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Detectar si es móvil
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   useEffect(() => {
   const handleResize = () => {
