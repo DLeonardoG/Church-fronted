@@ -6,7 +6,7 @@ import { CalendarView } from "@/core/components/calendarEvents";
  */
 export function CalendarSection() {
   return (
-    <section className="w-full min-h-screen bg-muted/30 py-16 px-4 md:px-8 lg:px-16">
+    <section className="w-full min-h-screen py-16 px-4 md:px-8 lg:px-16">
       {/* Header de la sección */}
       <div className="max-w-7xl mx-auto mb-8">
         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">

@@ -16,6 +16,7 @@ export default function Events() {
 
       {/* Sección del calendario de eventos */}
       <CalendarSection />
+
     </main>
   );
 }

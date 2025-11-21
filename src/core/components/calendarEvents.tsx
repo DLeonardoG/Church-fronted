@@ -4,7 +4,7 @@ import { Button } from "@/core/components/ui/button";
 import { Checkbox } from "@/core/components/ui/checkbox";
 import { Input } from "@/core/components/ui/input";
 import { ChevronLeft, ChevronRight, Clock, Filter, MapPin, MoreHorizontal, Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 const daysOfWeekFull = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
@@ -189,6 +189,26 @@ const timeSlots = [
 
 
 export function CalendarView() {
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Detectar si es móvil
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  useEffect(() => {
+  const handleResize = () => {
+    if (window.innerWidth > 768) {
+      setIsSidebarOpen(true); // en desktop, siempre visible
+    } else {
+      setIsSidebarOpen(false); // en móvil, cerrado por defecto
+    }
+  };
+
+  handleResize(); // ejecuta al montar
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
   const today = new Date();
   const [selectedView, setSelectedView] = useState("Month");
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -752,21 +772,56 @@ export function CalendarView() {
   };
 
   return (
-    <div className="bg-background w-full border border-border shadow-lg rounded-lg h-full flex">
-      {/* Sidebar */}
-      <div className="w-[276px] border-r border-border flex flex-col bg-card">
+  <div className="bg-background w-full border border-border shadow-lg rounded-lg h-full flex flex-col md:flex-row">
+    {/* Botón de menú hamburguesa solo en móviles/tablets */}
+    {typeof window !== 'undefined' && window.innerWidth <= 768 && (
+      <div className="md:hidden p-4 bg-card border-b border-border">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsSidebarOpen(true)}
+          className="rounded-md"
+        >
+          <div className="w-5 h-0.5 bg-foreground mb-1.5"></div>
+          <div className="w-5 h-0.5 bg-foreground mb-1.5"></div>
+          <div className="w-5 h-0.5 bg-foreground"></div>
+        </Button>
+      </div>
+    )}
+
+    {/* Sidebar: visible siempre en desktop, condicional en móvil */}
+    {(typeof window === 'undefined' || window.innerWidth > 768 || isSidebarOpen) && (
+      <div
+        className={`w-full md:w-[276px] border-r border-border flex flex-col bg-card ${
+          typeof window !== 'undefined' && window.innerWidth <= 768
+            ? 'fixed inset-y-0 z-50 h-screen'
+            : 'relative'
+        }`}
+      >
+        {/* Botón de cerrar solo en móvil */}
+        {typeof window !== 'undefined' && window.innerWidth <= 768 && (
+          <div className="p-4 border-b border-border flex justify-between items-center">
+            <span className="font-semibold">Filtros</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              ✕
+            </Button>
+          </div>
+        )}
+
         {/* Add Schedule Button */}
         <div className="border-b border-border p-5">
-
-          {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input className="pl-10 h-8 bg-background text-sm"
+            <Input
+              className="pl-10 h-8 bg-background text-sm"
               placeholder="Buscar..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-
           </div>
           {searchTerm.trim() !== "" && (
             <ul className="space-y-2 mt-2">
@@ -790,19 +845,18 @@ export function CalendarView() {
         {/* Mini Calendar */}
         <div className="p-5">
           <div className="bg-card">
-            {/* Calendar Header */}
             <div className="flex items-center justify-between p-3 border-b border-border">
               <span className="text-sm font-normal text-foreground">
                 {months[currentMonth]} {currentYear}
               </span>
               <div className="flex gap-2">
-                <button 
+                <button
                   onClick={() => navigateMonth('prev')}
                   className="p-2 bg-muted border border-border rounded hover:bg-muted/70 transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4 text-foreground" />
                 </button>
-                <button 
+                <button
                   onClick={() => navigateMonth('next')}
                   className="p-2 bg-muted border border-border rounded hover:bg-muted/70 transition-colors"
                 >
@@ -811,11 +865,13 @@ export function CalendarView() {
               </div>
             </div>
 
-            {/* Mini Calendar Grid */}
             <div className="bg-card rounded-md p-3">
               <div className="grid grid-cols-7 gap-1 mb-2">
                 {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
-                  <div key={day} className="text-center text-[10px] font-medium text-muted-foreground pb-2">
+                  <div
+                    key={day}
+                    className="text-center text-[10px] font-medium text-muted-foreground pb-2"
+                  >
                     {day}
                   </div>
                 ))}
@@ -851,19 +907,17 @@ export function CalendarView() {
             <h3 className="font-medium text-foreground">Filtros</h3>
             <Filter className="w-4 h-4 text-foreground" />
           </div>
-          
-          
-          
+
           <div className="space-y-3">
             {filters.map((option) => (
               <div key={option.id} className="flex items-center gap-3">
-                <Checkbox 
+                <Checkbox
                   checked={option.checked}
                   onCheckedChange={(checked) => handleFilterChange(option.id, !!checked)}
                 />
                 <span className="text-sm font-medium text-foreground">{option.label}</span>
                 <span className="text-xs text-muted-foreground ml-auto">
-                  {scheduleData.filter(s => s.category === option.id).length}
+                  {scheduleData.filter((s) => s.category === option.id).length}
                 </span>
               </div>
             ))}
@@ -880,59 +934,66 @@ export function CalendarView() {
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Sin Completar</span>
                 <span className="font-medium text-destructive">
-                  {scheduleData.filter(s => s.status === 'Unassigned').length}
+                  {scheduleData.filter((s) => s.status === 'Unassigned').length}
                 </span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Completados</span>
                 <span className="font-medium text-green-600 dark:text-green-400">
-                  {scheduleData.filter(s => s.status === 'Scheduled' || s.status === 'Confirmed').length}
+                  {scheduleData.filter((s) => s.status === 'Scheduled' || s.status === 'Confirmed').length}
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
+    )}
 
-      {/* Main Calendar */}
-      <div className="flex-1 flex flex-col" key={refreshKey}>
-        {/* Calendar Header */}
-        <div className="border-b border-border p-4 flex items-center justify-between bg-card">
-          {renderNavigation()}
-          <div className="flex">
-            {viewModes.map((mode, index) => (
-              <button
-                key={mode}
-                className={`px-4 py-2 text-sm font-medium border transition-colors ${
-                  mode === selectedView
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background border-border text-muted-foreground hover:bg-muted/50"
-                } ${
-                  index === 0 ? "rounded-l" : 
-                  index === viewModes.length - 1 ? "rounded-r" : ""
-                }`}
-                onClick={() => setSelectedView(mode)}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
+    {/* Overlay oscuro en móvil cuando el sidebar está abierto */}
+    {typeof window !== 'undefined' &&
+      window.innerWidth <= 768 &&
+      isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+    {/* Contenido principal del calendario */}
+    <div className="flex-1 flex flex-col" key={refreshKey}>
+      <div className="border-b border-border p-4 flex items-center justify-between bg-card">
+        {renderNavigation()}
+        <div className="flex">
+          {viewModes.map((mode, index) => (
+            <button
+              key={mode}
+              className={`px-4 py-2 text-sm font-medium border transition-colors ${
+                mode === selectedView
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background border-border text-muted-foreground hover:bg-muted/50"
+              } ${
+                index === 0 ? "rounded-l" :
+                index === viewModes.length - 1 ? "rounded-r" : ""
+              }`}
+              onClick={() => setSelectedView(mode)}
+            >
+              {mode}
+            </button>
+          ))}
         </div>
-
-        {/* Calendar Content */}
-        {renderCalendarContent()}
       </div>
 
-      {/* Event Details Modal */}
-      <EventDetailsModal
-  isOpen={showEventModal}
-  onClose={() => setShowEventModal(false)}
-  events={getScheduleForDate(selectedDate)}
-  selectedDate={selectedDate}
-  monthName={months[currentMonth]}
-  year={currentYear}
-/>
-
+      {renderCalendarContent()}
     </div>
-  );
-}
+
+    {/* Modal de detalles del evento */}
+    <EventDetailsModal
+      isOpen={showEventModal}
+      onClose={() => setShowEventModal(false)}
+      events={getScheduleForDate(selectedDate)}
+      selectedDate={selectedDate}
+      monthName={months[currentMonth]}
+      year={currentYear}
+    />
+  </div>
+); };

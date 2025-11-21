@@ -9,7 +9,7 @@ export function YouTubeSection() {
   return (
     <section
       id={RESOURCES_SECTION_IDS.YOUTUBE}
-      className="min-h-screen flex items-center bg-white dark:bg-black"
+      className="min-h-screen flex items-center bg-background"
     >
       <div className="container mx-auto flex flex-col lg:flex-row items-center max-w-7xl px-6 py-25 gap-10">
         {/* Texto principal */}
