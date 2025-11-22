@@ -107,11 +107,11 @@ export function TestimonialsSection() {
         {/* Carousel */}
         <div className="relative">
           <Carousel opts={{ loop: false, dragFree: true }}>
-            <CarouselContent className="-ml-4 md:-ml-1">
+            <CarouselContent className="-ml-1 md:-ml-0">
               {resourcesData.map((resource) => (
                 <CarouselItem
                   key={resource.id}
-                  className="pl-14 md:pl-0 basis-full sm:basis-1/2 lg:basis-1/4"
+                  className="px-0 basis-2/3 md:basis-1/3 lg:basis-1/4"
                 >
                   <motion.div
                     whileHover={{ scale: 1.03, y: -2 }}
@@ -119,7 +119,7 @@ export function TestimonialsSection() {
                   >
                     {/* Tarjeta con forma de libro */}
                     <div
-                      className="rounded-xl overflow-hidden w-80 h-[400px] flex flex-col relative"
+                      className="rounded-xl overflow-hidden w-55 md:w-65 lg:max-w-80 h-[350px] md:h-[400px] lg:h-[400px] flex flex-col relative mx-auto"
                       style={{
                         perspective: "1000px",
                         boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
@@ -195,10 +195,10 @@ export function TestimonialsSection() {
             </CarouselContent>
 
             {/* Botones de navegación */}
-            <div className="hidden md:block absolute -left-0 top-1/2 -translate-y-1/2">
+            <div className="hidden md:block absolute left-15 top-1/2 -translate-y-1/2">
               <CarouselPrevious className="w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-gray-100" />
             </div>
-            <div className="hidden md:block absolute -right-0 top-1/2 -translate-y-1/2">
+            <div className="hidden md:block absolute right-4 lg:right-15 top-1/2 -translate-y-1/2">
               <CarouselNext className="w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-gray-100" />
             </div>
           </Carousel>

@@ -132,7 +132,7 @@ export function EventsCarousel() {
           {/* Carrusel horizontal */}
           <div
             ref={carouselRef}
-            className="flex overflow-x-auto scrollbar-hide gap-6 py-4 px-2 md:px-4 snap-x snap-mandatory"
+            className="flex overflow-x-auto scrollbar-hide gap-6 py-4 px-0 md:px-4 snap-x snap-mandatory"
             style={{
               scrollSnapType: "x mandatory",
               msOverflowStyle: "none",

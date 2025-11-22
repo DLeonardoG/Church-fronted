@@ -13,6 +13,7 @@ import { cn } from "@/shared/lib/utils"
 import { ChevronDown, Menu, X } from "lucide-react"
 import * as React from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { DepartmentItem } from "@/domains/Departaments/components/DepartamentItem"
 
 export function NavigationMenuDemo() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
@@ -133,21 +134,22 @@ export function NavigationMenuDemo() {
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[25rem] gap-0 p-1 md:grid-cols-2 bg-popover">
-                <DepartmentItem to="#" title="Mayordomía" />
-                <DepartmentItem to="#" title="Ministerios Personales" />
-                <DepartmentItem to="#" title="Comunicaciones" />
-                <DepartmentItem to="#" title="Escuela Sabática" />
-                <DepartmentItem to="#" title="Jóvenes" />
-                <DepartmentItem to="#" title="Universitarios" />
-                <DepartmentItem to="#" title="Educación" />
-                <DepartmentItem to="#" title="Capellanía" />
-                <DepartmentItem to="#" title="Familia" />
-                <DepartmentItem to="#" title="Salud" />
-                <DepartmentItem to="#" title="Dorcas" />
-                <DepartmentItem to="#" title="Diáconos" />
-                <DepartmentItem to="#" title="Evangelismo" />
-                <DepartmentItem to="#" title="Tesorería" />
-                <DepartmentItem to="#" title="Secretaría" />
+                <DepartmentItem to="/departamentos/mayordomia" title="Mayordomía" />
+                <DepartmentItem to="/departamentos/diaconos" title="Diáconos" />
+                <DepartmentItem to="/departamentos/conquistadores" title="Conquistadores" />
+                <DepartmentItem to="/departamentos/ministerios-personales" title="Ministerios Personales" />
+                <DepartmentItem to="/departamentos/comunicaciones" title="Comunicaciones" />
+                <DepartmentItem to="/departamentos/escuela-sabatica" title="Escuela Sabática" />
+                <DepartmentItem to="/departamentos/jovenes" title="Jóvenes" />
+                <DepartmentItem to="/departamentos/universitarios" title="Universitarios" />
+                <DepartmentItem to="/departamentos/educacion" title="Educación" />
+                <DepartmentItem to="/departamentos/capellania" title="Capellanía" />
+                <DepartmentItem to="/departamentos/familia" title="Familia" />
+                <DepartmentItem to="/departamentos/salud" title="Salud" />
+                <DepartmentItem to="/departamentos/dorcas" title="Dorcas" />
+                <DepartmentItem to="/departamentos/evangelismo" title="Evangelismo" />
+                <DepartmentItem to="/departamentos/tesoreria" title="Tesorería" />
+                <DepartmentItem to="/departamentos/secretaria" title="Secretaría" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
@@ -186,7 +188,7 @@ export function NavigationMenuDemo() {
         <div className="flex items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img
-              src="https://www.adventistas.org/es/wp-content/themes/pa-theme-sedes/assets/sedes/es/logo-iasd-vertical.svg"
+              src="/logo-remove.png"
               alt="Logo IASD"
               className="h-9 w-auto dark:brightness-0 dark:invert transition-all duration-300"
             />
@@ -245,12 +247,20 @@ export function NavigationMenuDemo() {
                 onToggle={() => toggleSubmenu('departamentos')}
               >
                 <div className="grid grid-cols-2 gap-1">
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Mayordomía</MobileNavLink>
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Min. Personales</MobileNavLink>
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Comunicaciones</MobileNavLink>
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Esc. Sabática</MobileNavLink>
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Jóvenes</MobileNavLink>
-                  <MobileNavLink to="#" onClick={() => setMobileMenuOpen(false)}>Universitarios</MobileNavLink>
+                  <MobileNavLink to="/departamentos/mayordomia" onClick={() => setMobileMenuOpen(false)}>Mayordomía</MobileNavLink>
+                  <MobileNavLink to="/departamentos/ministerios-personales" onClick={() => setMobileMenuOpen(false)}>Min. Personales</MobileNavLink>
+                  <MobileNavLink to="/departamentos/comunicaciones" onClick={() => setMobileMenuOpen(false)}>Comunicaciones</MobileNavLink>
+                  <MobileNavLink to="/departamentos/escuela-sabatica" onClick={() => setMobileMenuOpen(false)}>Esc. Sabática</MobileNavLink>
+                  <MobileNavLink to="/departamentos/jovenes" onClick={() => setMobileMenuOpen(false)}>Jóvenes</MobileNavLink>
+                  <MobileNavLink to="/departamentos/universitarios" onClick={() => setMobileMenuOpen(false)}>Universitarios</MobileNavLink>
+                  <MobileNavLink to="/departamentos/educacion" onClick={() => setMobileMenuOpen(false)}>Educación</MobileNavLink>
+                  <MobileNavLink to="/departamentos/capellania" onClick={() => setMobileMenuOpen(false)}>Capellanía</MobileNavLink>
+                  <MobileNavLink to="/departamentos/familia" onClick={() => setMobileMenuOpen(false)}>Familia</MobileNavLink>
+                  <MobileNavLink to="/departamentos/salud" onClick={() => setMobileMenuOpen(false)}>Salud</MobileNavLink>
+                  <MobileNavLink to="/departamentos/dorcas" onClick={() => setMobileMenuOpen(false)}>Dorcas</MobileNavLink>
+                  <MobileNavLink to="/departamentos/evangelismo" onClick={() => setMobileMenuOpen(false)}>Evangelismo</MobileNavLink>
+                  <MobileNavLink to="/departamentos/tesoreria" onClick={() => setMobileMenuOpen(false)}>Tesorería</MobileNavLink>
+                  <MobileNavLink to="/departamentos/secretaria" onClick={() => setMobileMenuOpen(false)}>Secretaría</MobileNavLink>
                 </div>
               </MobileSubmenu>
 
@@ -300,20 +310,7 @@ function ListItem({
   )
 }
 
-function DepartmentItem({ to, title }: { to: string; title: string }) {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          to={to}
-          className="block select-none rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:shadow-sm border border-transparent hover:border-border"
-        >
-          <div className="text-sm font-medium text-foreground">{title}</div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-}
+
 
 function MobileNavLink({ 
   to, 

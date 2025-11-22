@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/core/components/theme-provider";
 import MainLayout from "@/core/layouts/MainLayout";
 import { lazy, Suspense } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
+import DepartmentPage from "./domains/Departaments/components/DepartamentPage";
 
 // Lazy load of components
 const Home = lazy(() => import("@/domains/Home").then(m => ({ default: m.Home })));
@@ -47,6 +48,14 @@ function App() {
             </Suspense>
           ),
         },
+        {
+        path: "/departamentos/:slug",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <DepartmentPage />
+          </Suspense>
+        ),
+      },
       ],
     },
   ]);

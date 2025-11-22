@@ -82,11 +82,11 @@ export default function Anuncios() {
     <div className="flex flex-col lg:flex-row w-full h-full gap-6 px-4 lg:px-8">
       {/* Evento Principal */}
       <aside className={cn(
-        "relative lg:w-[45%] min-h-[500px] rounded-3xl",
+        "bg-green-500 relative lg:w-[45%] h-fit lg:min-h-[500px] rounded-3xl",
         "border border-border overflow-hidden",
         "group cursor-pointer",
         "transition-all duration-500 hover:shadow-2xl",
-        "flex flex-col"
+        "flex flex-col justify-between"
       )}>
         {/* Imagen de fondo con efecto zoom */}
         <div
@@ -106,7 +106,7 @@ export default function Anuncios() {
         )} />
 
         {/* Contenido */}
-        <div className="relative z-10 flex flex-col justify-between h-full p-8">
+        <div className="relative z-10 flex flex-col justify-between h-full lg:min-h-[500px] p-8">
           {/* Header */}
           <div className="space-y-6">
 
@@ -128,17 +128,21 @@ export default function Anuncios() {
           </div>
 
           {/* Footer */}
-          <div className="space-y-4">
+          <div className="space-y-8">
             {/* Countdown */}
-            <div className="bg-card/80 backdrop-blur-sm rounded-xl p-4 border border-border">
-              <CountdownTimer targetDate={eventosPrincipales.fecha} />
+            <div className="w-full">
+              <CountdownTimer 
+                targetDate={eventosPrincipales.fecha} 
+                variant="compact"
+                className="scale-100 lg:scale-120 origin-center"
+              />
             </div>
 
             {/* Botón */}
             <Button 
               size="lg"
               className={cn(
-                "w-[30] h-12 group/btn",
+                "group/btn",
                 "text-lg font-semibold flex justify-self-center rounded-2xl",
                 "transition-all duration-300"
               )}

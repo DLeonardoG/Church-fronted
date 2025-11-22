@@ -14,7 +14,7 @@ function StatCard({ icon, count, label, delay = 0, isImage = false }: StatCardPr
   return (
     <div
       className={cn(
-        "group relative w-[45%] sm:w-[35%] md:w-[23%] lg:w-[22%]",
+        "group relative w-[65%] sm:w-[35%] md:w-[33%] lg:w-[22%]",
         "min-w-[160px] max-w-[260px]",
         "rounded-3xl bg-card border border-border",
         "p-6 aspect-square",

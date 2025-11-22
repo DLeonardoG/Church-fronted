@@ -37,10 +37,27 @@ export function CarouselOrientation({
   );
   const carouselContainer = useRef<HTMLDivElement>(null);
   const [emblaApi, setEmbla] = useState<EmblaCarouselType | null>(null);
+  const [orientation, setOrientation] = useState<"horizontal" | "vertical">("horizontal");
 
+  // Detectar orientación según el tamaño de pantalla
+  useEffect(() => {
+    const checkOrientation = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        setOrientation("vertical");
+      } else {
+        setOrientation("horizontal");
+      }
+    };
+
+    checkOrientation(); // Ejecutar al montar
+    window.addEventListener("resize", checkOrientation);
+    return () => window.removeEventListener("resize", checkOrientation);
+  }, []);
+
+  // Manejo del scroll con rueda del mouse (solo en vertical)
   useEffect(() => {
     const container = carouselContainer.current;
-    if (!container || !emblaApi) return;
+    if (!container || !emblaApi || orientation !== "vertical") return;
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -50,29 +67,43 @@ export function CarouselOrientation({
 
     container.addEventListener("wheel", handleWheel, { passive: false });
     return () => container.removeEventListener("wheel", handleWheel);
-  }, [emblaApi]);
+  }, [emblaApi, orientation]);
 
   return (
     <Carousel
       plugins={[autoplayPlugin.current]}
       opts={{ align: "start", loop: true }}
-      orientation="vertical"
+      orientation={orientation}
       className="w-full max-w-4xl overflow-hidden"
       setApi={(api) => setEmbla(api ?? null)}
     >
       <div ref={carouselContainer}>
-        <CarouselContent className="space-y-4" style={{ height: itemHeight }}>
+        <CarouselContent
+          className={cn(
+            "space-y-4",
+            orientation === "horizontal" ? "space-y-0 space-x-4" : "space-y-4"
+          )}
+          style={{
+            ...(orientation === "vertical" && { height: itemHeight }),
+            ...(orientation === "horizontal" && { height: "auto" }),
+          }}
+        >
           {eventos.map((evento, index) => (
-            <CarouselItem key={index} className="pt-4 md:basis-full">
+            <CarouselItem
+              key={index}
+              className={cn(
+                orientation === "vertical" ? "pt-4 md:basis-full" : "basis-full sm:basis-1/2 lg:basis-1/3"
+              )}
+            >
               <div
                 className={cn(
                   "relative p-1 h-full overflow-hidden rounded-2xl",
                   "group cursor-pointer transition-all duration-300",
                   "hover:shadow-2xl"
                 )}
-                style={{ height: "320px" }}
+                style={{ height: orientation === "vertical" ? "320px" : "auto" }}
               >
-                {/* Imagen de fondo con efecto parallax */}
+                {/* Imagen de fondo */}
                 <div
                   className={cn(
                     "absolute inset-0 bg-cover bg-center",
@@ -82,33 +113,21 @@ export function CarouselOrientation({
                   style={{ backgroundImage: `url(${evento.imagen})` }}
                 />
 
-                {/* Overlay con degradado */}
-                <div className={cn(
-                  "absolute inset-0",
-                  "bg-linear-to-t from-background/95 via-background/60 to-background/30",
-                  "backdrop-blur-[1px]"
-                )} />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/30 backdrop-blur-[1px]" />
 
                 {/* Contenido */}
                 <Card className="relative z-10 bg-transparent border-none shadow-none h-full">
                   <CardContent className="flex flex-col justify-between h-full p-6 gap-4">
-                    {/* Header del evento */}
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Calendar className="w-5 h-5 text-primary mt-1 shrink-0" />
-                        <h3 className={cn(
-                          "font-bold text-3xl text-foreground",
-                          "leading-tight tracking-tight",
-                          "line-clamp-2"
-                        )}>
+                        <h3 className="font-bold text-2xl md:text-3xl text-foreground leading-tight tracking-tight line-clamp-2">
                           {evento.titulo}
                         </h3>
                       </div>
-                      
-                      <p className={cn(
-                        "text-sm text-black dark:text-white",
-                        "line-clamp-2 leading-relaxed"
-                      )}>
+
+                      <p className="text-sm text-black dark:text-white line-clamp-2 leading-relaxed">
                         {evento.descripcion}
                       </p>
 
@@ -120,10 +139,9 @@ export function CarouselOrientation({
                       )}
                     </div>
 
-                    {/* Countdown */}
                     <div className="w-full">
-                      <CountdownTimer 
-                        targetDate={evento.fecha} 
+                      <CountdownTimer
+                        targetDate={evento.fecha}
                         variant="compact"
                         className="scale-90 origin-left"
                       />
@@ -136,8 +154,21 @@ export function CarouselOrientation({
         </CarouselContent>
       </div>
 
-      <CarouselPrevious className="hidden md:flex" />
-      <CarouselNext className="hidden md:flex" />
+      {/* Mostrar botones solo en horizontal (móvil/tablet) */}
+      {orientation === "horizontal" && (
+        <>
+          <CarouselPrevious className="left-0 -translate-x-1/2" />
+          <CarouselNext className="right-0 translate-x-1/2" />
+        </>
+      )}
+
+      {/* En vertical, ocultar botones en móvil, mostrar en lg+ si quieres */}
+      {orientation === "vertical" && (
+        <>
+          <CarouselPrevious className="hidden lg:flex -top-12 left-1/2 -translate-x-1/2" />
+          <CarouselNext className="hidden lg:flex -bottom-12 left-1/2 -translate-x-1/2" />
+        </>
+      )}
     </Carousel>
   );
 }

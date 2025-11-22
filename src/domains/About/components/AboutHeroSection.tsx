@@ -9,7 +9,7 @@ import { ABOUT_LINKS, ABOUT_MEDIA, ABOUT_TEXTS } from "../constants/aboutConfig"
 export function AboutHeroSection() {
   return (
     <section className="w-full py-12 md:py-16 lg:py-20 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
         <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl border border-border">
           {/* Background Image */}
           <div
@@ -52,16 +52,16 @@ export function AboutHeroSection() {
             </div>
 
             {/* Botón CTA */}
-            <div className="mt-6 sm:mt-8">
+            <div className="mt-2 sm:mt-8">
               <a
                 href={ABOUT_LINKS.HERO_BUTTON_HREF}
                 className={cn(
                   "inline-flex items-center justify-center",
                   "bg-white/90 text-black font-semibold italic",
                   "hover:bg-white active:bg-white/80",
-                  "px-6 py-2 sm:px-8 sm:py-4",
+                  "px-6 py-1 sm:px-8 sm:py-4",
                   "rounded-3xl",
-                  "text-base sm:text-lg",
+                  "text-xs sm:text-lg",
                   "shadow-lg hover:shadow-xl hover:scale-[1.02]",
                   "transition-all duration-200",
                   "w-full sm:w-auto"
