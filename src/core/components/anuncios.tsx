@@ -20,7 +20,7 @@ const eventosSecundarios: Evento[] = [
       "Somos la Agrupación Musical Voceros Del Reino que por medio de la música alabamos a Dios",
     fecha: "2025-10-28T00:00:00",
     imagen:
-      "https://image.jimcdn.com/app/cms/image/transf/dimension=570x10000:format=jpg/path/s7758858ede33c652/image/i37f5d62dc8dac510/version/1278951977/image.jpg",
+      "https://i.ytimg.com/vi/aSV-Z7Cwclw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC2SNxnXU9KSP50DZdKeWJT_BEJAg",
   },
   {
     titulo: "Conferencia Semanal",
@@ -82,7 +82,7 @@ export default function Anuncios() {
     <div className="flex flex-col lg:flex-row w-full h-full gap-6 px-4 lg:px-8">
       {/* Evento Principal */}
       <aside className={cn(
-        "bg-green-500 relative lg:w-[45%] h-fit lg:min-h-[500px] rounded-3xl",
+        "relative lg:w-[45%] h-fit lg:min-h-[500px] rounded-3xl",
         "border border-border overflow-hidden",
         "group cursor-pointer",
         "transition-all duration-500 hover:shadow-2xl",
@@ -99,11 +99,12 @@ export default function Anuncios() {
         />
 
         {/* Overlay con degradado */}
-        <div className={cn(
-          "absolute inset-0",
-          "bg-linear-to-t from-background/95 via-background/70 to-background/40",
-          "backdrop-blur-[2px]"
-        )} />
+        <div
+                  className={cn(
+                    "absolute inset-0 bg-black/60 backdrop-blur-[1px]",
+                    "dark:bg-linear-to-t dark:from-background/65 dark:via-background/20 dark:to-background/80"
+                  )}
+                />
 
         {/* Contenido */}
         <div className="relative z-10 flex flex-col justify-between h-full lg:min-h-[500px] p-8">
@@ -113,14 +114,14 @@ export default function Anuncios() {
             {/* Título */}
             <div className="space-y-3">
               <h3 className={cn(
-                "font-bold text-4xl lg:text-5xl text-foreground",
+                "font-bold text-4xl lg:text-5xl text-white",
                 "leading-tight tracking-tight"
               )}>
                 {eventosPrincipales.titulo}
               </h3>
 
               <div className="flex items-start gap-3">
-                <p className="text-black dark:text-white leading-relaxed max-w-md">
+                <p className="text-white leading-relaxed max-w-md">
                   {eventosPrincipales.descripcion}
                 </p>
               </div>

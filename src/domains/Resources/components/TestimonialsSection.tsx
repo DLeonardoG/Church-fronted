@@ -123,16 +123,9 @@ export function TestimonialsSection() {
                       style={{
                         perspective: "1000px",
                         boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-                        border: "1px solid rgba(0,0,0,0.05)",
                       }}
                     >
-                      {/* Efecto de lomo del libro (borde izquierdo) */}
-                      <div
-                        className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-r from-primary/70 to-transparent rounded-l-xl"
-                        style={{
-                          transform: "translateZ(20px)",
-                        }}
-                      />
+                      
 
                       {/* Portada del libro con hover → descripción */}
                       <div
@@ -168,24 +161,31 @@ export function TestimonialsSection() {
                         <div className="mt-auto pt-3">
                           <a
                             href={resource.actionLink}
-                            className={`w-full py-2.5 text-center text-sm font-medium rounded-md flex items-center justify-center gap-1.5 transition-colors ${
-                              resource.type === "download"
-                                ? "bg-amber-700 text-white hover:bg-amber-800"
-                                : "bg-amber-950 text-white hover:bg-orange-950"
-                            }`}
+                            className={`
+                              w-full py-2.5 px-4
+                              rounded-xl
+                              flex items-center justify-center gap-2
+                              font-semibold text-sm
+                              transition-all duration-150
+                              active:scale-[0.97]
+                              bg-black dark:bg-white text-white dark:text-black
+                              shadow-[0_0_0_1px_rgba(255,255,255,0.1)]
+                              hover:bg-neutral-900
+                            `}
                           >
                             {resource.type === "download" ? (
                               <>
-                                <Download className="w-3.5 h-3.5" />
+                                <Download className="w-4 h-4" />
                                 Descargar
                               </>
                             ) : (
                               <>
-                                <ShoppingCart className="w-3.5 h-3.5" />
+                                <ShoppingCart className="w-4 h-4" />
                                 Comprar
                               </>
                             )}
                           </a>
+                          
                         </div>
                       </div>
                     </div>

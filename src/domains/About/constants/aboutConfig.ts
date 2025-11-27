@@ -23,13 +23,13 @@ export const ABOUT_SECTION_IDS = {
 export const ABOUT_TEXTS = {
   JOIN_US: "Unete a Nosotros",
   VISIT_US: "Visitanos!",
-  TITLE_1: "Iglesia Adventista ",
-  TITLE_2: "Norte",
+  TITLE_1: "IGLESIA ADVENTISTA ",
+  TITLE_2: "NORTE",
   DESCRIPTION:
-    "La Iglesia Adventista del Séptimo Día lleva esperanza al mundo para que las personas vivan con la certeza de que su historia no termina aquí. Esa es la certeza encontrada a lo largo de toda la Biblia.",
-  HERO_BUTTON: "Quienes Somos",
-  CONTENT_TITLE: "Quienes Somos?",
-  CONTENT_SUBTITLE: "Descubre más sobre nuestra misión, visión y valores que nos impulsan a servir a la comunidad.",
+    "La Iglesia Adventista del Séptimo Día lleva esperanza al mundo para que las personas vivan con la certeza de que su historia no termina aquí.",
+  HERO_BUTTON: "Quiénes Somos",
+  CONTENT_TITLE: "¿QUIENES SOMOS?",
+  CONTENT_SUBTITLE: "Conoce quiénes somos como iglesia, nuestra fe y el propósito que nos inspira a servir a Dios y a nuestra comunidad.",
 } as const;
 
 /**
@@ -89,7 +89,7 @@ export const CHURCH_VALUES = [
  */
 export const CHURCH_HISTORY = {
   TITLE: "Nuestra Historia",
-  SUBTITLE: "Un legado de fe y servicio en Bucaramanga",
+  SUBTITLE: "Un legado de fe, esperanza y servicio en Bucaramanga, construido por generaciones que han dedicado su vida a compartir el mensaje de Cristo y servir con amor a nuestra comunidad.",
   DESCRIPTION:
     "La Iglesia Adventista del Séptimo Día en la región Norte de Bucaramanga ha sido un faro de esperanza y servicio durante años. Desde nuestros humildes comienzos, hemos crecido como una familia de fe comprometida con llevar el amor de Cristo a nuestra comunidad.",
   HIGHLIGHT:
@@ -100,7 +100,7 @@ export const CHURCH_HISTORY = {
  * Rutas y URLs
  */
 export const ABOUT_LINKS = {
-  JOIN_US_HREF: "/home#Contactanos",
+  JOIN_US_HREF: "/#/#Contactanos",
   HERO_BUTTON_HREF: "#nosotros",
 } as const;
 
@@ -119,28 +119,61 @@ export const CHURCH_BELIEFS = [
   {
     ICON: "book-open",
     TITLE: "La Biblia como autoridad",
+    img: "https://www.chapellibrary.org/images/covers/booklets/daots.jpg?width=250",
     DESCRIPTION:
-      "Creemos que la Biblia es la Palabra inspirada de Dios, la única regla infalible de fe y práctica. Es la revelación escrita de Su voluntad y el fundamento de todas nuestras enseñanzas.",
+      "Creemos que la Biblia es la Palabra inspirada de Dios y la guía segura para nuestra fe y práctica.",
   },
   {
     ICON: "cross",
-    TITLE: "Jesucristo, nuestra esperanza",
+    TITLE: "Jesucristo, nuestro Salvador",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMYim4C5eI5hKSyUzYx-VedB0hI65ZxbjBgg&s",
     DESCRIPTION:
-      "Jesús es el Hijo eterno de Dios, nuestro Salvador y Redentor. Por Su vida, muerte y resurrección, nos ofrece salvación gratuita y reconciliación con el Padre.",
+      "Jesús es el centro del plan de salvación, quien murió y resucitó para darnos vida eterna.",
   },
   {
     ICON: "heart",
-    TITLE: "El sábado como santo",
+    TITLE: "El sábado como día de descanso",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy3gKRLpvHIc6fCzCHrFdARabyFkOwFgC0Vw&s",
     DESCRIPTION:
-      "Guardamos el séptimo día de la semana (del ocaso del viernes al ocaso del sábado) como día de reposo, adoración y comunión. Es un memorial de la creación y un signo de nuestra relación con Dios.",
+      "Observamos el sábado como un regalo divino para descansar, adorar y reconectar con Dios.",
   },
   {
     ICON: "sun",
     TITLE: "La segunda venida de Cristo",
+    img: "https://i.pinimg.com/236x/bc/57/9d/bc579db03daecda9905ee74a19c9fe5a.jpg",
     DESCRIPTION:
-      "Creemos en la inminente, visible y gloriosa venida de Jesucristo. Este evento transformará la tierra y marcará el fin del pecado, inaugurando la vida eterna con Dios.",
+      "Esperamos con esperanza el pronto regreso de Jesús, la promesa final de restauración.",
+  },
+  {
+    ICON: "users",
+    TITLE: "La iglesia como familia espiritual",
+    img: "https://image.isu.pub/201214234258-349cf89b75992665645ac4194daabf32/jpg/page_1_social_preview.jpg",
+    DESCRIPTION:
+      "Somos una comunidad que crece, sirve y comparte el amor de Cristo dentro y fuera de la congregación.",
+  },
+  {
+    ICON: "leaf",
+    TITLE: "Mayordomía y vida saludable",
+    img: "https://imgv2-1-f.scribdassets.com/img/document/464813929/original/67b45c6360/1?v=1",
+    DESCRIPTION:
+      "Promovemos un estilo de vida equilibrado que honra a Dios en lo físico, mental y espiritual.",
+  },
+  {
+    ICON: "globe",
+    TITLE: "Misión para el mundo",
+    img: "https://image.isu.pub/211221150318-01fde18c5af2365b9bf92cad0d58c520/jpg/page_1_social_preview.jpg",
+    DESCRIPTION:
+      "Compartimos el mensaje de esperanza a nuestra comunidad y al mundo, siguiendo el ejemplo de Jesús.",
+  },
+  {
+    ICON: "sparkles",
+    TITLE: "El Espíritu Santo y la transformación",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAAnarRWJKfiKJ9oHLCv8e1zt1FojVngJZ0Q&s",
+    DESCRIPTION:
+      "Creemos en el poder del Espíritu Santo para guiarnos, fortalecernos y transformar nuestras vidas.",
   },
 ] as const;
+
 
 /**
  * Textos para la sección de Creencias

@@ -122,3 +122,40 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 18s linear infinite;
+  }
+}
+
+/* 📱 Móvil - 200px */
+#timelineTrack,
+#timelineContainer {
+  height: 180rem;
+}
+
+@media (min-width: 640px) {
+  /* 📲 Tablet - 260px */
+  #timelineTrack,
+  #timelineContainer {
+    height: 1100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* 💻 Desktop - 300px */
+  #timelineTrack,
+  #timelineContainer {
+    height: 1100px;
+  }
+}

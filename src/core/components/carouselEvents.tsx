@@ -114,7 +114,13 @@ export function CarouselOrientation({
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/30 backdrop-blur-[1px]" />
+                <div
+                  className={cn(
+                    "absolute inset-0 bg-black/60 backdrop-blur-[1px]",
+                    "dark:bg-linear-to-t dark:from-background/65 dark:via-background/20 dark:to-background/80"
+                  )}
+                />
+
 
                 {/* Contenido */}
                 <Card className="relative z-10 bg-transparent border-none shadow-none h-full">
@@ -122,12 +128,12 @@ export function CarouselOrientation({
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <Calendar className="w-5 h-5 text-primary mt-1 shrink-0" />
-                        <h3 className="font-bold text-2xl md:text-3xl text-foreground leading-tight tracking-tight line-clamp-2">
+                        <h3 className="font-bold text-2xl md:text-3xl text-white leading-tight tracking-tight line-clamp-2">
                           {evento.titulo}
                         </h3>
                       </div>
 
-                      <p className="text-sm text-black dark:text-white line-clamp-2 leading-relaxed">
+                      <p className="text-sm text-white line-clamp-2 leading-relaxed">
                         {evento.descripcion}
                       </p>
 

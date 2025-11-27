@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Sección de enlaces */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:pl-8">
+          <div className="lg:col-span-8 grid grid-cols-1 text-center md:grid-cols-2 gap-8 lg:gap-12 lg:pl-8">
             {/* Sobre nosotros */}
             <div className="space-y-4">
               <h2 className="text-lg lg:text-xl font-bold border-b-2 border-border pb-2">

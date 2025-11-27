@@ -8,7 +8,7 @@ import { ABOUT_LINKS, ABOUT_MEDIA, ABOUT_TEXTS } from "../constants/aboutConfig"
  */
 export function AboutHeroSection() {
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20 bg-background">
+    <section className="w-full py-12 md:py-16 lg:py-33 bg-background">
       <div className="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
         <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl border border-border">
           {/* Background Image */}
@@ -37,8 +37,8 @@ export function AboutHeroSection() {
             </div>
 
             {/* Títulos */}
-            <div className="max-w-2xl">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
+            <div className="max-w-3xl">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight">
                 {ABOUT_TEXTS.TITLE_1}
                  {ABOUT_TEXTS.TITLE_2}
               </h1>
@@ -46,7 +46,7 @@ export function AboutHeroSection() {
 
             {/* Descripción */}
             <div className="max-w-2xl">
-              <p className="text-white/90 italic text-[10px] sm:text-base md:text-lg lg:text-xl  leading-relaxed">
+              <p className="text-white text-[10px] sm:text-base md:text-lg lg:text-lg leading-relaxed">
                 {ABOUT_TEXTS.DESCRIPTION}
               </p>
             </div>
@@ -56,19 +56,23 @@ export function AboutHeroSection() {
               <a
                 href={ABOUT_LINKS.HERO_BUTTON_HREF}
                 className={cn(
-                  "inline-flex items-center justify-center",
-                  "bg-white/90 text-black font-semibold italic",
-                  "hover:bg-white active:bg-white/80",
-                  "px-6 py-1 sm:px-8 sm:py-4",
-                  "rounded-3xl",
-                  "text-xs sm:text-lg",
-                  "shadow-lg hover:shadow-xl hover:scale-[1.02]",
+                  "inline-flex items-center justify-center gap-2",
+                  "px-6 py-3 sm:px-7 sm:py-3.5",
+                  "rounded-full",
+                  "font-medium text-sm sm:text-base",
+                  "bg-white/95 text-neutral-900",
+                  "shadow-[0_4px_12px_rgba(0,0,0,0.15)]",
+                  "backdrop-blur-sm",
+                  "hover:bg-white hover:shadow-[0_6px_16px_rgba(0,0,0,0.22)]",
+                  "active:scale-[0.98]",
                   "transition-all duration-200",
                   "w-full sm:w-auto"
                 )}
               >
                 {ABOUT_TEXTS.HERO_BUTTON}
+                <span className="opacity-80">↗</span>
               </a>
+
             </div>
           </div>
         </div>
