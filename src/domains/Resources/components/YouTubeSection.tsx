@@ -17,7 +17,7 @@ export function YouTubeSection() {
           className="flex-1 space-y-6 flex flex-col justify-center" 
           data-card="home-text"
         >
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
             {RESOURCES_TEXTS.YOUTUBE_TITLE}{" "}
             <span className="text-red-500 dark:text-red-400">{RESOURCES_TEXTS.YOUTUBE_TITLE_HIGHLIGHT}</span>
           </h1>

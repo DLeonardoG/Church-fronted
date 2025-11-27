@@ -143,13 +143,10 @@ export function NavigationMenuDemo() {
                 <DepartmentItem to="/departamentos/jovenes" title="Jóvenes" />
                 <DepartmentItem to="/departamentos/universitarios" title="Universitarios" />
                 <DepartmentItem to="/departamentos/educacion" title="Educación" />
-                <DepartmentItem to="/departamentos/capellania" title="Capellanía" />
                 <DepartmentItem to="/departamentos/familia" title="Familia" />
                 <DepartmentItem to="/departamentos/salud" title="Salud" />
                 <DepartmentItem to="/departamentos/dorcas" title="Dorcas" />
-                <DepartmentItem to="/departamentos/evangelismo" title="Evangelismo" />
                 <DepartmentItem to="/departamentos/tesoreria" title="Tesorería" />
-                <DepartmentItem to="/departamentos/secretaria" title="Secretaría" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
@@ -254,13 +251,10 @@ export function NavigationMenuDemo() {
                   <MobileNavLink to="/departamentos/jovenes" onClick={() => setMobileMenuOpen(false)}>Jóvenes</MobileNavLink>
                   <MobileNavLink to="/departamentos/universitarios" onClick={() => setMobileMenuOpen(false)}>Universitarios</MobileNavLink>
                   <MobileNavLink to="/departamentos/educacion" onClick={() => setMobileMenuOpen(false)}>Educación</MobileNavLink>
-                  <MobileNavLink to="/departamentos/capellania" onClick={() => setMobileMenuOpen(false)}>Capellanía</MobileNavLink>
                   <MobileNavLink to="/departamentos/familia" onClick={() => setMobileMenuOpen(false)}>Familia</MobileNavLink>
                   <MobileNavLink to="/departamentos/salud" onClick={() => setMobileMenuOpen(false)}>Salud</MobileNavLink>
                   <MobileNavLink to="/departamentos/dorcas" onClick={() => setMobileMenuOpen(false)}>Dorcas</MobileNavLink>
-                  <MobileNavLink to="/departamentos/evangelismo" onClick={() => setMobileMenuOpen(false)}>Evangelismo</MobileNavLink>
                   <MobileNavLink to="/departamentos/tesoreria" onClick={() => setMobileMenuOpen(false)}>Tesorería</MobileNavLink>
-                  <MobileNavLink to="/departamentos/secretaria" onClick={() => setMobileMenuOpen(false)}>Secretaría</MobileNavLink>
                 </div>
               </MobileSubmenu>
 

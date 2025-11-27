@@ -1,4 +1,3 @@
-// src/constants/types.ts
 export interface DepartmentSection {
   heading: string;
   content: string;
@@ -9,7 +8,8 @@ export interface DepartmentSection {
 export interface Department {
   title: string;
   description: string;
-  image: string;
+  imageVertical: string;
+  imageHorizontal: string;
   sections: DepartmentSection[];
 }
 
@@ -23,10 +23,7 @@ export type DepartmentSlug =
   | "jovenes"
   | "universitarios"
   | "educacion"
-  | "capellania"
   | "familia"
   | "salud"
   | "dorcas"
-  | "evangelismo"
   | "tesoreria"
-  | "secretaria";

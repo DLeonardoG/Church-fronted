@@ -148,7 +148,7 @@ export function EventsCarousel() {
                 transition={{ delay: index * 0.05 }}
                 className="carousel-item flex-shrink-0 w-[90vw] sm:w-[45vw] md:w-[30vw] lg:w-[28vw] snap-start"
               >
-                <div className="group flex flex-col border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
+                <div className="group flex lg:w-[90%] flex-col border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
                   {/* Imagen */}
                   <div className="relative h-48 overflow-hidden">
                     <img

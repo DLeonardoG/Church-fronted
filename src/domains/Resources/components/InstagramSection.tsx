@@ -21,7 +21,7 @@ export function InstagramSection() {
 
           {/* Texto */}
           <div className="lg:col-span-6 xl:pr-8" data-card="about-text">
-            <h3 className="text-4xl font-extrabold mb-8 text-gray-900 dark:text-white" data-title="about">
+            <h3 className="text-4xl md:text-6xl font-extrabold mb-8 text-gray-900 dark:text-white" data-title="about">
               {RESOURCES_TEXTS.INSTAGRAM_TITLE}{" "}
               <span className="text-pink-600 dark:text-pink-400">{RESOURCES_TEXTS.INSTAGRAM_TITLE_HIGHLIGHT}</span>
             </h3>
