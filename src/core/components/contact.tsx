@@ -3,8 +3,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/cor
 import { Input } from "@/core/components/ui/input"
 import { Label } from "@/core/components/ui/label"
 import { Textarea } from "@/core/components/ui/textarea"
-import { CheckCircle2, Loader2, Mail, MapPin, Phone, Send, User } from "lucide-react"
+import { CheckCircle2, Loader2, Mail, Send, User } from "lucide-react"
 import React, { useState } from "react"
+import WorldMapDemo from "./mapChurch"
+
 
 export default function Contact() {
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" })
@@ -29,75 +31,27 @@ export default function Contact() {
     }, 1500)
   }
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Ubicación",
-      content: "Cra 15 #54-78, Bucaramanga",
-      link: "https://maps.app.goo.gl/ZqSgVh6FFauMWBBSA",
-    },
-    {
-      icon: Phone,
-      title: "Teléfono",
-      content: "+57 (7) 123 4567",
-      link: "https://w.app/1081276993"
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "contacto@iadnorte.com",
-      link: "iadnorte@gmail.com"
-    }
-  ]
+  
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-background py-20 px-4 lg:px-8">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-start">
         {/* Información de contacto */}
-        <div className="space-y-8">
-          <div className="space-y-4">
-            
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
-              Contáctanos
-            </h2>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              ¿Tienes preguntas o necesitas información? Estamos aquí para escucharte. 
-              Envíanos un mensaje y te responderemos lo antes posible.
-            </p>
-          </div>
-
-          {/* Información de contacto */}
-          <div className="space-y-4 pt-4">
-            {contactInfo.map((info, index) => (
-              <Card 
-                key={index}
-                className="group bg-transparent border-none"
-              >
-                <a href={info.link} target="_blank">
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10">
-                      <info.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-muted-foreground">{info.title}</p>
-                      <p className="text-base font-semibold text-foreground">{info.content}</p>
-                    </div>
-                  </CardContent>
-                </a>
-              </Card>
-            ))}
-          </div>
-        </div>
-
+        <WorldMapDemo></WorldMapDemo>
+        
         {/* Formulario de contacto */}
         <Card className="shadow-lg border-border/50">
           <CardHeader className="space-y-2 pb-6">
-            <CardTitle className="text-2xl font-bold text-foreground">
-              Envíanos un mensaje
+            <div>
+              <CardTitle className="text-2xl font-bold text-foreground">
+              Envíanos un mensaje o
             </CardTitle>
+            <CardTitle className="text-2xl font-bold text-foreground">
+              Escribe tu peticion de Oracion
+            </CardTitle>
+            </div>
             <CardDescription className="text-base">
-              Completa el formulario y nos pondremos en contacto contigo pronto
+              Completa el formulario y nos pondremos en contacto contigo pronto. Estaremos orando por ti
             </CardDescription>
           </CardHeader>
 

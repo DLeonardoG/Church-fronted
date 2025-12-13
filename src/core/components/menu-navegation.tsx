@@ -217,14 +217,14 @@ export function NavigationMenuDemo() {
                 isOpen={openSubmenu === 'nosotros'}
                 onToggle={() => toggleSubmenu('nosotros')}
               >
-                <MobileNavLink to="/nosotros" onClick={() => setMobileMenuOpen(false)}>
+                <MobileNavLink to="/nosotros#quienes-somos" onClick={() => setMobileMenuOpen(false)}>
                   ¿Quiénes Somos?
                 </MobileNavLink>
                 <MobileNavLink to="/nosotros#creencias" onClick={() => setMobileMenuOpen(false)}>
                   Creencias
                 </MobileNavLink>
-                <MobileNavLink to="/nosotros#equipo" onClick={() => setMobileMenuOpen(false)}>
-                  Nuestro Equipo
+                <MobileNavLink to="/nosotros#historia" onClick={() => setMobileMenuOpen(false)}>
+                  Nuestra Historia
                 </MobileNavLink>
               </MobileSubmenu>
 

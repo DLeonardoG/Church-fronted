@@ -20,7 +20,7 @@ export function ChurchesSection() {
           </h2>
         </div>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Descubre nuestras iglesias en la ciudad y únete a nuestra comunidad
+          Descubre nuestros grupos pequeños en la ciudad y únete a nuestra comunidad
         </p>
       </div>
 

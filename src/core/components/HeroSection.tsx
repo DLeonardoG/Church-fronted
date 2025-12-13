@@ -8,7 +8,6 @@ interface HeroSectionProps {
   video?: string;
   buttonText?: string;
   buttonHref?: string;
-  buttonIcon?: React.ReactNode; // cualquier ícono o componente
   buttonClassName?: string; // para customizar estilos del botón
 }
 
@@ -18,7 +17,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   video,
   buttonText = "Contactanos",
   buttonHref = "#Contactanos",
-  buttonIcon,
   buttonClassName = "",
 }) => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -128,7 +126,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </h1>
         <h2
           ref={text2Ref}
-          className="text-[7vmin] font-extrabold leading-none text-gray-100 opacity-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]"
+          className="text-[7vmin] font-bold leading-none text-gray-100 opacity-0 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]"
         >
           {titulo2}
         </h2>
@@ -137,10 +135,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           <a
             href={buttonHref}
             ref={buttonRef}
-            className={`flex gap-2 items-center opacity-0 px-8 py-4 bg-white/90 text-black rounded-2xl font-bold text-lg mt-6 hover:bg-gray-200 transition relative z-20 pointer-events-auto ${buttonClassName}`}
+            className={`bg-white dark:bg-black flex gap-2 items-center opacity-0 px-8 py-4 bg-white/90 text-black dark:text-white rounded-2xl font-bold text-lg mt-6 hover:bg-gray-200 transition relative z-20 pointer-events-auto ${buttonClassName}`}
           >
             {buttonText}
-            {buttonIcon && buttonIcon}
           </a>
         )}
       </div>

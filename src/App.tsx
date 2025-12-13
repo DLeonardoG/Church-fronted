@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import DepartmentPage from "./domains/Departaments/components/DepartamentPage";
 
+
 // Lazy load of components
 const Home = lazy(() => import("@/domains/Home").then(m => ({ default: m.Home })));
 const About = lazy(() => import("@/domains/About").then(m => ({ default: m.About })));
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      
       <RouterProvider router={router} />
     </ThemeProvider>
   );

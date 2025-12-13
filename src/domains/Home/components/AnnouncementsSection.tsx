@@ -1,4 +1,4 @@
-import Anuncios from "@/core/components/anuncios";
+import AnimatedTestimonialsDemo from "@/core/components/anuncios";
 import { cn } from "@/shared/lib/utils";
 import { HOME_SECTION_IDS, HOME_TEXTS } from "../constants/homeConfig";
 
@@ -25,7 +25,7 @@ export function AnnouncementsSection() {
 
       {/* Componente de anuncios */}
       <div className="w-full max-w-7xl">
-        <Anuncios />
+        <AnimatedTestimonialsDemo />
       </div>
     </section>
   );

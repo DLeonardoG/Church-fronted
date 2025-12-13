@@ -25,14 +25,14 @@ export default function Home() {
       {/* Sección del carousel principal */}
       <CarouselSection />
 
-      {/* Sección de anuncios */}
-      <AnnouncementsSection />
-
       {/* Sección de gráficas estadísticas */}
       <GraphSection />
 
       {/* Sección del mapa e iglesias */}
       <ChurchesSection />
+
+      {/* Sección de anuncios */}
+      <AnnouncementsSection />
 
       {/* Sección de llamada a la acción */}
       <CallToActionSection />

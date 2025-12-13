@@ -43,7 +43,7 @@ export function Map() {
     )}>
       {/* Header decorativo */}
       <div className={cn(
-        "absolute top-4 right-4 z-1000",
+        "absolute top-4 right-4 z-10",
         "bg-card/95 backdrop-blur-sm",
         "border border-border rounded-lg",
         "px-4 py-2 shadow-lg",
@@ -51,7 +51,7 @@ export function Map() {
       )}>
         <MapPin className="w-5 h-5 text-primary" />
         <span className="text-sm font-semibold text-foreground">
-          {iglesias.length} Iglesias
+          {iglesias.length} Grupos Pequeños
         </span>
       </div>
 

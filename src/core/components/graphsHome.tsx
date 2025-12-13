@@ -84,19 +84,26 @@ export default function GraphHome() {
     youth: 50,
   };
 
-  const animateCount = (setter: Function, target: number, duration = 2000) => {
-    let start = 0;
-    const increment = target / (duration / 16);
-    const counter = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setter(target);
-        clearInterval(counter);
-      } else {
-        setter(Math.floor(start));
-      }
-    }, 16);
-  };
+  const animateCount = (
+  setter: React.Dispatch<React.SetStateAction<number>>,
+  target: number,
+  duration = 800
+) => {
+  let start = 0
+  const steps = duration / 16
+  const increment = target / steps
+
+  const counter = setInterval(() => {
+    start += increment
+    if (start >= target) {
+      setter(target)
+      clearInterval(counter)
+    } else {
+      setter(Math.floor(start))
+    }
+  }, 16)
+}
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -106,10 +113,10 @@ export default function GraphHome() {
             setHasAnimated(true);
             // Animar contadores con delays escalonados
             setTimeout(() => animateCount(setActiveMembers, targetNumbers.activeMembers), 100);
-            setTimeout(() => animateCount(setSmallGroups, targetNumbers.smallGroups), 200);
-            setTimeout(() => animateCount(setDepartments, targetNumbers.departments), 300);
-            setTimeout(() => animateCount(setEvents, targetNumbers.events), 400);
-            setTimeout(() => animateCount(setYouth, targetNumbers.youth), 500);
+            setTimeout(() => animateCount(setSmallGroups, targetNumbers.smallGroups), 100);
+            setTimeout(() => animateCount(setDepartments, targetNumbers.departments), 100);
+            setTimeout(() => animateCount(setEvents, targetNumbers.events), 100);
+            setTimeout(() => animateCount(setYouth, targetNumbers.youth),100);
           }
         });
       },
@@ -177,7 +184,7 @@ export default function GraphHome() {
         <StatCard
           icon={<CalendarDays className="w-8 h-8" />}
           count={events}
-          label="Eventos Mensuales"
+          label="Eventos"
           delay={400}
         />
 

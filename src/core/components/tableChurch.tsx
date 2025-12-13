@@ -1,3 +1,5 @@
+"use client";
+
 import {
   flexRender,
   getCoreRowModel,
@@ -8,11 +10,17 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 
-import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from "@tanstack/react-table";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table";
+
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 import { Button } from "@/core/components/ui/button";
-import { Checkbox } from "@/core/components/ui/checkbox";
 import { Input } from "@/core/components/ui/input";
 import {
   Table,
@@ -32,7 +40,6 @@ import {
 } from "@/core/components/ui/dialog";
 
 import { cn } from "@/shared/lib/utils";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 type Church = {
   name: string;
@@ -41,30 +48,13 @@ type Church = {
   images?: string[];
 };
 
+/* =======================
+   COLUMNAS (SIN CHECKS)
+======================= */
 export const columns: ColumnDef<Church>[] = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-  },
-  {
     accessorKey: "name",
-    header: "Nombre de la iglesia",
+    header: "Grupo de Oración",
   },
   {
     accessorKey: "direccion",
@@ -76,31 +66,45 @@ export function ChurchTable() {
   const [data, setData] = useState<Church[]>([]);
   const [selectedChurch, setSelectedChurch] = useState<Church | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
+  const [columnVisibility, setColumnVisibility] =
+    useState<VisibilityState>({});
 
+  /* =======================
+     DATA
+  ======================= */
   useEffect(() => {
     fetch("/data/church.json")
       .then((res) => res.json())
       .then((json) => setData(json.bga))
-      .catch((err) => console.error("Error cargando iglesias:", err));
+      .catch((err) =>
+        console.error("Error cargando iglesias:", err)
+      );
   }, []);
 
+  /* =======================
+     TABLE
+  ======================= */
   const table = useReactTable({
     data,
     columns,
-    state: { sorting, columnFilters, columnVisibility, rowSelection },
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    initialState: { pagination: { pageSize: 4 } },
+    initialState: {
+      pagination: { pageSize: 4 },
+    },
   });
 
   const openModal = (church: Church) => {
@@ -109,67 +113,89 @@ export function ChurchTable() {
   };
 
   return (
-    <div className={cn(
-      "w-full max-w-[500px]",
-      "bg-card border border-border rounded-xl shadow-lg",
-      "p-4 md:p-6"
-    )}>
-      {/* Buscador */}
+    <div
+      className={cn(
+        "w-full max-w-[500px]",
+        "bg-card border border-border rounded-xl shadow-lg",
+        "p-4 md:p-6"
+      )}
+    >
+      {/* =======================
+          BUSCADOR
+      ======================= */}
       <div className="flex items-center gap-2 mb-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Buscar iglesia..."
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            value={
+              (table
+                .getColumn("name")
+                ?.getFilterValue() as string) ?? ""
+            }
             onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
+              table
+                .getColumn("name")
+                ?.setFilterValue(event.target.value)
             }
             className="pl-10"
           />
         </div>
       </div>
 
-      {/* Tabla */}
+      {/* =======================
+          TABLA
+      ======================= */}
       <div className="rounded-lg border border-border overflow-hidden">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="hover:bg-transparent">
+              <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="font-bold">
+                  <TableHead
+                    key={header.id}
+                    className="font-semibold"
+                  >
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
+                  onClick={() => openModal(row.original)}
                   className={cn(
                     "cursor-pointer transition-colors",
                     "hover:bg-muted/50"
                   )}
-                  onClick={() => openModal(row.original)}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      key={cell.id}
-                      className="text-sm"
-                    >
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <TableCell key={cell.id} className="text-sm">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  <p className="text-muted-foreground">No se encontraron resultados.</p>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center text-muted-foreground"
+                >
+                  No se encontraron resultados.
                 </TableCell>
               </TableRow>
             )}
@@ -177,78 +203,77 @@ export function ChurchTable() {
         </Table>
       </div>
 
-      {/* Paginación */}
+      {/* =======================
+          PAGINACIÓN
+      ======================= */}
       <div className="flex items-center justify-between mt-4">
         <p className="text-sm text-muted-foreground">
-          Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+          Página {table.getState().pagination.pageIndex + 1} de{" "}
+          {table.getPageCount()}
         </p>
+
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="gap-1"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="h-4 w-4" />
             Anterior
           </Button>
+
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="gap-1"
           >
             Siguiente
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
-      {/* Modal de Detalles */}
+      {/* =======================
+          MODAL
+      ======================= */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-sm sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedChurch?.name}</DialogTitle>
+            <DialogTitle className="text-2xl">
+              {selectedChurch?.name}
+            </DialogTitle>
             <DialogDescription className="text-base">
               {selectedChurch?.direccion}
             </DialogDescription>
           </DialogHeader>
-          
+
           {selectedChurch?.description && (
             <p className="text-sm text-muted-foreground leading-relaxed">
               {selectedChurch.description}
             </p>
           )}
 
-          {selectedChurch?.images && selectedChurch.images.length > 0 && (
-            <div className="flex gap-4 justify-center items-center flex-wrap mt-4">
+          {selectedChurch?.images?.length && (
+            <div className="flex flex-wrap justify-center gap-4 mt-4">
               {selectedChurch.images.map((img, idx) => (
                 <motion.div
-                  key={`image-${idx}`}
-                  initial={{ rotate: Math.random() * 20 - 10 }}
+                  key={idx}
+                  initial={{
+                    rotate: Math.random() * 20 - 10,
+                  }}
                   whileHover={{
                     scale: 1.1,
                     rotate: 0,
-                    zIndex: 100,
+                    zIndex: 10,
                   }}
-                  whileTap={{
-                    scale: 1.1,
-                    rotate: 0,
-                    zIndex: 100,
-                  }}
-                  className={cn(
-                    "rounded-xl p-1",
-                    "bg-card border border-border",
-                    "shrink-0 overflow-hidden",
-                    "shadow-md hover:shadow-xl transition-shadow"
-                  )}
+                  className="rounded-xl p-1 bg-card border border-border shadow-md"
                 >
                   <img
                     src={img}
-                    alt={`${selectedChurch.name} - Imagen ${idx + 1}`}
-                    className="rounded-lg h-32 w-32 object-cover"
+                    alt={`${selectedChurch.name} ${idx + 1}`}
+                    className="h-32 w-32 object-cover rounded-lg"
                   />
                 </motion.div>
               ))}

@@ -17,7 +17,6 @@ export function CarouselPlugin() {
   )
 
   const images = [
-    "https://wallpapers.com/images/hd/cool-black-christian-cross-0fqkkcakxp7vapd5.jpg",
     "https://cms-imgp.jw-cdn.org/img/p/2018642/univ/art/2018642_univ_lsr_lg.jpg",
     "https://watv.org/wp-content/uploads/2025/01/thum_because_you_say_so.jpg",
     "https://media.swncdn.com/via/images/2024/05/08/35672/35672-daniel_source_file.jpg",

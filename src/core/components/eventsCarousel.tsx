@@ -184,7 +184,7 @@ export function EventsCarousel() {
                         "group-hover:underline"
                       )}
                     >
-                      Continua leyendo
+                      Agregar a tu Calendario
                       <ArrowRightIcon className="w-4 h-4" />
                     </button>
                   </div>
