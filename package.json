@@ -33,6 +33,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@tanstack/react-table": "^8.21.3",
     "@vitejs/plugin-react": "^5.0.4",
+    "Google": "link:@mui/icons-material/Google",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

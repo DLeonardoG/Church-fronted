@@ -61,7 +61,7 @@ export function CountdownTimer({
       )}>
         <span className={cn(
           "font-bold tabular-nums text-foreground",
-          variant === "default" ? "text-3xl" : "text-xl"
+          variant === "default" ? "text-2xl" : "text-xl"
         )}>
           {value.toString().padStart(2, '0')}
         </span>

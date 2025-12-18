@@ -11,6 +11,7 @@ const Home = lazy(() => import("@/domains/Home").then(m => ({ default: m.Home })
 const About = lazy(() => import("@/domains/About").then(m => ({ default: m.About })));
 const Events = lazy(() => import("@/domains/events").then(m => ({ default: m.Events })));
 const Resources = lazy(() => import("@/domains/Resources").then(m => ({ default: m.Resources })));
+const Contact = lazy(() => import("@/domains/Contact").then(m => ({ default: m.Contact })));
 
 function App() {
   const router = createHashRouter([
@@ -57,6 +58,14 @@ function App() {
           </Suspense>
         ),
       },
+      {
+          path: "/contact",
+          element: (
+            <Suspense fallback={<LoadingFallback />}>
+              <Contact />
+            </Suspense>
+          ),
+        },
       ],
     },
   ]);

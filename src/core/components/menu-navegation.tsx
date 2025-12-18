@@ -12,14 +12,13 @@ import {
 import { cn } from "@/shared/lib/utils"
 import { ChevronDown, Menu, X } from "lucide-react"
 import * as React from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { DepartmentItem } from "@/domains/Departaments/components/DepartamentItem"
 
 export function NavigationMenuDemo() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null)
   const location = useLocation()
-  const navigate = useNavigate()
 
   React.useEffect(() => {
     setMobileMenuOpen(false)
@@ -30,18 +29,6 @@ export function NavigationMenuDemo() {
     setOpenSubmenu(openSubmenu === menu ? null : menu)
   }
 
-  const scrollToSection = (sectionId: string) => {
-    // Si no estamos en la página principal, navegar primero a ella con estado
-    if (location.pathname !== '/') {
-      navigate('/', { state: { scrollToSection: sectionId } })
-    } else {
-      // Si ya estamos en la página principal, solo hacer scroll
-      const element = document.getElementById(sectionId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }
-  }
 
   return (
     <>
@@ -117,16 +104,6 @@ export function NavigationMenuDemo() {
             </NavigationMenuContent>
           </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <button 
-                onClick={() => scrollToSection('Anuncios')} 
-                className="font-medium text-foreground hover:text-primary transition-colors cursor-pointer"
-              >
-                Anuncios
-              </button>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
 
           <NavigationMenuItem>
             <NavigationMenuTrigger className="cursor-pointer font-medium text-foreground hover:text-primary data-[state=open]:text-primary transition-colors">
@@ -169,6 +146,16 @@ export function NavigationMenuDemo() {
                 className="font-medium text-foreground hover:text-primary transition-colors"
               >
                 Eventos
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <Link 
+                to="/contact" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Contactanos
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -228,15 +215,6 @@ export function NavigationMenuDemo() {
                 </MobileNavLink>
               </MobileSubmenu>
 
-              <button
-                onClick={() => {
-                  scrollToSection('Anuncios')
-                  setMobileMenuOpen(false)
-                }}
-                className="block px-4 py-2.5 text-sm font-medium rounded-lg hover:bg-accent/80 hover:text-accent-foreground transition-all duration-200 text-foreground w-full text-left"
-              >
-                Anuncios
-              </button>
 
               <MobileSubmenu
                 title="Departamentos"
@@ -264,6 +242,9 @@ export function NavigationMenuDemo() {
 
               <MobileNavLink to="/eventos" onClick={() => setMobileMenuOpen(false)}>
                 Eventos
+              </MobileNavLink>
+              <MobileNavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>
+                Contactanos
               </MobileNavLink>
             </nav>
           </div>

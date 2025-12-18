@@ -30,10 +30,10 @@ export function ProfileLogin() {
       <DropdownMenuContent align="end" className="p-2 w-80 h-auto" forceMount>
         <Card className="w-full max-w-sm">
           <CardHeader>
-            <CardTitle>Login to your account</CardTitle>
-            <CardDescription>Enter your email below to login</CardDescription>
+            <CardTitle>Ingresa a tu cuenta</CardTitle>
+            <CardDescription>Escribe tu email para ingresar.</CardDescription>
             <CardAction>
-              <RefButton variant="link">Sign Up</RefButton>
+              <RefButton variant="link">Registrate</RefButton>
             </CardAction>
           </CardHeader>
           <CardContent>
@@ -45,9 +45,9 @@ export function ProfileLogin() {
                 </div>
                 <div className="grid gap-2">
                   <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                    <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
-                      Forgot your password?
+                    <Label htmlFor="password">Contraseña</Label>
+                    <a href="#" className="ml-auto text-xs underline-offset-4 hover:underline">
+                      Olvidaste tu Contraseña?
                     </a>
                   </div>
                   <Input id="password" type="password" required />
@@ -57,10 +57,10 @@ export function ProfileLogin() {
           </CardContent>
           <CardFooter className="flex-col gap-2">
             <RefButton type="submit" className="w-full h-8">
-              Login
+              Ingresa
             </RefButton>
             <RefButton variant="outline" className="w-full h-8">
-              Login with Google
+              Ingresa con Google
             </RefButton>
           </CardFooter>
         </Card>

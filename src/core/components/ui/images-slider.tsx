@@ -129,7 +129,7 @@ export const ImagesSlider = ({
       {ready && overlay && (
         <div
           className={cn(
-            "absolute inset-0 z-40 bg-black/40",
+            "absolute inset-0 z-40 bg-black/10",
             overlayClassName
           )}
         />
