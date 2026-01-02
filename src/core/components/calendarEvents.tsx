@@ -19,165 +19,520 @@ const filterOptions = [
 ];
 
 const scheduleData = [
-  { 
-    id: 1, 
-    date: 1, 
-    name: "Santa Cena", 
-    status: "Unassigned", 
-    hours: "6 hr", 
-    type: "unassigned",
-    category: "project",
-    client: "Acme Corp",
-    time: "09:00 - 15:00",
-    startTime: "09:00",
-    endTime: "15:00",
-    description: "ISO 9001:2015 Initial Assessment",
-    location: "Acme Corp HQ, Downtown"
-  },
-  { 
-    id: 2, 
-    date: 10, 
-    name: "Jonie Geo", 
-    status: "Scheduled", 
-    hours: "8 hr", 
+   {
+    id: 1,
+    date: 10,
+    name: "Jornada Espiritual de Renovación",
+    status: "Active",
+    hours: "6 hr",
     type: "scheduled",
-    category: "product",
-    client: "Tech Industries",
-    time: "08:00 - 17:00",
+    category: "church",
+    client: "Iglesia Adventista del Séptimo Día",
+    time: "08:00 - 14:00",
     startTime: "08:00",
-    endTime: "17:00",
-    description: "Product Quality Audit",
-    location: "Tech Industries Plant"
+    endTime: "14:00",
+    description: "Un espacio de renovación espiritual enfocado en la oración, el estudio bíblico y la comunión cristiana.",
+    location: "Iglesia Adventista Central, Bucaramanga",
+    details: {
+      fechaEvento: "Sábado, 10 de Enero de 2026",
+      capacidad: 150,
+      cuposDisponibles: 40,
+      inversion: "Entrada libre"
+    },
+    programa: [
+      { hora: "08:00 AM", actividad: "Recepción y oración inicial" },
+      { hora: "09:00 AM", actividad: "Escuela Sabática Especial" },
+      { hora: "11:00 AM", actividad: "Culto Divino" },
+      { hora: "01:00 PM", actividad: "Almuerzo comunitario" }
+    ],
+    incluye: ["Material bíblico", "Almuerzo"],
+    requisitos: ["Biblia", "Cuaderno"],
+    organiza: "Ministerio de Vida Espiritual",
+    invitadoEspecial: {
+      nombre: "Pr. Andrés Molina",
+      descripcion: "Pastor adventista enfocado en crecimiento espiritual."
+    },
+    meta: {
+      categoriaGeneral: "Evento Espiritual",
+      estado: "Activo",
+      visibilidad: "Público",
+      creadoEl: "2026-01-02T00:00:00Z"
+    }
   },
-  { 
-    id: 3, 
-    date: 14, 
-    name: "Aulia Nirmala", 
-    status: "In Progress", 
-    hours: "4 hr", 
+
+  {
+    id: 2,
+    date: 17,
+    name: "Seminario de Familia Cristiana",
+    status: "Active",
+    hours: "5 hr",
     type: "scheduled",
-    category: "project",
-    client: "Global Solutions",
-    time: "13:00 - 17:00",
-    startTime: "13:00",
-    endTime: "17:00",
-    description: "ISCC Surveillance Audit",
-    location: "Global Solutions Office"
+    category: "church",
+    client: "Ministerio de Familia Adventista",
+    time: "09:00 - 14:00",
+    startTime: "09:00",
+    endTime: "14:00",
+    description: "Seminario para fortalecer los hogares bajo principios bíblicos.",
+    location: "Iglesia Adventista Floridablanca",
+    details: {
+      fechaEvento: "Sábado, 17 de Enero de 2026",
+      capacidad: 100,
+      cuposDisponibles: 30,
+      inversion: "Entrada libre"
+    },
+    programa: [
+      { hora: "09:00 AM", actividad: "Oración y alabanza" },
+      { hora: "10:00 AM", actividad: "Conferencia: Hogares firmes en Cristo" },
+      { hora: "12:00 PM", actividad: "Taller práctico" }
+    ],
+    incluye: ["Guía familiar"],
+    requisitos: ["Asistencia en familia"],
+    organiza: "Ministerio de Hogar Cristiano",
+    invitadoEspecial: {
+      nombre: "Pr. Luis Rojas",
+      descripcion: "Orientador familiar adventista."
+    },
+    meta: {
+      categoriaGeneral: "Evento Familiar",
+      estado: "Activo",
+      visibilidad: "Público",
+      creadoEl: "2026-01-02T00:00:00Z"
+    }
   },
-  { 
-    id: 4, 
-    date: 16, 
-    name: "Team Meeting", 
-    status: "Confirmed", 
-    hours: "2 hr", 
-    type: "meeting",
-    category: "other",
-    client: "Internal",
-    time: "10:00 - 12:00",
-    startTime: "10:00",
+
+  {
+    id: 3,
+    date: 24,
+    name: "Retiro Espiritual Juvenil",
+    status: "Active",
+    hours: "8 hr",
+    type: "scheduled",
+    category: "church",
+    client: "Ministerio Joven Adventista",
+    time: "09:00 - 17:00",
+    startTime: "09:00",
+    endTime: "17:00",
+    description: "Un día de crecimiento espiritual dirigido a jóvenes adventistas.",
+    location: "Centro Campestre Adventista, Girón",
+    details: {
+      fechaEvento: "Sábado, 24 de Enero de 2026",
+      capacidad: 80,
+      cuposDisponibles: 18,
+      inversion: "Aporte voluntario"
+    },
+    programa: [
+      { hora: "09:00 AM", actividad: "Bienvenida" },
+      { hora: "10:30 AM", actividad: "Tema: Identidad en Cristo" },
+      { hora: "02:00 PM", actividad: "Grupos pequeños" },
+      { hora: "04:30 PM", actividad: "Cierre espiritual" }
+    ],
+    incluye: ["Refrigerio", "Material juvenil"],
+    requisitos: ["Edad 15–30 años"],
+    organiza: "Ministerio Joven",
+    invitadoEspecial: {
+      nombre: "Pr. Daniel Gómez",
+      descripcion: "Líder juvenil adventista."
+    },
+    meta: {
+      categoriaGeneral: "Evento Juvenil",
+      estado: "Activo",
+      visibilidad: "Público",
+      creadoEl: "2026-01-02T00:00:00Z"
+    }
+  },
+
+  {
+    id: 4,
+    date: 31,
+    name: "Seminario de Salud Integral",
+    status: "Active",
+    hours: "4 hr",
+    type: "scheduled",
+    category: "church",
+    client: "Ministerio de Salud Adventista",
+    time: "08:00 - 12:00",
+    startTime: "08:00",
     endTime: "12:00",
-    description: "Weekly Team Sync & Planning",
-    location: "Conference Room A"
+    description: "Seminario enfocado en el cuidado del cuerpo como templo del Espíritu Santo.",
+    location: "Iglesia Adventista Cabecera, Bucaramanga",
+    details: {
+      fechaEvento: "Sábado, 31 de Enero de 2026",
+      capacidad: 120,
+      cuposDisponibles: 50,
+      inversion: "Entrada libre"
+    },
+    programa: [
+      { hora: "08:00 AM", actividad: "Charla: Salud y Biblia" },
+      { hora: "10:00 AM", actividad: "Hábitos saludables" }
+    ],
+    incluye: ["Material educativo"],
+    requisitos: ["Interés en salud"],
+    organiza: "Ministerio de Salud",
+    invitadoEspecial: {
+      nombre: "Dr. Carlos Méndez",
+      descripcion: "Médico adventista."
+    },
+    meta: {
+      categoriaGeneral: "Evento de Salud",
+      estado: "Activo",
+      visibilidad: "Público",
+      creadoEl: "2026-01-05T00:00:00Z"
+    }
   },
-  { 
-    id: 5, 
-    date: 22, 
-    name: "Jefri Cool", 
-    status: "Unassigned", 
-    hours: "6 hr", 
-    type: "unassigned",
-    category: "project",
-    client: "StartUp Inc",
-    time: "09:00 - 15:00",
-    startTime: "09:00",
-    endTime: "15:00",
-    description: "ISO 14001 Initial Assessment",
-    location: "StartUp Inc Facility"
-  },
-  { 
-    id: 6, 
-    date: 25, 
-    name: "Training Session", 
-    status: "Scheduled", 
-    hours: "3 hr", 
-    type: "training",
-    category: "other",
-    client: "Internal",
-    time: "14:00 - 17:00",
-    startTime: "14:00",
-    endTime: "17:00",
-    description: "ISCC Standards Training",
-    location: "Training Room B"
-  },
-  { 
-    id: 7, 
-    date: 30, 
-    name: "Iwan Nurmawan", 
-    status: "Pending", 
-    hours: "8 hr", 
+
+  {
+    id: 5,
+    date: 7,
+    name: "Escuela Sabática de Liderazgo",
+    status: "Active",
+    hours: "5 hr",
     type: "scheduled",
-    category: "product",
-    client: "Enterprise Ltd",
-    time: "08:00 - 17:00",
-    startTime: "08:00",
-    endTime: "17:00",
-    description: "Product Certification Audit",
-    location: "Enterprise Ltd Main Site"
+    category: "church",
+    client: "Ministerio de Liderazgo Adventista",
+    time: "09:00 - 14:00",
+    startTime: "09:00",
+    endTime: "14:00",
+    description: "Capacitación para líderes de iglesia y ministerios.",
+    location: "Iglesia Adventista Norte, Bucaramanga",
+    details: {
+      fechaEvento: "Sábado, 7 de Febrero de 2026",
+      capacidad: 90,
+      cuposDisponibles: 22,
+      inversion: "Entrada libre"
+    },
+    programa: [
+      { hora: "09:00 AM", actividad: "Liderazgo cristiano" },
+      { hora: "11:00 AM", actividad: "Trabajo en equipo" }
+    ],
+    incluye: ["Manual de liderazgo"],
+    requisitos: ["Ser líder o servidor"],
+    organiza: "Ministerio de Liderazgo",
+    invitadoEspecial: {
+      nombre: "Pr. Miguel Torres",
+      descripcion: "Instructor de liderazgo adventista."
+    },
+    meta: {
+      categoriaGeneral: "Evento de Capacitación",
+      estado: "Activo",
+      visibilidad: "Público",
+      creadoEl: "2026-02-01T00:00:00Z"
+    }
   },
   {
-  id: 8,
-  date: 31,
-  name: "Retiro Espiritual de Sanidad",
-  status: "Pending",
-  hours: "9 hr",
-  type: "scheduled",
-  category: "product",
-  client: "Ministerio de Sanidad y Restauración",
-  time: "09:00 - 18:00",
-  startTime: "09:00",
-  endTime: "18:00",
-  description: "Un encuentro transformador con Dios. Te invitamos a un día de renovación espiritual donde experimentarás la presencia de Dios a través de la adoración, la oración y la ministración. Este retiro está diseñado para quienes buscan sanidad emocional, física y espiritual.",
-  location: "Centro de Retiros Monte Horeb, Calle 45 #23-15, Floridablanca",
-  "details": {
-    "fechaEvento": "Sábado, 16 de Noviembre de 2025",
-    "capacidad": 120,
-    "cuposDisponibles": 35,
-    "inversion": "Entrada libre - Ofrenda voluntaria"
+    id: 6,
+    date: 6,
+    name: "Jornada de Oración y Ayuno",
+    status: "Active",
+    hours: "6 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista Central",
+    time: "08:00 - 14:00",
+    startTime: "08:00",
+    endTime: "14:00",
+    description: "Un día especial dedicado a la oración profunda y al ayuno, buscando la dirección de Dios para la iglesia y las familias.",
+    location: "Templo Adventista Central",
+    details: {
+      fechaEvento: "Lunes, 6 de Enero de 2026",
+      capacidad: 150,
+      cuposDisponibles: 60,
+      inversion: "Entrada libre"
+    }
   },
-  "programa": [
-    { "hora": "09:00 AM", "actividad": "Registro y Bienvenida" },
-    { "hora": "09:30 AM", "actividad": "Alabanza y Adoración" },
-    { "hora": "10:30 AM", "actividad": "Mensaje: 'Jesús el Sanador'" },
-    { "hora": "12:00 PM", "actividad": "Almuerzo (incluido)" },
-    { "hora": "01:30 PM", "actividad": "Taller: Sanidad Interior y Restauración del Corazón" },
-    { "hora": "03:00 PM", "actividad": "Tiempo de Oración Personal" },
-    { "hora": "04:00 PM", "actividad": "Ministración y Testimonios" },
-    { "hora": "05:30 PM", "actividad": "Cierre y Bendición Final" }
-  ],
-  "incluye": [
-    "Material de estudio y reflexión",
-    "Almuerzo y refrigerios",
-    "Transporte desde la iglesia",
-    "Certificado de participación",
-    "Espacios de oración guiada y acompañamiento"
-  ],
-  "requisitos": [
-    "Llevar Biblia personal",
-    "Ropa cómoda y apropiada",
-    "Actitud de apertura y fe"
-  ],
-  "organiza": "Ministerio de Sanidad y Restauración",
-  "invitadoEspecial": {
-    "nombre": "Pastor Juan Carlos Martínez",
-    "descripcion": "Pastor invitado con más de 20 años de experiencia en ministerios de sanidad interior y restauración espiritual."
+  {
+    id: 7,
+    date: 7,
+    name: "Clase Bíblica: Profecías de Daniel",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio de Enseñanza Bíblica",
+    time: "18:30 - 20:30",
+    startTime: "18:30",
+    endTime: "20:30",
+    description: "Estudio profundo del libro de Daniel y su relevancia para el tiempo del fin.",
+    location: "Aula Bíblica – Iglesia Adventista",
+    details: {
+      fechaEvento: "Martes, 7 de Enero de 2026",
+      capacidad: 80,
+      cuposDisponibles: 25,
+      inversion: "Gratuito"
+    }
   },
-  "meta": {
-    "categoriaGeneral": "Evento Espiritual",
-    "estado": "Activo",
-    "visibilidad": "Público",
-    "creadoEl": "2025-10-28T00:00:00Z"
-  }
-}
+  {
+    id: 8,
+    date: 8,
+    name: "Capacitación de Líderes Juveniles",
+    status: "Active",
+    hours: "4 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio Joven Adventista",
+    time: "15:00 - 19:00",
+    startTime: "15:00",
+    endTime: "19:00",
+    description: "Entrenamiento para jóvenes líderes enfocado en discipulado, misión y liderazgo cristiano.",
+    location: "Salón Juvenil Adventista",
+    details: {
+      fechaEvento: "Miércoles, 8 de Enero de 2026",
+      capacidad: 70,
+      cuposDisponibles: 20,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 9,
+    date: 9,
+    name: "Taller de Salud y Estilo de Vida",
+    status: "Active",
+    hours: "3 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio de Salud Adventista",
+    time: "09:00 - 12:00",
+    startTime: "09:00",
+    endTime: "12:00",
+    description: "Principios de salud integral basados en la Biblia y el mensaje adventista.",
+    location: "Centro de Vida Sana Adventista",
+    details: {
+      fechaEvento: "Jueves, 9 de Enero de 2026",
+      capacidad: 100,
+      cuposDisponibles: 40,
+      inversion: "Gratuito"
+    }
+  },
+  {
+    id: 10,
+    date: 10,
+    name: "Sábado Joven Misionero",
+    status: "Active",
+    hours: "8 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio Joven Adventista",
+    time: "09:00 - 17:00",
+    startTime: "09:00",
+    endTime: "17:00",
+    description: "Un sábado especial de adoración, misión y servicio comunitario.",
+    location: "Iglesia Adventista Principal",
+    details: {
+      fechaEvento: "Sábado, 10 de Enero de 2026",
+      capacidad: 200,
+      cuposDisponibles: 80,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 11,
+    date: 11,
+    name: "Escuela de Padres Cristianos",
+    status: "Active",
+    hours: "3 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio de Familia Adventista",
+    time: "16:00 - 19:00",
+    startTime: "16:00",
+    endTime: "19:00",
+    description: "Fortaleciendo hogares bajo principios bíblicos.",
+    location: "Salón Familiar Adventista",
+    details: {
+      fechaEvento: "Domingo, 11 de Enero de 2026",
+      capacidad: 90,
+      cuposDisponibles: 30,
+      inversion: "Gratuito"
+    }
+  },
+  {
+    id: 12,
+    date: 12,
+    name: "Semana de Oración – Día 1",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "19:00 - 21:00",
+    startTime: "19:00",
+    endTime: "21:00",
+    description: "Inicio de la semana especial de oración congregacional.",
+    location: "Templo Adventista",
+    details: {
+      fechaEvento: "Lunes, 12 de Enero de 2026",
+      capacidad: 180,
+      cuposDisponibles: 50,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 13,
+    date: 13,
+    name: "Semana de Oración – Día 2",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "19:00 - 21:00",
+    startTime: "19:00",
+    endTime: "21:00",
+    description: "Continuamos fortaleciendo la vida espiritual a través de la oración.",
+    location: "Templo Adventista",
+    details: {
+      fechaEvento: "Martes, 13 de Enero de 2026",
+      capacidad: 180,
+      cuposDisponibles: 45,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 14,
+    date: 14,
+    name: "Semana de Oración – Día 3",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "19:00 - 21:00",
+    startTime: "19:00",
+    endTime: "21:00",
+    description: "Mensaje espiritual centrado en la fe y la esperanza cristiana.",
+    location: "Templo Adventista",
+    details: {
+      fechaEvento: "Miércoles, 14 de Enero de 2026",
+      capacidad: 180,
+      cuposDisponibles: 40,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 15,
+    date: 15,
+    name: "Semana de Oración – Día 4",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "19:00 - 21:00",
+    startTime: "19:00",
+    endTime: "21:00",
+    description: "Reflexión bíblica sobre el compromiso cristiano.",
+    location: "Templo Adventista",
+    details: {
+      fechaEvento: "Jueves, 15 de Enero de 2026",
+      capacidad: 180,
+      cuposDisponibles: 35,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 16,
+    date: 16,
+    name: "Semana de Oración – Clausura",
+    status: "Active",
+    hours: "3 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "18:30 - 21:30",
+    startTime: "18:30",
+    endTime: "21:30",
+    description: "Cierre especial con adoración, testimonios y consagración.",
+    location: "Templo Adventista",
+    details: {
+      fechaEvento: "Viernes, 16 de Enero de 2026",
+      capacidad: 220,
+      cuposDisponibles: 70,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 17,
+    date: 17,
+    name: "Concierto de Música Cristiana",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio de Música Adventista",
+    time: "18:00 - 20:00",
+    startTime: "18:00",
+    endTime: "20:00",
+    description: "Alabanza y adoración a través de la música cristiana.",
+    location: "Auditorio Adventista",
+    details: {
+      fechaEvento: "Sábado, 17 de Enero de 2026",
+      capacidad: 300,
+      cuposDisponibles: 120,
+      inversion: "Entrada libre"
+    }
+  },
+  {
+    id: 18,
+    date: 18,
+    name: "Visita Misionera Comunitaria",
+    status: "Active",
+    hours: "5 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio Misionero Adventista",
+    time: "08:00 - 13:00",
+    startTime: "08:00",
+    endTime: "13:00",
+    description: "Actividad misionera de servicio y evangelismo en la comunidad.",
+    location: "Barrios Aledaños",
+    details: {
+      fechaEvento: "Domingo, 18 de Enero de 2026",
+      capacidad: 100,
+      cuposDisponibles: 40,
+      inversion: "Gratuito"
+    }
+  },
+  {
+    id: 19,
+    date: 19,
+    name: "Curso de Mayordomía Cristiana",
+    status: "Active",
+    hours: "3 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Ministerio de Mayordomía Adventista",
+    time: "18:00 - 21:00",
+    startTime: "18:00",
+    endTime: "21:00",
+    description: "Principios bíblicos sobre el uso responsable del tiempo y los recursos.",
+    location: "Salón de Conferencias Adventista",
+    details: {
+      fechaEvento: "Lunes, 19 de Enero de 2026",
+      capacidad: 90,
+      cuposDisponibles: 30,
+      inversion: "Gratuito"
+    }
+  },
+  {
+    id: 20,
+    date: 20,
+    name: "Cierre de Mes – Culto Especial",
+    status: "Active",
+    hours: "2 hr",
+    type: "scheduled",
+    category: "product",
+    client: "Iglesia Adventista",
+    time: "19:00 - 21:00",
+    startTime: "19:00",
+    endTime: "21:00",
+    description: "Culto de gratitud y reflexión por las bendiciones del mes.",
+    location: "Templo Adventista Central",
+    details: {
+      fechaEvento: "Martes, 20 de Enero de 2026",
+      capacidad: 200,
+      cuposDisponibles: 60,
+      inversion: "Entrada libre"
+    }
+  }  
 
 ];
 
