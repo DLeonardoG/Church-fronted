@@ -18,26 +18,18 @@ export default function MainLayout() {
     <div className="min-h-screen scroll-smooth relative">
       <ScrollToTop />
 
-      {isLoading && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black">
-          <Loader />
-        </div>
-      )}
+      {/* CONTENIDO SIEMPRE RENDERIZADO */}
+      <NavigationMenuDemo />
 
-      {!isLoading && (
-        <>
-          <NavigationMenuDemo />
+      <main>
+        <Outlet />
+      </main>
 
-          <main>
-            <Outlet />
-          </main>
+      <Footer />
+      <FloatingWhatsapp />
 
-          <Footer />
-
-          {/* UI GLOBAL */}
-          <FloatingWhatsapp />
-        </>
-      )}
+      {/* LOADER SOLO COMO OVERLAY */}
+      {isLoading && <Loader />}
     </div>
   )
 }

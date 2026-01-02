@@ -1,46 +1,35 @@
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { SplittingText } from "@/core/components/ui/splitting-text"
 
 export default function LoaderOverlay() {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 3000)
+    // Simula carga inicial (puedes ajustar tiempo)
+    const timer = setTimeout(() => {
+      setVisible(false)
+    }, 2500)
+
     return () => clearTimeout(timer)
   }, [])
 
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          key="loader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 1 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] w-full h-screen flex flex-col items-center justify-center"
-        >
+  if (!visible) return null
 
-          <div className="w-full h-1/2 bg-black flex items-center justify-center">
-            <SplittingText
-            className="text-4xl md:text-8xl lg:text-9xl font-extrabold tracking-wide text-white"
-            text="Comunicaciones"
-          />
-          </div>
-          <div className="w-full h-1/2 bg-black flex flex-col items-center justify-center">
-            <SplittingText
-            className="text-4xl md:text-8xl lg:text-9xlXC font-extrabold tracking-wide text-white"
-            text="Norte"
-          />
-          <SplittingText
-            className="text-lg text-gray-400 mt-4"
-            text="Cargando tu experiencia..."
-            delay={1000}
-            type="words"
-          />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/60 backdrop-blur-md">
+      <div className="flex flex-col items-center gap-6">
+        
+        {/* Logo / Imagen */}
+        <img
+          src="/logo-remove.png"
+          alt="Logo"
+          className="w-24 h-24 object-contain"
+        />
+
+        {/* Texto */}
+        <span className="text-sm text-black/80 animate-pulse">
+          Cargando...
+        </span>
+      </div>
+    </div>
   )
 }

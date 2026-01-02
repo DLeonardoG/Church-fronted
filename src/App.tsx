@@ -1,4 +1,3 @@
-import LoadingFallback from "@/core/components/loading";
 import { ThemeProvider } from "@/core/components/theme-provider";
 import MainLayout from "@/core/layouts/MainLayout";
 import { lazy, Suspense } from "react";
@@ -21,7 +20,7 @@ function App() {
         {
           path: "/",
           element: (
-            <Suspense fallback={<LoadingFallback />}>
+            <Suspense fallback={null}>
               <Home />
             </Suspense>
           ),
@@ -29,7 +28,7 @@ function App() {
         {
           path: "/nosotros",
           element: (
-            <Suspense fallback={<LoadingFallback />}>
+            <Suspense fallback={null}>
               <About />
             </Suspense>
           ),
@@ -37,7 +36,7 @@ function App() {
         {
           path: "/eventos",
           element: (
-            <Suspense fallback={<LoadingFallback />}>
+            <Suspense fallback={null}>
               <Events />
             </Suspense>
           ),
@@ -45,7 +44,7 @@ function App() {
         {
           path: "/recursos",
           element: (
-            <Suspense fallback={<LoadingFallback />}>
+            <Suspense fallback={null}>
               <Resources />
             </Suspense>
           ),
@@ -53,7 +52,7 @@ function App() {
         {
         path: "/departamentos/:slug",
         element: (
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={null}>
             <DepartmentPage />
           </Suspense>
         ),
@@ -61,7 +60,7 @@ function App() {
       {
           path: "/contact",
           element: (
-            <Suspense fallback={<LoadingFallback />}>
+            <Suspense fallback={null}>
               <Contact />
             </Suspense>
           ),
