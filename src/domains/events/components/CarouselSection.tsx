@@ -1,4 +1,4 @@
-import { EventsCarousel } from "@/core/components/eventsCarousel";
+import { EventsCarousel } from "@/domains/events/components/eventsCarousel";
 
 /**
  * Sección del carousel de eventos
