@@ -4,6 +4,7 @@ import { NavigationMenuDemo } from "@/core/components/menu-navegation"
 import Footer from "@/core/components/footer/footer"
 import Loader from "@/core/components/loader/loader"
 import { ScrollToTop } from "@/core/components/ScrolltoTop"
+import FloatingWhatsapp from "@/core/components/ui/FloatingWhatsapp"
 
 export default function MainLayout() {
   const [isLoading, setIsLoading] = useState(true)
@@ -26,10 +27,15 @@ export default function MainLayout() {
       {!isLoading && (
         <>
           <NavigationMenuDemo />
+
           <main>
             <Outlet />
           </main>
+
           <Footer />
+
+          {/* UI GLOBAL */}
+          <FloatingWhatsapp />
         </>
       )}
     </div>
