@@ -22,7 +22,7 @@ const resourcesData: ResourceItem[] = [
     type: "download",
     bg: "bg-neutral-900 text-white",
     icon: <Download size={14} />,
-    actionLink: "/descargas/28-creencias.pdf",
+    actionLink: "https://online-s.fliphtml5.com/emro%2Fpsiy%2Fsourcefiles%2Fpsiy-F3FDD089C71C2D55E02BD37801DFC045.pdf?time=1766099198&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9vbmxpbmUtcy5mbGlwaHRtbDUuY29tL2Vtcm8lMkZwc2l5JTJGc291cmNlZmlsZXMlMkZwc2l5LUYzRkREMDg5QzcxQzJENTVFMDJCRDM3ODAxREZDMDQ1LnBkZj90aW1lPTE3NjYwOTkxOTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjYxMDAzOTh9fX1dfQ__&Signature=HItnvB9yNDNMfxWOEefi-Mv1VFPysmV10TQM41dFzW7Q9rhO-8c7zfuka2tWRuri3GCFI~P~3RdzljHtGC6uDLJMYVjoCPj7kVcyld19MvLxC6ppblC7AdEFnKqzfnTzPSEwB5w9-K8qIEfrMSA5ptbXiI11wPN4E7IK8h4ttfhWqjpKZQiDzOj6V79v~SWEmXrjEBVNRfrIbqeHF6bvNjxCeRMIddHidOOs4gNxhb03xQsJ~O9MGrolBmyLyE5RpejKWTRejpdwHpVYizrd~6lAqjTziqV8HYddPHmZ0lOCovDTwcq6YiwaH-IKjKfRvHMm-Ql2chbEajVoeHu-Bg__&Key-Pair-Id=K26YF7TG07WYF",
     coverImage: "https://image.slidesharecdn.com/libro28creenciasadventistasseptimodia-121003232132-phpapp02/75/Libro-de-las-28-Creencias-de-los-Adventistas-del-Septimo-Dia-1-2048.jpg",
   },
   {
@@ -31,10 +31,10 @@ const resourcesData: ResourceItem[] = [
     text: `Una obra profética escrita por Elena G. de White que revela la lucha entre el bien y el mal a lo largo de la historia y el futuro final de la humanidad.`,
     role: "Comprar",
     author: "Editorial Safeliz",
-    type: "buy",
+    type: "download",
     bg: "bg-blue-700 text-white",
     icon: <ShoppingCart size={14} />,
-    actionLink: "/tienda/conflicto-de-los-siglos",
+    actionLink: "https://ellenwhiteaudio.org/audio/sp/gc/El%20Conflicto%20de%20los%20Siglos.pdf",
     coverImage: "https://cdnx.jumpseller.com/aces-peru/image/37474002/resize/1000/1100?1689008534",
   },
   {
@@ -58,7 +58,7 @@ const resourcesData: ResourceItem[] = [
     type: "download",
     bg: "bg-blue-500 text-white",
     icon: <Download size={14} />,
-    actionLink: "/descargas/el-camino-a-cristo.pdf",
+    actionLink: "https://files.recursos-biblicos.com/EGW/Libros%20EGW%20PDF/El%20Camino%20a%20Cristo.pdf",
     coverImage: "https://cdnx.jumpseller.com/aces-peru/image/37473724/resize/1000/1100?1689007643",
   },
   {
@@ -82,7 +82,7 @@ const resourcesData: ResourceItem[] = [
     type: "download",
     bg: "bg-blue-800 text-white",
     icon: <Download size={14} />,
-    actionLink: "/descargas/manual-de-iglesia.pdf",
+    actionLink: "https://www.pcsda.org/wp-content/uploads/2014/10/Manual-de-la-Iglesia-Adventista.pdf",
     coverImage: "https://iadpa.org/cdn/shop/products/Manualdeiglesia2022.jpg?v=1678461368",
   },
 ];
@@ -161,6 +161,7 @@ export function TestimonialsSection() {
                         <div className="mt-auto pt-3">
                           <a
                             href={resource.actionLink}
+                            target="_blank"
                             className={`
                               w-full py-2.5 px-4
                               rounded-xl
