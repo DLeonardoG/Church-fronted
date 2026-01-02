@@ -1,6 +1,6 @@
 import { useScrollHomeTrigger } from "@/shared/hooks/scrollHomeTrigger";
 import { useScrollToSection } from "@/shared/hooks/useScrollToSection";
-import { AnnouncementsSection } from "../components/AnnouncementsSection";
+// import { AnnouncementsSection } from "../components/AnnouncementsSection";
 import { CallToActionSection } from "../components/CallToActionSection";
 import { CarouselSection } from "../components/CarouselSection";
 import { ChurchesSection } from "../components/ChurchesSection";
@@ -31,8 +31,12 @@ export default function Home() {
       {/* Sección del mapa e iglesias */}
       <ChurchesSection />
 
+      
+      
       {/* Sección de anuncios */}
-      <AnnouncementsSection />
+      {/* <AnnouncementsSection /> */}
+
+
 
       {/* Sección de llamada a la acción */}
       <CallToActionSection />
