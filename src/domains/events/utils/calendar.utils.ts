@@ -4,8 +4,8 @@ export interface CalendarEvent {
   description: string;
   category: string;
   dateLabel: string;
-  startDate: string; // ISO
-  endDate: string;   // ISO
+  startDate: string;
+  endDate: string;   
   location: string;
   imageUrl: string;
 }

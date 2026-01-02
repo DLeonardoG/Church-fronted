@@ -3,7 +3,7 @@ import { Badge } from "@/core/components/ui/badge";
 import { Button } from "@/core/components/ui/button";
 import { Checkbox } from "@/core/components/ui/checkbox";
 import { Input } from "@/core/components/ui/input";
-import { ChevronLeft, ChevronRight, Clock, Filter, MapPin, MoreHorizontal, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Filter, MapPin, MoreHorizontal, Search, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
@@ -188,9 +188,19 @@ const timeSlots = [
 
 
 
+
 export function CalendarView() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  
+
 
 
   useEffect(() => {
@@ -208,7 +218,7 @@ export function CalendarView() {
 }, []);
 
   const today = new Date();
-  const [selectedView, setSelectedView] = useState("Month");
+  const [selectedView, setSelectedView] = useState("Mes");
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay()));
@@ -218,6 +228,12 @@ export function CalendarView() {
   const [filters, setFilters] = useState(filterOptions);
   const [showEventModal, setShowEventModal] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    if (isMobile) {
+      setSelectedView("Lista");
+    }
+  }, [isMobile]);
 
   const getDaysInMonth = () => {
     const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -399,7 +415,7 @@ export function CalendarView() {
                 <ChevronRight className="w-5 h-5 text-foreground" />
               </button>
             </div>
-            <span className="text-xl font-medium text-foreground">
+            <span className="text-sm  font-medium text-foreground">
               {months[currentWeekStart.getMonth()]} {currentWeekStart.getDate()} - {
                 new Date(currentWeekStart.getTime() + 6 * 24 * 60 * 60 * 1000).getDate()
               }, {currentWeekStart.getFullYear()}
@@ -408,29 +424,22 @@ export function CalendarView() {
         );
       case "Dia":
         return (
-          <div className="flex items-center gap-4">
-            <Button 
-              variant="outline" 
-              className="border-primary text-primary hover:bg-primary/10 p-4"
-              onClick={() => setCurrentDay(new Date())}
-            >
-              Hoy
-            </Button>
+          <div className="flex items-center gap-2 sm:gap-8 xl:gap-4">
             <div className="flex">
               <button 
                 onClick={() => navigateDay('prev')}
-                className="p-2 bg-background rounded-l border border-border hover:bg-muted/50 transition-colors"
+                className="p-1 lg:p-2 bg-background rounded-l border border-border hover:bg-muted/50 transition-colors"
               >
                 <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
               <button 
                 onClick={() => navigateDay('next')}
-                className="p-2 bg-background rounded-r border border-border hover:bg-muted/50 transition-colors"
+                className="p-1 lg:p-2 bg-background rounded-r border border-border hover:bg-muted/50 transition-colors"
               >
                 <ChevronRight className="w-5 h-5 text-foreground" />
               </button>
             </div>
-            <span className="text-xl font-medium text-foreground">
+            <span className="text-sm lg:text-xl xl:text-xl font-medium text-foreground">
               {daysOfWeekFull[currentDay.getDay()]}, {months[currentDay.getMonth()]} {currentDay.getDate()}, {currentDay.getFullYear()}
             </span>
           </div>
@@ -485,7 +494,7 @@ export function CalendarView() {
     switch (selectedView) {
       case "Semana":
         return (
-          <div className="flex-1 bg-muted/10 p-1">
+          <div className="flex-1 overflow-x-auto bg-muted/10 p-1">
             {/* Time column and days grid */}
             <div className="flex h-full">
               {/* Time column */}
@@ -501,7 +510,7 @@ export function CalendarView() {
               </div>
               
               {/* Days grid */}
-              <div className="flex-1 grid grid-cols-7 gap-1">
+              <div className="min-w-[900px] grid grid-cols-7 gap-1">
                 {getWeekDays().map((date, index) => {
                   const schedules = getScheduleForDateObj(date);
                   const isCurrentDay = isTodayDateObj(date);
@@ -772,27 +781,30 @@ export function CalendarView() {
   return (
   <div className="bg-background w-full border border-border shadow-lg rounded-lg h-full flex flex-col md:flex-row">
     {/* Botón de menú hamburguesa solo en móviles/tablets */}
-    {typeof window !== 'undefined' && window.innerWidth <= 768 && (
-      <div className="md:hidden p-4 bg-card border-b border-border">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsSidebarOpen(true)}
-          className="rounded-md"
-        >
-          <div className="w-5 h-0.5 bg-foreground mb-1.5"></div>
-          <div className="w-5 h-0.5 bg-foreground mb-1.5"></div>
-          <div className="w-5 h-0.5 bg-foreground"></div>
-        </Button>
-      </div>
-    )}
+    {isMobile && (
+  <div className="md:hidden p-4 bg-card border-b border-border flex items-center">
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Abrir menú"
+      onClick={() => setIsSidebarOpen(true)}
+      className="rounded-md hover:bg-muted focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      <Menu className="w-5 h-5" />
+    </Button>
+    <span className="ml-3 text-sm font-medium text-foreground">
+      Calendario
+    </span>
+  </div>
+)}
+
 
     {/* Sidebar: visible siempre en desktop, condicional en móvil */}
     {(typeof window === 'undefined' || window.innerWidth > 768 || isSidebarOpen) && (
       <div
-        className={`w-full md:w-[276px] border-r border-border flex flex-col bg-card ${
-          typeof window !== 'undefined' && window.innerWidth <= 768
-            ? 'fixed inset-y-0 z-50 h-screen'
+        className={`w-90 border-r border-border flex flex-col bg-card ${
+          isMobile
+            ? 'fixed inset-y-15 z-50 h-screen overflow-y-auto shadow-lg'
             : 'relative'
         }`}
       >
@@ -962,23 +974,29 @@ export function CalendarView() {
       <div className="border-b border-border p-4 flex items-center justify-between bg-card">
         {renderNavigation()}
         <div className="flex">
-          {viewModes.map((mode, index) => (
-            <button
-              key={mode}
-              className={`px-4 py-2 text-sm font-medium border transition-colors ${
-                mode === selectedView
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background border-border text-muted-foreground hover:bg-muted/50"
-              } ${
-                index === 0 ? "rounded-l" :
-                index === viewModes.length - 1 ? "rounded-r" : ""
-              }`}
-              onClick={() => setSelectedView(mode)}
-            >
-              {mode}
-            </button>
-          ))}
-        </div>
+  {viewModes
+    .filter((mode) => {
+      // En móvil solo mostramos Día y Lista
+      if (isMobile) return mode === "Dia" || mode === "Lista";
+      return true;
+    })
+    .map((mode, index, arr) => (
+      <button
+        key={mode}
+        onClick={() => setSelectedView(mode)}
+        className={`px-4 py-2 text-sm font-medium border transition-colors
+          ${mode === selectedView
+            ? "bg-primary text-primary-foreground border-primary"
+            : "bg-background border-border text-muted-foreground hover:bg-muted/50"}
+          ${index === 0 ? "rounded-l" : ""}
+          ${index === arr.length - 1 ? "rounded-r" : ""}
+        `}
+      >
+        {mode}
+      </button>
+    ))}
+</div>
+
       </div>
 
       {renderCalendarContent()}
