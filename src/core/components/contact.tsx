@@ -4,54 +4,72 @@ import { Input } from "@/core/components/ui/input"
 import { Label } from "@/core/components/ui/label"
 import { Textarea } from "@/core/components/ui/textarea"
 import { CheckCircle2, Loader2, Mail, Send, User } from "lucide-react"
-import React, { useState } from "react"
+import { useState } from "react"
+import emailjs from "emailjs-com"
 import WorldMapDemo from "./mapChurch"
 
-
 export default function Contact() {
-  const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" })
+  const [form, setForm] = useState({
+    nombre: "",
+    email: "",
+    mensaje: ""
+  })
+
   const [enviado, setEnviado] = useState(false)
   const [enviando, setEnviando] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setEnviando(true)
-    
-    // Simular envío
-    setTimeout(() => {
-      setEnviando(false)
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          nombre: form.nombre,
+          email: form.email,
+          mensaje: form.mensaje
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+
       setEnviado(true)
       setForm({ nombre: "", email: "", mensaje: "" })
-      setTimeout(() => setEnviado(false), 4000)
-    }, 1500)
-  }
 
-  
+      setTimeout(() => setEnviado(false), 4000)
+    } catch (error) {
+      console.error(error)
+      alert("Error enviando el mensaje. Intenta de nuevo.")
+    } finally {
+      setEnviando(false)
+    }
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-background py-20 px-4 lg:px-8">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-start">
-        {/* Información de contacto */}
-        <WorldMapDemo></WorldMapDemo>
-        
-        {/* Formulario de contacto */}
-        <Card className="shadow-lg border-border/50">
-          <CardHeader className="space-y-2 pb-6">
+        <WorldMapDemo />
+
+        <Card className="shadow-lg border-border/50 mt-10">
+          <CardHeader className="space-y-8 pb-6">
             <div>
-              <CardTitle className="text-2xl font-bold text-foreground">
-              Envíanos un mensaje o
-            </CardTitle>
-            <CardTitle className="text-2xl font-bold text-foreground">
-              Escribe tu peticion de Oracion
-            </CardTitle>
+              <CardTitle className="text-2xl font-bold">
+                Envíanos un mensaje o
+              </CardTitle>
+              <CardTitle className="text-2xl font-bold">
+                Escribe tu petición de oración
+              </CardTitle>
             </div>
-            <CardDescription className="text-base">
-              Completa el formulario y nos pondremos en contacto contigo pronto. Estaremos orando por ti
+            <CardDescription>
+              Completa el formulario y estaremos orando por ti.
             </CardDescription>
           </CardHeader>
 
@@ -61,80 +79,64 @@ export default function Contact() {
                 <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
                   <CheckCircle2 className="w-10 h-10 text-primary" />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground">¡Mensaje enviado!</h3>
-                  <p className="text-muted-foreground">
-                    Gracias por contactarnos. Te responderemos pronto.
-                  </p>
-                </div>
+                <h3 className="text-xl font-semibold">
+                  ¡Mensaje enviado!
+                </h3>
+                <p className="text-muted-foreground">
+                  Gracias por escribirnos.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="nombre" className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <User className="w-4 h-4" />
-                    Nombre completo
+                <div className="space-y-4">
+                  <Label className="flex gap-2">
+                    <User className="w-4 h-4" /> Nombre completo
                   </Label>
                   <Input
-                    id="nombre"
                     name="nombre"
                     value={form.nombre}
                     onChange={handleChange}
-                    placeholder="Juan Pérez"
                     required
                     disabled={enviando}
-                    className="h-11 transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    Correo electrónico
+                <div className="space-y-4">
+                  <Label className="flex gap-2">
+                    <Mail className="w-4 h-4" /> Correo electrónico
                   </Label>
                   <Input
-                    id="email"
-                    name="email"
                     type="email"
+                    name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="ejemplo@correo.com"
                     required
                     disabled={enviando}
-                    className="h-11 transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="mensaje" className="text-sm font-medium text-foreground flex items-center gap-2">
-                    <Send className="w-4 h-4" />
-                    Mensaje
+                <div className="space-y-4">
+                  <Label className="flex gap-2">
+                    <Send className="w-4 h-4" /> Mensaje
                   </Label>
                   <Textarea
-                    id="mensaje"
                     name="mensaje"
                     value={form.mensaje}
                     onChange={handleChange}
-                    placeholder="Escribe tu mensaje aquí..."
-                    className="min-h-[140px] resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                     required
                     disabled={enviando}
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={enviando}
-                  className="w-full h-12 font-semibold text-base transition-all duration-200"
-                >
+                <Button type="submit" disabled={enviando} className="w-full">
                   {enviando ? (
                     <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      <Loader2 className="animate-spin mr-2" />
                       Enviando...
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 mr-2" />
+                      <Send className="mr-2" />
                       Enviar mensaje
                     </>
                   )}
