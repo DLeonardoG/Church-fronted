@@ -7,7 +7,7 @@ export default function FloatingWhatsapp() {
 
   return (
     <FloatingWhatsApp
-      phoneNumber="+573001234567"
+      phoneNumber="+573046417789"
       accountName="Iglesia Aventista Norte de Bucaramanga"
       avatar={avatar}
       chatMessage="Hola 👋 ¿En qué te podemos ayudar?"

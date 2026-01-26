@@ -34,11 +34,11 @@ export default function Footer() {
               <p>Colombia</p>
               <div className="flex items-center justify-center lg:justify-start gap-2 mt-4">
                 <Phone className="w-4 h-4" />
-                <span className="font-semibold">+57 601 70200710</span>
+                <span className="font-semibold">+57 3046417789</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Smartphone className="w-4 h-4" />
-                <span className="font-semibold">+57 30161818</span>
+                <span className="font-semibold">+57 3046417789</span>
               </div>
             </div>
 
