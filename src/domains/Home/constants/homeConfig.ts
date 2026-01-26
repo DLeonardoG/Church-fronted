@@ -26,10 +26,10 @@ export const HOME_SECTION_IDS = {
  */
 export const HOME_TEXTS = {
   ANNOUNCEMENTS_TITLE: "Anuncios Importantes",
-  CHURCHES_TITLE: "Grupos de Oracion Iglesia Norte",
+  CHURCHES_TITLE: "Grupos de Oración en Norte Bucaramanga",
   CALL_TO_ACTION: "Cristo Viene Pronto ¿Estás Preparado?",
-  HERO_TITLE_1: "Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre, y el que en mí cree, nunca tendrá sed. juan 3:16",
-  HERO_TITLE_2: "Contactanos para mas Informacion",
+  HERO_TITLE_1: "Iglesia Adventista del Séptimo Día – Norte Bucaramanga",
+  HERO_TITLE_2: "Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre. Juan 3:16 - Norte de Bucaramanga, Santander",
   HERO_BUTTON_TEXT: "Contactanos",
 } as const;
 

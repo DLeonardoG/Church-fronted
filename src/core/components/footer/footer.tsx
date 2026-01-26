@@ -224,7 +224,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-12 pt-6 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Asociación del Oriente Colombiano. Todos los derechos reservados.
+            © {new Date().getFullYear()} Asociación del Oriente Colombiano | IASD Norte Bucaramanga. Todos los derechos reservados.
           </p>
         </div>
       </div>
