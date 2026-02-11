@@ -29,7 +29,7 @@ export const ABOUT_TEXTS = {
     "La Iglesia Adventista del Séptimo Día lleva esperanza al mundo para que las personas vivan con la certeza de que su historia no termina aquí.",
   HERO_BUTTON: "Quiénes Somos",
   CONTENT_TITLE: "¿QUIENES SOMOS?",
-  CONTENT_SUBTITLE: "Conoce quiénes somos como iglesia, nuestra fe y el propósito que nos inspira a servir a Dios y a nuestra comunidad.",
+  CONTENT_SUBTITLE: 'Basamos nuestros logros no en nuestras fuerzas sino en la bondad y amor a Dios hacia cada uno de sus hijos. Porque "Dios es fiel, su amor es para siempre".',
 } as const;
 
 /**
@@ -89,7 +89,7 @@ export const CHURCH_VALUES = [
  */
 export const CHURCH_HISTORY = {
   TITLE: "Nuestra Historia",
-  SUBTITLE: "Un legado de fe, esperanza y servicio en Bucaramanga, construido por generaciones que han dedicado su vida a compartir el mensaje de Cristo y servir con amor a nuestra comunidad.",
+  SUBTITLE: "Han sido 60 años de hechos maravillosos, 60 años de milagros, 60 años de una fe robusta y 60 años llenos de esperanza, anhelando el advenimiento de nuestro señor Jesucristo.",
   DESCRIPTION:
     "La Iglesia Adventista del Séptimo Día en la región Norte de Bucaramanga ha sido un faro de esperanza y servicio durante años. Desde nuestros humildes comienzos, hemos crecido como una familia de fe comprometida con llevar el amor de Cristo a nuestra comunidad.",
   HIGHLIGHT:

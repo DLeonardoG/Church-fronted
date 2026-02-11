@@ -122,7 +122,7 @@ export const ImagesSlider = ({
         "relative h-full w-full overflow-hidden flex items-center justify-center",
         className
       )}
-      style={{ perspective: "1200px" }}
+      style={{ perspective: "1900px" }}
     >
       {ready && children}
 
@@ -144,7 +144,7 @@ export const ImagesSlider = ({
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-contain object-center"
             draggable={false}
           />
         </AnimatePresence>

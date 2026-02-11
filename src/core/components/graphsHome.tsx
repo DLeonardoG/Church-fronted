@@ -14,8 +14,8 @@ function StatCard({ icon, count, label, delay = 0, isImage = false }: StatCardPr
   return (
     <div
       className={cn(
-        "group relative w-[65%] sm:w-[35%] md:w-[33%] lg:w-[22%]",
-        "min-w-[160px] max-w-[260px]",
+        "group relative w-[20%] sm:w-[35%] md:w-[33%] lg:w-[22%]",
+        "min-w-[140px] max-w-[260px]",
         "rounded-3xl bg-card border border-border",
         "p-6 aspect-square",
         "flex flex-col items-center justify-center gap-4",
@@ -43,7 +43,7 @@ function StatCard({ icon, count, label, delay = 0, isImage = false }: StatCardPr
         {/* Número */}
         <div className="flex items-baseline gap-1">
           <h2 className={cn(
-            "text-4xl md:text-5xl font-bold",
+            "text-2xl md:text-5xl font-bold",
             "text-foreground tabular-nums",
             "transition-colors duration-300"
           )}>
@@ -155,7 +155,7 @@ export default function GraphHome() {
       </div>
 
       {/* Stats Grid */}
-      <div className="flex flex-wrap gap-6 justify-center items-center max-w-7xl">
+      <div className="flex flex-wrap gap-3 lg:gap-6 justify-center items-center max-w-7xl">
         {/* Miembros Activos */}
         <StatCard
           icon={<Users className="w-8 h-8" />}

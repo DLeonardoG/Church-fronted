@@ -5,7 +5,7 @@ export function CarouselSection() {
   return (
     <section
       id={HOME_SECTION_IDS.CAROUSEL}
-      className="panel flex w-full h-screen justify-center bg-background"
+      className="panel flex w-full justify-center bg-background"
     >
       <HeroImagesSlider />
     </section>
