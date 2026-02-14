@@ -6,7 +6,8 @@ import { ImagesSlider } from "@/core/components/ui/images-slider";
 export function HeroImagesSlider() {
   // Definir imágenes con sus textos alt para SEO
   const images = [
-    { url: "/principal.jpeg", alt: "Slider Principal" }, ];
+    { url: "/principal.jpeg", alt: "Slider Principal" },
+  { url: "/principal2.jpeg", alt: "Slider Principal" }, ];
 
   // Extraer solo las URLs para el componente ImagesSlider que espera string[]
   const imageUrls = images.map(img => img.url);
